@@ -1,0 +1,12 @@
+C:\Users\Brandon\Documents\Minesweeper\personalMinesweeper\personalMinesweeper\bin\Debug\personalMinesweeper.exe.config
+C:\Users\Brandon\Documents\Minesweeper\personalMinesweeper\personalMinesweeper\bin\Debug\personalMinesweeper.exe
+C:\Users\Brandon\Documents\Minesweeper\personalMinesweeper\personalMinesweeper\bin\Debug\personalMinesweeper.pdb
+C:\Users\Brandon\Documents\Minesweeper\personalMinesweeper\personalMinesweeper\bin\Debug\personalMinesweeper.xml
+C:\Users\Brandon\Documents\Minesweeper\personalMinesweeper\personalMinesweeper\obj\Debug\personalMinesweeper.vbprojAssemblyReference.cache
+C:\Users\Brandon\Documents\Minesweeper\personalMinesweeper\personalMinesweeper\obj\Debug\personalMinesweeper.Form1.resources
+C:\Users\Brandon\Documents\Minesweeper\personalMinesweeper\personalMinesweeper\obj\Debug\personalMinesweeper.Resources.resources
+C:\Users\Brandon\Documents\Minesweeper\personalMinesweeper\personalMinesweeper\obj\Debug\personalMinesweeper.vbproj.GenerateResource.cache
+C:\Users\Brandon\Documents\Minesweeper\personalMinesweeper\personalMinesweeper\obj\Debug\personalMinesweeper.vbproj.CoreCompileInputs.cache
+C:\Users\Brandon\Documents\Minesweeper\personalMinesweeper\personalMinesweeper\obj\Debug\personalMinesweeper.exe
+C:\Users\Brandon\Documents\Minesweeper\personalMinesweeper\personalMinesweeper\obj\Debug\personalMinesweeper.xml
+C:\Users\Brandon\Documents\Minesweeper\personalMinesweeper\personalMinesweeper\obj\Debug\personalMinesweeper.pdb
