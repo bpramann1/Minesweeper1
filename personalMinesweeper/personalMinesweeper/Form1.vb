@@ -22,6 +22,7 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         initializeObjects()
+        enableResize = True
         gatherGameInfoForm()
 
 
@@ -30,10 +31,10 @@ Public Class Form1
 
     Private Sub initializeObjects()
         Form1Objects.Add(New myObjectInForm(RowsNumberTextbox, 50, 50))
-        Form1Objects.Add(New myObjectInForm(RowsNumberLabel, 500, 50))
-        Form1Objects.Add(New myObjectInForm(ColumnsNumberLabel, 400, 50))
+        Form1Objects.Add(New myObjectInForm(RowsNumberLabel, 500, 50, "Number of Rows"))
+        Form1Objects.Add(New myObjectInForm(ColumnsNumberLabel, 400, 50, "Number of Columns"))
         Form1Objects.Add(New myObjectInForm(ColumnsNumberTextbox, 300, 50))
-        Form1Objects.Add(New myObjectInForm(SubmitBoardSizeButton, 200, 50))
+        Form1Objects.Add(New myObjectInForm(SubmitBoardSizeButton, 200, 50, "Start Game"))
     End Sub
 
     Private Sub gatherGameInfoForm()
@@ -45,6 +46,7 @@ Public Class Form1
 
         showGatherGameInfoObjects()
 
+        positonGatherGameInfoObjects()
 
 
     End Sub
@@ -63,7 +65,6 @@ Public Class Form1
         For Each item In Form1Objects
             item.showObject()
         Next
-        enableResize = True
     End Sub
 
 
@@ -72,7 +73,6 @@ Public Class Form1
     End Function
 
     Private Sub createGameInfoObjects()
-        RowsNumberLabel.Text = "RowsNumberLabel"
         AddHandler RowsNumberTextbox.TextChanged, AddressOf RowsNumberTextbox_TextChanged
     End Sub
 
@@ -86,16 +86,25 @@ Public Class Form1
         End If
         '
     End Sub
+
 End Class
 
 Public Class myObjectInForm
     Public myObject As Object
     Public myPosition As Point
+    Public myInitialText As String
     Const MinObjectWidth As Integer = 50
 
     Public Sub New(addedObject As Object, addedPositionX As Integer, addedPositionY As Integer)
         myObject = addedObject
         myPosition = New Point(addedPositionX, addedPositionY)
+        myInitialText = ""
+    End Sub
+
+    Public Sub New(addedObject As Object, addedPositionX As Integer, addedPositionY As Integer, addedInitialText As String)
+        myObject = addedObject
+        myPosition = New Point(addedPositionX, addedPositionY)
+        myInitialText = addedInitialText
     End Sub
 
     Public Sub setObject(objectType As Object)
@@ -129,6 +138,9 @@ Public Class myObjectInForm
 
     Public Sub showObject()
         Form1.Controls.Add(myObject)
+        If myInitialText <> "" Then
+            myObject.Text = myInitialText
+        End If
         myObject.Show()
     End Sub
 
