@@ -10,7 +10,7 @@
 
     Dim SubmitBoardSizeButton As Button
 
-    Dim arrayOfObjects(5) As Object
+    Dim Form1Objects As New myObjectInForm
 
     Dim enableResize As Boolean = False
 
@@ -26,7 +26,7 @@
     End Sub
 
     Private Sub initializeObjects()
-        arrayOfObjects(0) = RowsNumberLabel
+        Form1Objects.addObject(RowsNumberTextbox, 50, 50)
     End Sub
 
     Private Sub gatherGameInfoForm()
@@ -88,4 +88,18 @@
         End If
         '
     End Sub
+End Class
+
+Public Class myObjectInForm
+    Dim listOfObjects As New List(Of Object)
+    Dim listOfPositions As New List(Of Point)
+
+
+    Public Sub addObject(objectType As Object, objectPositionx As Integer, objectPositiony As Integer)
+        listOfObjects.Add(objectType)
+        listOfPositions.Add(New Point(objectPositionx, objectPositiony))
+    End Sub
+
+
+
 End Class
