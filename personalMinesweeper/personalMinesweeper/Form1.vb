@@ -1,16 +1,18 @@
-﻿Public Class Form1
+﻿
+
+Public Class Form1
     'Dim objects
     Const MinObjectWidth As Integer = 50
 
-    Dim RowsNumberTextbox As TextBox
-    Dim ColumnsNumberTextbox As TextBox
+    Dim RowsNumberTextbox As New TextBox
+    Dim ColumnsNumberTextbox As New TextBox
 
-    Dim RowsNumberLabel As Label
-    Dim ColumnsNumberLabel As Label
+    Dim RowsNumberLabel As New Label
+    Dim ColumnsNumberLabel As New Label
 
-    Dim SubmitBoardSizeButton As Button
+    Dim SubmitBoardSizeButton As New Button
 
-    Dim Form1Objects As New myObjectInForm
+    Dim Form1Objects As New List(Of myObjectInForm)
 
     Dim enableResize As Boolean = False
 
@@ -23,10 +25,15 @@
         gatherGameInfoForm()
 
 
+
     End Sub
 
     Private Sub initializeObjects()
-        Form1Objects.addObject(RowsNumberTextbox, 50, 50)
+        Form1Objects.Add(New myObjectInForm(RowsNumberTextbox, 50, 50))
+        Form1Objects.Add(New myObjectInForm(RowsNumberLabel, 500, 50))
+        Form1Objects.Add(New myObjectInForm(ColumnsNumberLabel, 400, 50))
+        Form1Objects.Add(New myObjectInForm(ColumnsNumberTextbox, 300, 50))
+        Form1Objects.Add(New myObjectInForm(SubmitBoardSizeButton, 200, 50))
     End Sub
 
     Private Sub gatherGameInfoForm()
@@ -44,27 +51,18 @@
 
     Private Sub positonGatherGameInfoObjects()
 
-        'calculates width
-        If ((MeasureText(RowsNumberTextbox)) > MinObjectWidth) Then
-            RowsNumberTextbox.Width = (MeasureText(RowsNumberTextbox))
-        Else
-            RowsNumberTextbox.Width = MinObjectWidth
-        End If
-        'end width
-
-        'set height
-        'end height
-
-        'calculate position
-        RowsNumberTextbox.Location = New Point(Me.Width / 2 - MinObjectWidth / 2, Me.Height / 2 - RowsNumberTextbox.Height / 2)
+        For Each item In Form1Objects
+            item.positonObject()
+        Next
 
 
 
     End Sub
 
     Private Sub showGatherGameInfoObjects()
-        Me.Controls.Add(RowsNumberTextbox)
-        RowsNumberTextbox.Show()
+        For Each item In Form1Objects
+            item.showObject()
+        Next
         enableResize = True
     End Sub
 
@@ -74,7 +72,7 @@
     End Function
 
     Private Sub createGameInfoObjects()
-        RowsNumberTextbox = New TextBox
+        RowsNumberLabel.Text = "RowsNumberLabel"
         AddHandler RowsNumberTextbox.TextChanged, AddressOf RowsNumberTextbox_TextChanged
     End Sub
 
@@ -91,15 +89,50 @@
 End Class
 
 Public Class myObjectInForm
-    Dim listOfObjects As New List(Of Object)
-    Dim listOfPositions As New List(Of Point)
+    Public myObject As Object
+    Public myPosition As Point
+    Const MinObjectWidth As Integer = 50
 
-
-    Public Sub addObject(objectType As Object, objectPositionx As Integer, objectPositiony As Integer)
-        listOfObjects.Add(objectType)
-        listOfPositions.Add(New Point(objectPositionx, objectPositiony))
+    Public Sub New(addedObject As Object, addedPositionX As Integer, addedPositionY As Integer)
+        myObject = addedObject
+        myPosition = New Point(addedPositionX, addedPositionY)
     End Sub
 
+    Public Sub setObject(objectType As Object)
+        myObject = objectType
+    End Sub
+    Public Sub setObject(objectPositionx As Integer, objectPositiony As Integer)
+        myPosition = New Point(objectPositionx, objectPositiony)
+    End Sub
 
+    Private Function MeasureText() As Integer
+        Return TextRenderer.MeasureText(myObject.Text + "W", myObject.Font).Width
+    End Function
+
+    Public Sub positonObject()
+
+        'calculates width
+        If (MeasureText() > MinObjectWidth) Then
+            myObject.Width = (MeasureText())
+        Else
+            myObject.Width = MinObjectWidth
+        End If
+        'end width
+
+        'set height
+        'end height
+
+        'calculate position
+        myObject.Location = myPosition
+
+    End Sub
+
+    Public Sub showObject()
+        Form1.Controls.Add(myObject)
+        myObject.Show()
+    End Sub
 
 End Class
+
+
+
