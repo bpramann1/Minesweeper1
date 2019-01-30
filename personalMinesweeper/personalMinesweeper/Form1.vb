@@ -10,16 +10,24 @@
 
     Dim SubmitBoardSizeButton As Button
 
+    Dim arrayOfObjects(5) As Object
+
+    Dim enableResize As Boolean = False
+
 
     'Done with dim
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        initializeObjects()
         gatherGameInfoForm()
 
 
     End Sub
 
+    Private Sub initializeObjects()
+        arrayOfObjects(0) = RowsNumberLabel
+    End Sub
 
     Private Sub gatherGameInfoForm()
         createGameInfoObjects()
@@ -48,7 +56,7 @@
         'end height
 
         'calculate position
-        RowsNumberTextbox.Location = New Point(Me.Width / 2, 50)
+        RowsNumberTextbox.Location = New Point(Me.Width / 2 - MinObjectWidth / 2, Me.Height / 2 - RowsNumberTextbox.Height / 2)
 
 
 
@@ -57,6 +65,7 @@
     Private Sub showGatherGameInfoObjects()
         Me.Controls.Add(RowsNumberTextbox)
         RowsNumberTextbox.Show()
+        enableResize = True
     End Sub
 
 
@@ -71,5 +80,12 @@
 
     Private Sub RowsNumberTextbox_TextChanged()
         positonGatherGameInfoObjects()
+    End Sub
+
+    Private Sub Form1_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
+        If enableResize Then
+            positonGatherGameInfoObjects()
+        End If
+        '
     End Sub
 End Class
