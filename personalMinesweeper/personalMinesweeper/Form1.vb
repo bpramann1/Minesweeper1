@@ -9,6 +9,8 @@
     Dim ColumnsNumberLabel As Label
 
     Dim SubmitBoardSizeButton As Button
+
+
     'Done with dim
 
 
@@ -20,12 +22,13 @@
 
 
     Private Sub gatherGameInfoForm()
-        RowsNumberTextbox = New TextBox
+        createGameInfoObjects()
+
 
 
         positonGatherGameInfoObjects()
-        showGatherGameInfoObjects()
 
+        showGatherGameInfoObjects()
 
 
 
@@ -34,19 +37,18 @@
     Private Sub positonGatherGameInfoObjects()
 
         'calculates width
-        If ((RowsNumberTextbox.Font.Height * RowsNumberTextbox.TextLength) > MinObjectWidth) Then
-            RowsNumberTextbox.Width = (RowsNumberTextbox.Font.Height * RowsNumberTextbox.TextLength)
+        If ((MeasureText(RowsNumberTextbox)) > MinObjectWidth) Then
+            RowsNumberTextbox.Width = (MeasureText(RowsNumberTextbox))
         Else
             RowsNumberTextbox.Width = MinObjectWidth
         End If
-        RowsNumberTextbox.Width = MinObjectWidth
         'end width
 
         'set height
         'end height
 
         'calculate position
-        RowsNumberTextbox.Location = New Point(50, 50)
+        RowsNumberTextbox.Location = New Point(Me.Width / 2, 50)
 
 
 
@@ -57,4 +59,17 @@
         RowsNumberTextbox.Show()
     End Sub
 
+
+    Private Function MeasureText(textSource As Object) As Integer
+        Return TextRenderer.MeasureText(textSource.Text + "W", textSource.Font).Width
+    End Function
+
+    Private Sub createGameInfoObjects()
+        RowsNumberTextbox = New TextBox
+        AddHandler RowsNumberTextbox.TextChanged, AddressOf RowsNumberTextbox_TextChanged
+    End Sub
+
+    Private Sub RowsNumberTextbox_TextChanged()
+        positonGatherGameInfoObjects()
+    End Sub
 End Class
