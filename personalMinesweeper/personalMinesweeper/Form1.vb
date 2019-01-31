@@ -21,6 +21,11 @@ Public Class Form1
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Width = 450
+        Height = 150
+        FormBorderStyle = FormBorderStyle.Fixed3D
+
+
         initializeObjects()
         enableResize = True
         gatherGameInfoForm()
@@ -30,11 +35,11 @@ Public Class Form1
     End Sub
 
     Private Sub initializeObjects()
-        Form1Objects.Add(New myObjectInForm(RowsNumberLabel, New fraction(1, 3), New fraction(1, 8), "Number of Rows"))
+        Form1Objects.Add(New myObjectInForm(RowsNumberLabel, New fraction(1, 8), New fraction(3, 16), "Number of Rows"))
         Form1Objects.Add(New myObjectInForm(RowsNumberTextbox, RowsNumberLabel, 120, 0))
         Form1Objects.Add(New myObjectInForm(ColumnsNumberLabel, RowsNumberLabel, 0, 30, "Number of Columns"))
         Form1Objects.Add(New myObjectInForm(ColumnsNumberTextbox, RowsNumberLabel, 120, 30))
-        Form1Objects.Add(New myObjectInForm(SubmitBoardSizeButton, RowsNumberLabel, 60, 60, "Start Game"))
+        Form1Objects.Add(New myObjectInForm(SubmitBoardSizeButton, RowsNumberLabel, 90, 60, "Start Game"))
     End Sub
 
     Private Sub gatherGameInfoForm()
@@ -74,9 +79,15 @@ Public Class Form1
 
     Private Sub createGameInfoObjects()
         AddHandler RowsNumberTextbox.TextChanged, AddressOf RowsNumberTextbox_TextChanged
+        AddHandler ColumnsNumberTextbox.TextChanged, AddressOf ColumnsNumberTextbox_TextChanged
     End Sub
 
+
     Private Sub RowsNumberTextbox_TextChanged()
+        positonGatherGameInfoObjects()
+    End Sub
+
+    Private Sub ColumnsNumberTextbox_TextChanged()
         positonGatherGameInfoObjects()
     End Sub
 
@@ -86,6 +97,7 @@ Public Class Form1
         End If
         '
     End Sub
+
 
 End Class
 
