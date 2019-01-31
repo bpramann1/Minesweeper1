@@ -12,7 +12,7 @@ Public Class Form1
 
     Dim SubmitBoardSizeButton As New Button
 
-    Dim Form1Objects As New List(Of myObjectInForm)
+    Public Form1Objects As New List(Of myObjectInForm)
 
     Dim enableResize As Boolean = False
 
@@ -30,11 +30,11 @@ Public Class Form1
     End Sub
 
     Private Sub initializeObjects()
-        Form1Objects.Add(New myObjectInForm(RowsNumberTextbox, New fraction(1, 2), New fraction(1, 2)))
-        Form1Objects.Add(New myObjectInForm(RowsNumberLabel, 500, 50, "Number of Rows"))
-        Form1Objects.Add(New myObjectInForm(ColumnsNumberLabel, 400, 50, "Number of Columns"))
-        Form1Objects.Add(New myObjectInForm(ColumnsNumberTextbox, 300, 50))
-        Form1Objects.Add(New myObjectInForm(SubmitBoardSizeButton, 200, 50, "Start Game"))
+        Form1Objects.Add(New myObjectInForm(RowsNumberLabel, New fraction(1, 3), New fraction(1, 8), "Number of Rows"))
+        Form1Objects.Add(New myObjectInForm(RowsNumberTextbox, RowsNumberLabel, 120, 0))
+        Form1Objects.Add(New myObjectInForm(ColumnsNumberLabel, RowsNumberLabel, 0, 30, "Number of Columns"))
+        Form1Objects.Add(New myObjectInForm(ColumnsNumberTextbox, RowsNumberLabel, 120, 30))
+        Form1Objects.Add(New myObjectInForm(SubmitBoardSizeButton, RowsNumberLabel, 60, 60, "Start Game"))
     End Sub
 
     Private Sub gatherGameInfoForm()
@@ -92,37 +92,93 @@ End Class
 Public Class myObjectInForm
     Public myObject As Object
     Public myPosition As Point
-    Public relativePostion As Decimal
+    Public relativePositionX As Decimal
+    Public relativePositionY As Decimal
     Public myInitialText As String
     Const MinObjectWidth As Integer = 50
+    Public relativeToObject As Boolean
+    Public distanceFromObjectX As Integer
+    Public distanceFromObjectY As Integer
+    Public focusObject As Object
+    Dim relativeObjectPositionX As Integer
+    Dim relativeObjectPositionY As Integer
+
 
     Public Sub New(addedObject As Object, addedPositionX As Integer, addedPositionY As Integer) 'fixed position without initialized text
         myObject = addedObject
         myPosition = New Point(addedPositionX, addedPositionY)
-        relativePostion = 0
+        relativePositionX = 0
+        relativePositionY = 0
         myInitialText = ""
+        relativeToObject = False
     End Sub
 
     Public Sub New(addedObject As Object, addedPositionX As Integer, addedPositionY As Integer, addedInitialText As String) 'fixed position with initialized text
         myObject = addedObject
         myPosition = New Point(addedPositionX, addedPositionY)
-        relativePostion = 0
+        relativePositionX = 0
+        relativePositionY = 0
+        myInitialText = addedInitialText
+        relativeToObject = False
+    End Sub
+
+    Public Sub New(addedObject As Object, basisObject As Object, addedPositionX As Integer, addedPositionY As Integer) 'fixed position relative to another object without initialized text
+        myObject = addedObject
+        relativeToObject = True
+        focusObject = basisObject
+        distanceFromObjectX = addedPositionX
+        distanceFromObjectY = addedPositionY
+        addedPositionX = 0
+        addedPositionY = 0
+        For Each item In Form1.Form1Objects
+            If (item.myObject Is basisObject) Then
+                addedPositionX = item.myPosition.X
+                addedPositionY = item.myPosition.Y
+            End If
+        Next
+        myPosition = New Point(addedPositionX + distanceFromObjectX, addedPositionY + distanceFromObjectY)
+        relativePositionX = 0
+        relativePositionY = 0
+        myInitialText = ""
+    End Sub
+
+    Public Sub New(addedObject As Object, basisObject As Object, addedPositionX As Integer, addedPositionY As Integer, addedInitialText As String) 'fixed position relative to another object with initialized text
+        myObject = addedObject
+        relativeToObject = True
+        focusObject = basisObject
+        distanceFromObjectX = addedPositionX
+        distanceFromObjectY = addedPositionY
+        addedPositionX = 0
+        addedPositionY = 0
+        For Each item In Form1.Form1Objects
+            If (item.myObject Is basisObject) Then
+                addedPositionX = item.myPosition.X
+                addedPositionY = item.myPosition.Y
+            End If
+        Next
+        myPosition = New Point(addedPositionX + distanceFromObjectX, addedPositionY + distanceFromObjectY)
+        relativePositionX = 0
+        relativePositionY = 0
         myInitialText = addedInitialText
     End Sub
 
     Public Sub New(addedObject As Object, addedPositionX As fraction, addedPositionY As fraction) 'relative position without initialized text
         myObject = addedObject
-        relativePostion = addedPositionX.decimalRepresentation
-        myPosition = New Point(Form1.Width * relativePostion, Form1.Height * relativePostion)
+        relativePositionX = addedPositionX.decimalRepresentation
+        relativePositionY = addedPositionY.decimalRepresentation
+        myPosition = New Point(Form1.Width * relativePositionX, Form1.Height * relativePositionY)
         myInitialText = ""
+        relativeToObject = False
     End Sub
 
 
     Public Sub New(addedObject As Object, addedPositionX As fraction, addedPositionY As fraction, addedInitialText As String) 'relatve position with initialized text
         myObject = addedObject
-        relativePostion = addedPositionX.decimalRepresentation
-        myPosition = New Point(Form1.Width * relativePostion, Form1.Height * relativePostion)
+        relativePositionX = addedPositionX.decimalRepresentation
+        relativePositionY = addedPositionY.decimalRepresentation
+        myPosition = New Point(Form1.Width * relativePositionX, Form1.Height * relativePositionY)
         myInitialText = addedInitialText
+        relativeToObject = False
     End Sub
 
     Public Sub setObject(objectType As Object)
@@ -150,9 +206,22 @@ Public Class myObjectInForm
         'end height
 
         'calculate position
-        If relativePostion Then
-            myPosition = New Point(Form1.Width * relativePostion, Form1.Height * relativePostion)
+        If relativeToObject Then
+            relativeObjectPositionX = 0
+            relativeObjectPositionY = 0
+            For Each item In Form1.Form1Objects
+                If (item.myObject Is focusObject) Then
+                    relativeObjectPositionX = item.myPosition.X
+                    relativeObjectPositionY = item.myPosition.Y
+                End If
+            Next
+            myPosition = New Point(relativeObjectPositionX + distanceFromObjectX, relativeObjectPositionY + distanceFromObjectY)
+        Else
+            If (relativePositionX <> 0) Or (relativePositionY <> 0) Then
+                myPosition = New Point(Form1.Width * relativePositionX, Form1.Height * relativePositionY)
+            End If
         End If
+
 
 
         myObject.Location = myPosition
