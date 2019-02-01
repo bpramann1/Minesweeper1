@@ -3,6 +3,7 @@
 Public Class Form1
     'Dim objects
     Const MinObjectWidth As Integer = 50
+    Dim game As Form
 
     Dim RowsNumberTextbox As New TextBox
     Dim ColumnsNumberTextbox As New TextBox
@@ -16,22 +17,38 @@ Public Class Form1
 
     Dim enableResize As Boolean = False
 
+    Dim originalSender As Object
+    Dim originalEventArg As EventArgs
+
+    Public numberOfRows As Integer
+    Public numberOfColumns As Integer
+
+    Public gameMapButton(16)() As Button
+
 
     'Done with dim
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Width = 450
-        Height = 150
         FormBorderStyle = FormBorderStyle.Fixed3D
+        Width = 450
+        Height = 180
+        originalSender = sender
+        originalEventArg = e
 
-
+        clearObjectsText()
         initializeObjects()
         enableResize = True
         gatherGameInfoForm()
 
 
 
+    End Sub
+
+    Private Sub clearObjectsText()
+        For Each item In Form1Objects
+            item.myObject.Text = ""
+        Next
     End Sub
 
     Private Sub initializeObjects()
@@ -80,8 +97,45 @@ Public Class Form1
     Private Sub createGameInfoObjects()
         AddHandler RowsNumberTextbox.TextChanged, AddressOf RowsNumberTextbox_TextChanged
         AddHandler ColumnsNumberTextbox.TextChanged, AddressOf ColumnsNumberTextbox_TextChanged
+        AddHandler SubmitBoardSizeButton.Click, AddressOf SubmitBoardSizeButton_Click
     End Sub
 
+    Private Function ValidateTextDimOfGame(validatingObject As Object) As Boolean
+        Try
+            If (CInt(validatingObject.Text) > 0) And (CInt(validatingObject.Text) < 101) Then
+                Return True
+            Else
+                MsgBox("Please enter a valid number for the number of rows and columns")
+                Return False
+            End If
+        Catch
+            MsgBox("Please enter a valid number for the number of rows and columns")
+            Return False
+        End Try
+    End Function
+
+
+
+    Private Sub CreateGame()
+        game = New Form
+        numberOfColumns = CInt(ColumnsNumberTextbox.Text)
+        numberOfRows = CInt(RowsNumberTextbox.Text)
+
+        game.Show()
+    End Sub
+
+    Private Sub CreateGameMap()
+
+    End Sub
+
+    Private Sub SubmitBoardSizeButton_Click()
+        If ValidateTextDimOfGame(RowsNumberTextbox) Then
+            If ValidateTextDimOfGame(ColumnsNumberTextbox) Then
+                CreateGame()
+            End If
+        End If
+
+    End Sub
 
     Private Sub RowsNumberTextbox_TextChanged()
         positonGatherGameInfoObjects()
@@ -98,7 +152,9 @@ Public Class Form1
         '
     End Sub
 
-
+    Private Sub CustomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CustomToolStripMenuItem.Click
+        Form1_Load(originalSender, originalEventArg)
+    End Sub
 End Class
 
 Public Class myObjectInForm

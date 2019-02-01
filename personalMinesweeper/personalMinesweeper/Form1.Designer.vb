@@ -29,6 +29,10 @@ Partial Class Form1
         Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenHelpTextFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BegginnerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.IntermediateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AdvancedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CustomToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -52,6 +56,7 @@ Partial Class Form1
         '
         'NewToolStripMenuItem
         '
+        Me.NewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BegginnerToolStripMenuItem, Me.IntermediateToolStripMenuItem, Me.AdvancedToolStripMenuItem, Me.CustomToolStripMenuItem})
         Me.NewToolStripMenuItem.Name = "NewToolStripMenuItem"
         Me.NewToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.NewToolStripMenuItem.Text = "New"
@@ -82,6 +87,30 @@ Partial Class Form1
         Me.OpenHelpTextFileToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
         Me.OpenHelpTextFileToolStripMenuItem.Text = "Open Help Text File"
         '
+        'BegginnerToolStripMenuItem
+        '
+        Me.BegginnerToolStripMenuItem.Name = "BegginnerToolStripMenuItem"
+        Me.BegginnerToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BegginnerToolStripMenuItem.Text = "Begginner"
+        '
+        'IntermediateToolStripMenuItem
+        '
+        Me.IntermediateToolStripMenuItem.Name = "IntermediateToolStripMenuItem"
+        Me.IntermediateToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.IntermediateToolStripMenuItem.Text = "Intermediate"
+        '
+        'AdvancedToolStripMenuItem
+        '
+        Me.AdvancedToolStripMenuItem.Name = "AdvancedToolStripMenuItem"
+        Me.AdvancedToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AdvancedToolStripMenuItem.Text = "Advanced"
+        '
+        'CustomToolStripMenuItem
+        '
+        Me.CustomToolStripMenuItem.Name = "CustomToolStripMenuItem"
+        Me.CustomToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CustomToolStripMenuItem.Text = "Custom"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -106,4 +135,8 @@ Partial Class Form1
     Friend WithEvents SaveToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OpenHelpTextFileToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BegginnerToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents IntermediateToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AdvancedToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CustomToolStripMenuItem As ToolStripMenuItem
 End Class
