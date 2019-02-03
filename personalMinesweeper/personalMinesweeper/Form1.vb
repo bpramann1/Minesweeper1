@@ -23,31 +23,52 @@ Public Class Form1
     Public numberOfRows As Integer
     Public numberOfColumns As Integer
 
-    Public gameMapButton(16)() As Button
+    Public gameMapButtons(16, 16) As Button
+
+    Public TerminateGameClose As Boolean = True
 
 
     'Done with dim
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        originalSender = sender
+        originalEventArg = e
         FormBorderStyle = FormBorderStyle.Fixed3D
         Width = 450
         Height = 180
-        originalSender = sender
-        originalEventArg = e
-
-        clearObjectsText()
         initializeObjects()
         enableResize = True
         gatherGameInfoForm()
 
 
+    End Sub
+
+    Private Sub startForm()
+        SaveToolStripMenuItem.Visible = False
+        clearObjectsText()
+
+
+
 
     End Sub
 
+
+
     Private Sub clearObjectsText()
+        Me.Show()
+        If Not IsNothing(game) Then
+            game.Controls.Remove(MenuStrip1)
+            Controls.Add(MenuStrip1)
+            TerminateGameClose = False
+            game.Close()
+            game.Dispose()
+            game = Nothing
+        End If
         For Each item In Form1Objects
-            item.myObject.Text = ""
+            If TypeOf item.myObject Is TextBox Then
+                item.myObject.Text = ""
+            End If
         Next
     End Sub
 
@@ -118,14 +139,39 @@ Public Class Form1
 
     Private Sub CreateGame()
         game = New Form
+        game.Name = "Minesweeper"
+        AddHandler game.FormClosing, AddressOf game_FormClosing
         numberOfColumns = CInt(ColumnsNumberTextbox.Text)
         numberOfRows = CInt(RowsNumberTextbox.Text)
-
+        Me.Controls.Remove(MenuStrip1)
+        game.Controls.Add(MenuStrip1)
+        SaveToolStripMenuItem.Visible = True
+        CreateGameMap()
         game.Show()
+        Me.Hide()
+    End Sub
+
+    Private Sub game_FormClosing()
+        If TerminateGameClose Then
+            Close()
+        End If
+        TerminateGameClose = True
     End Sub
 
     Private Sub CreateGameMap()
+        ReDim gameMapButtons(numberOfRows, numberOfColumns)
+        Dim rowIndex As Integer
+        Dim columnIndex As Integer
+        For rowIndex = 0 To numberOfRows - 1
+            For columnIndex = 0 To numberOfColumns - 1
+                gameMapButtons(rowIndex, columnIndex) = New Button
+                gameMapButtons(rowIndex, columnIndex).Location = New Point(10 * columnIndex, (10 * rowIndex) + 24)
+                gameMapButtons(rowIndex, columnIndex).Height = 10
+                gameMapButtons(rowIndex, columnIndex).Width = 10
+                game.Controls.Add(gameMapButtons(rowIndex, columnIndex))
 
+            Next
+        Next
     End Sub
 
     Private Sub SubmitBoardSizeButton_Click()
@@ -153,7 +199,7 @@ Public Class Form1
     End Sub
 
     Private Sub CustomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CustomToolStripMenuItem.Click
-        Form1_Load(originalSender, originalEventArg)
+        startForm()
     End Sub
 End Class
 

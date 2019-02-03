@@ -25,14 +25,14 @@ Partial Class Form1
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.OpenHelpTextFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BegginnerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.IntermediateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdvancedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CustomToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OpenHelpTextFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -61,6 +61,30 @@ Partial Class Form1
         Me.NewToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.NewToolStripMenuItem.Text = "New"
         '
+        'BegginnerToolStripMenuItem
+        '
+        Me.BegginnerToolStripMenuItem.Name = "BegginnerToolStripMenuItem"
+        Me.BegginnerToolStripMenuItem.Size = New System.Drawing.Size(141, 22)
+        Me.BegginnerToolStripMenuItem.Text = "Begginner"
+        '
+        'IntermediateToolStripMenuItem
+        '
+        Me.IntermediateToolStripMenuItem.Name = "IntermediateToolStripMenuItem"
+        Me.IntermediateToolStripMenuItem.Size = New System.Drawing.Size(141, 22)
+        Me.IntermediateToolStripMenuItem.Text = "Intermediate"
+        '
+        'AdvancedToolStripMenuItem
+        '
+        Me.AdvancedToolStripMenuItem.Name = "AdvancedToolStripMenuItem"
+        Me.AdvancedToolStripMenuItem.Size = New System.Drawing.Size(141, 22)
+        Me.AdvancedToolStripMenuItem.Text = "Advanced"
+        '
+        'CustomToolStripMenuItem
+        '
+        Me.CustomToolStripMenuItem.Name = "CustomToolStripMenuItem"
+        Me.CustomToolStripMenuItem.Size = New System.Drawing.Size(141, 22)
+        Me.CustomToolStripMenuItem.Text = "Custom"
+        '
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
@@ -72,6 +96,7 @@ Partial Class Form1
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
         Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.SaveToolStripMenuItem.Text = "Save"
+        Me.SaveToolStripMenuItem.Visible = False
         '
         'HelpToolStripMenuItem
         '
@@ -86,30 +111,6 @@ Partial Class Form1
         Me.OpenHelpTextFileToolStripMenuItem.Name = "OpenHelpTextFileToolStripMenuItem"
         Me.OpenHelpTextFileToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
         Me.OpenHelpTextFileToolStripMenuItem.Text = "Open Help Text File"
-        '
-        'BegginnerToolStripMenuItem
-        '
-        Me.BegginnerToolStripMenuItem.Name = "BegginnerToolStripMenuItem"
-        Me.BegginnerToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.BegginnerToolStripMenuItem.Text = "Begginner"
-        '
-        'IntermediateToolStripMenuItem
-        '
-        Me.IntermediateToolStripMenuItem.Name = "IntermediateToolStripMenuItem"
-        Me.IntermediateToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.IntermediateToolStripMenuItem.Text = "Intermediate"
-        '
-        'AdvancedToolStripMenuItem
-        '
-        Me.AdvancedToolStripMenuItem.Name = "AdvancedToolStripMenuItem"
-        Me.AdvancedToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.AdvancedToolStripMenuItem.Text = "Advanced"
-        '
-        'CustomToolStripMenuItem
-        '
-        Me.CustomToolStripMenuItem.Name = "CustomToolStripMenuItem"
-        Me.CustomToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.CustomToolStripMenuItem.Text = "Custom"
         '
         'Form1
         '
