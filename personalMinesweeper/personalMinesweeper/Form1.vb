@@ -3,6 +3,7 @@
 Public Class Form1
     'Dim objects
     Const MinObjectWidth As Integer = 50
+    Const MineSize As Integer = 20
     Dim game As Form
 
     Dim RowsNumberTextbox As New TextBox
@@ -123,7 +124,7 @@ Public Class Form1
 
     Private Function ValidateTextDimOfGame(validatingObject As Object) As Boolean
         Try
-            If (CInt(validatingObject.Text) > 0) And (CInt(validatingObject.Text) < 101) Then
+            If (CInt(validatingObject.Text) > 0) And (CInt(validatingObject.Text) < 31) Then
                 Return True
             Else
                 MsgBox("Please enter a valid number for the number of rows and columns")
@@ -139,6 +140,8 @@ Public Class Form1
 
     Private Sub CreateGame()
         game = New Form
+        SetStyle(ControlStyles.OptimizedDoubleBuffer Or ControlStyles.UserPaint Or ControlStyles.AllPaintingInWmPaint, True)
+        SetStyle(ControlStyles.ResizeRedraw, True)
         game.Name = "Minesweeper"
         AddHandler game.FormClosing, AddressOf game_FormClosing
         numberOfColumns = CInt(ColumnsNumberTextbox.Text)
@@ -147,8 +150,8 @@ Public Class Form1
         game.Controls.Add(MenuStrip1)
         SaveToolStripMenuItem.Visible = True
         CreateGameMap()
-        game.Show()
-        Me.Hide()
+
+        'Me.Hide()
     End Sub
 
     Private Sub game_FormClosing()
@@ -162,17 +165,37 @@ Public Class Form1
         ReDim gameMapButtons(numberOfRows, numberOfColumns)
         Dim rowIndex As Integer
         Dim columnIndex As Integer
-        For rowIndex = 0 To numberOfRows - 1
-            For columnIndex = 0 To numberOfColumns - 1
-                gameMapButtons(rowIndex, columnIndex) = New Button
-                gameMapButtons(rowIndex, columnIndex).Location = New Point(10 * columnIndex, (10 * rowIndex) + 24)
-                gameMapButtons(rowIndex, columnIndex).Height = 10
-                gameMapButtons(rowIndex, columnIndex).Width = 10
-                game.Controls.Add(gameMapButtons(rowIndex, columnIndex))
+        Dim mineSpacesPoints(2 * (numberOfColumns + numberOfRows)) As Point
 
-            Next
+        For rowIndex = 0 To numberOfRows - 1
+            mineSpacesPoints(2 * rowIndex) = New Point(numberOfColumns * MineSize * (rowIndex Mod 2), rowIndex * MineSize + 24)
+            mineSpacesPoints((2 * rowIndex) + 1) = New Point(numberOfColumns * MineSize * (rowIndex Mod 2), (rowIndex + 1) * MineSize + 24)
+            'gameMapButtons(rowIndex, columnIndex) = New Button
+            'gameMapButtons(rowIndex, columnIndex).Location = New Point(MineSize * columnIndex, (MineSize * rowIndex) + 24)
+            'gameMapButtons(rowIndex, columnIndex).Height = MineSize
+            'gameMapButtons(rowIndex, columnIndex).Width = MineSize
+            'gameMapButtons(rowIndex, columnIndex).FlatStyle = FlatStyle.Flat
+            'game.Controls.Add(gameMapButtons(rowIndex, columnIndex))
         Next
+        For columnIndex = 0 To numberOfColumns - 1
+            mineSpacesPoints(2 * (numberOfRows + columnIndex)) = New Point(columnIndex * MineSize, (numberOfRows * MineSize * (columnIndex Mod 2)) + 24)
+            mineSpacesPoints((2 * (numberOfRows + columnIndex) + 1)) = New Point((columnIndex + 1) * MineSize, (numberOfRows * MineSize * (columnIndex Mod 2)) + 24)
+            'gameMapButtons(rowIndex, columnIndex) = New Button
+            'gameMapButtons(rowIndex, columnIndex).Location = New Point(MineSize * columnIndex, (MineSize * rowIndex) + 24)
+            'gameMapButtons(rowIndex, columnIndex).Height = MineSize
+            'gameMapButtons(rowIndex, columnIndex).Width = MineSize
+            'gameMapButtons(rowIndex, columnIndex).FlatStyle = FlatStyle.Flat
+            'game.Controls.Add(gameMapButtons(rowIndex, columnIndex))
+        Next
+        game.Width = 16 + (numberOfColumns * MineSize)
+        game.Height = 62 + (numberOfRows * MineSize)
+        game.Show()
+        game.Location = New Point(0, 0)
+
+        game.CreateGraphics.FillRectangle(Brushes.Red, 0, 24, MineSize * numberOfColumns, MineSize * numberOfRows)
+        game.CreateGraphics.DrawLines(Pens.Black, mineSpacesPoints)
     End Sub
+
 
     Private Sub SubmitBoardSizeButton_Click()
         If ValidateTextDimOfGame(RowsNumberTextbox) Then
