@@ -24,7 +24,25 @@ Public Class Form1
     Public numberOfRows As Integer
     Public numberOfColumns As Integer
 
-    Public gameMapButtons(16, 16) As Button
+    Public updateScreenBitmap As Drawing.Bitmap
+    Public updateScreenGrapics As Graphics
+
+    Public mouseInGameMap As Boolean = False
+
+    Public currentHoverXCoordinate As Integer
+    Public currentHoverYCoordinate As Integer
+    Public lastHoverXCoordinate As Integer
+    Public lastHoverYCoordinate As Integer
+
+    Public Enum buttonState
+        Initial
+        MappedAsSafe
+        FlaggedAsUnsafe
+        Pressed
+    End Enum
+    Public gameMapButtons(16, 16) As buttonState
+
+    Public gameMapButtonPositions(16, 16) As Rectangle
 
     Public TerminateGameClose As Boolean = True
 
@@ -41,6 +59,7 @@ Public Class Form1
         initializeObjects()
         enableResize = True
         gatherGameInfoForm()
+        Controls.Remove(PictureBox1)
 
 
     End Sub
@@ -61,6 +80,9 @@ Public Class Form1
         If Not IsNothing(game) Then
             game.Controls.Remove(MenuStrip1)
             Controls.Add(MenuStrip1)
+            game.Controls.Remove(PictureBox1)
+            Controls.Add(PictureBox1)
+            PictureBox1.Visible = False
             TerminateGameClose = False
             game.Close()
             game.Dispose()
@@ -140,8 +162,6 @@ Public Class Form1
 
     Private Sub CreateGame()
         game = New Form
-        SetStyle(ControlStyles.OptimizedDoubleBuffer Or ControlStyles.UserPaint Or ControlStyles.AllPaintingInWmPaint, True)
-        SetStyle(ControlStyles.ResizeRedraw, True)
         game.Name = "Minesweeper"
         AddHandler game.FormClosing, AddressOf game_FormClosing
         numberOfColumns = CInt(ColumnsNumberTextbox.Text)
@@ -149,6 +169,8 @@ Public Class Form1
         Me.Controls.Remove(MenuStrip1)
         game.Controls.Add(MenuStrip1)
         SaveToolStripMenuItem.Visible = True
+        game.Controls.Add(PictureBox1)
+        PictureBox1.Visible = True
         CreateGameMap()
 
         'Me.Hide()
@@ -162,50 +184,27 @@ Public Class Form1
     End Sub
 
     Private Sub CreateGameMap()
-        ReDim gameMapButtons(numberOfRows, numberOfColumns)
-        Dim rowIndex As Integer
-        Dim columnIndex As Integer
-        Dim mineSpacesPoints(2 * (numberOfColumns + numberOfRows) + 6) As Point
-
-        For rowIndex = 0 To numberOfRows - 1
-
-            mineSpacesPoints(2 * rowIndex) = New Point(numberOfColumns * MineSize * (rowIndex Mod 2), rowIndex * MineSize + 24)
-            If Not (((numberOfRows Mod 2) = 0 And (rowIndex = numberOfRows - 1))) Then
-                mineSpacesPoints((2 * rowIndex) + 1) = New Point(numberOfColumns * MineSize * (rowIndex Mod 2), (rowIndex + 1) * MineSize + 24)
-            End If
-            'gameMapButtons(rowIndex, columnIndex) = New Button
-            'gameMapButtons(rowIndex, columnIndex).Location = New Point(MineSize * columnIndex, (MineSize * rowIndex) + 24)
-            'gameMapButtons(rowIndex, columnIndex).Height = MineSize
-            'gameMapButtons(rowIndex, columnIndex).Width = MineSize
-            'gameMapButtons(rowIndex, columnIndex).FlatStyle = FlatStyle.Flat
-            'game.Controls.Add(gameMapButtons(rowIndex, columnIndex))
+        PictureBox1.Location = New Point(0, 26)
+        game.Width = 17 + (numberOfColumns * MineSize)
+        game.Height = 65 + (numberOfRows * MineSize)
+        PictureBox1.Width = game.Width
+        PictureBox1.Height = game.Height
+        updateScreenBitmap = New Drawing.Bitmap(PictureBox1.Width, PictureBox1.Height)
+        updateScreenGrapics = Graphics.FromImage(updateScreenBitmap)
+        ReDim gameMapButtons(numberOfColumns, numberOfRows)
+        ReDim gameMapButtonPositions(numberOfColumns, numberOfRows)
+        updateScreenGrapics.Clear(SystemColors.HotTrack)
+        For rowIndex = 1 To numberOfRows
+            For columnIndex = 1 To numberOfColumns
+                gameMapButtonPositions(columnIndex - 1, rowIndex - 1) = New Rectangle((columnIndex - 1) * MineSize, (rowIndex - 1) * MineSize, MineSize, MineSize)
+                updateScreenGrapics.DrawRectangle(Pens.Black, 0, 0, columnIndex * MineSize, rowIndex * MineSize)
+                gameMapButtons(columnIndex - 1, rowIndex - 1) = buttonState.Initial
+            Next
         Next
-        mineSpacesPoints(2 * (numberOfRows)) = New Point(0, 24)
-
-        For columnIndex = 0 To numberOfColumns - 1
-            mineSpacesPoints(2 * (numberOfRows + columnIndex) + 1) = New Point(columnIndex * MineSize, (numberOfRows * MineSize * (columnIndex Mod 2)) + 24)
-            If Not (((numberOfColumns Mod 2) = 0) And (columnIndex = numberOfColumns - 1)) Then
-                mineSpacesPoints((2 * (numberOfRows + columnIndex) + 2)) = New Point((columnIndex + 1) * MineSize, (numberOfRows * MineSize * (columnIndex Mod 2)) + 24)
-            End If
-            'gameMapButtons(rowIndex, columnIndex) = New Button
-            'gameMapButtons(rowIndex, columnIndex).Location = New Point(MineSize * columnIndex, (MineSize * rowIndex) + 24)
-            'gameMapButtons(rowIndex, columnIndex).Height = MineSize
-            'gameMapButtons(rowIndex, columnIndex).Width = MineSize
-            'gameMapButtons(rowIndex, columnIndex).FlatStyle = FlatStyle.Flat
-            'game.Controls.Add(gameMapButtons(rowIndex, columnIndex))
-        Next
-        mineSpacesPoints((2 * (numberOfRows + numberOfColumns)) + 2) = New Point(0, numberOfRows * MineSize + 24)
-        mineSpacesPoints((2 * (numberOfRows + numberOfColumns)) + 3) = New Point(0, 24)
-        mineSpacesPoints((2 * (numberOfRows + numberOfColumns)) + 4) = New Point(numberOfColumns * MineSize, 24)
-        mineSpacesPoints((2 * (numberOfRows + numberOfColumns)) + 5) = New Point(numberOfColumns * MineSize, numberOfRows * MineSize + 24)
-        mineSpacesPoints((2 * (numberOfRows + numberOfColumns)) + 6) = New Point(0, numberOfRows * MineSize + 24)
-        game.Width = 16 + (numberOfColumns * MineSize)
-        game.Height = 62 + (numberOfRows * MineSize)
         game.Show()
+        Hide()
         game.Location = New Point(0, 0)
-
-        game.CreateGraphics.FillRectangle(Brushes.Red, 0, 24, MineSize * numberOfColumns, MineSize * numberOfRows)
-        game.CreateGraphics.DrawLines(Pens.Black, mineSpacesPoints)
+        PictureBox1.Image = updateScreenBitmap
     End Sub
 
 
@@ -215,7 +214,6 @@ Public Class Form1
                 CreateGame()
             End If
         End If
-
     End Sub
 
     Private Sub RowsNumberTextbox_TextChanged()
@@ -235,6 +233,40 @@ Public Class Form1
 
     Private Sub CustomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CustomToolStripMenuItem.Click
         startForm()
+    End Sub
+
+
+
+    Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
+        If mouseInGameMap Then
+            currentHoverXCoordinate = CInt((Cursor.Position.X - PictureBox1.Location.X) / MineSize) - 1
+            currentHoverYCoordinate = CInt((Cursor.Position.Y - PictureBox1.Location.Y) / MineSize) - 2
+            If ((currentHoverXCoordinate >= 0) And (currentHoverXCoordinate < numberOfColumns)) Then
+                If ((currentHoverYCoordinate >= 0) And (currentHoverYCoordinate < numberOfRows)) Then
+                    updateScreenGrapics.FillRectangle(Brushes.Aqua, gameMapButtonPositions(currentHoverXCoordinate, currentHoverYCoordinate))
+                    PictureBox1.Image = updateScreenBitmap
+                End If
+            End If
+            If Not ((lastHoverXCoordinate = currentHoverXCoordinate) And (lastHoverYCoordinate = currentHoverYCoordinate)) Then
+                If ((lastHoverXCoordinate >= 0) And (lastHoverXCoordinate < numberOfColumns)) Then
+                    If ((lastHoverYCoordinate >= 0) And (lastHoverYCoordinate < numberOfRows)) Then
+                        updateScreenGrapics.FillRectangle(New SolidBrush(SystemColors.HotTrack), gameMapButtonPositions(lastHoverXCoordinate, lastHoverYCoordinate))
+                        updateScreenGrapics.DrawRectangle(Pens.Black, gameMapButtonPositions(lastHoverXCoordinate, lastHoverYCoordinate))
+                        PictureBox1.Image = updateScreenBitmap
+                    End If
+                End If
+            End If
+            lastHoverXCoordinate = currentHoverXCoordinate
+            lastHoverYCoordinate = currentHoverYCoordinate
+        End If
+    End Sub
+
+    Private Sub PictureBox1_MouseEnter(sender As Object, e As EventArgs) Handles PictureBox1.MouseEnter
+        mouseInGameMap = True
+    End Sub
+
+    Private Sub PictureBox1_MouseLeave(sender As Object, e As EventArgs) Handles PictureBox1.MouseLeave
+        mouseInGameMap = False
     End Sub
 End Class
 
