@@ -241,18 +241,24 @@ Public Class Form1
         If mouseInGameMap Then
             currentHoverXCoordinate = CInt((Cursor.Position.X - PictureBox1.Location.X) / MineSize) - 1
             currentHoverYCoordinate = CInt((Cursor.Position.Y - PictureBox1.Location.Y) / MineSize) - 2
+
             If ((currentHoverXCoordinate >= 0) And (currentHoverXCoordinate < numberOfColumns)) Then
                 If ((currentHoverYCoordinate >= 0) And (currentHoverYCoordinate < numberOfRows)) Then
-                    updateScreenGrapics.FillRectangle(Brushes.Aqua, gameMapButtonPositions(currentHoverXCoordinate, currentHoverYCoordinate))
-                    PictureBox1.Image = updateScreenBitmap
+                    If gameMapButtons(currentHoverXCoordinate, currentHoverYCoordinate) = buttonState.Initial Then
+                        updateScreenGrapics.FillRectangle(Brushes.Aqua, gameMapButtonPositions(currentHoverXCoordinate, currentHoverYCoordinate))
+                        PictureBox1.Image = updateScreenBitmap
+                    End If
                 End If
             End If
+
             If Not ((lastHoverXCoordinate = currentHoverXCoordinate) And (lastHoverYCoordinate = currentHoverYCoordinate)) Then
-                If ((lastHoverXCoordinate >= 0) And (lastHoverXCoordinate < numberOfColumns)) Then
+                    If ((lastHoverXCoordinate >= 0) And (lastHoverXCoordinate < numberOfColumns)) Then
                     If ((lastHoverYCoordinate >= 0) And (lastHoverYCoordinate < numberOfRows)) Then
-                        updateScreenGrapics.FillRectangle(New SolidBrush(SystemColors.HotTrack), gameMapButtonPositions(lastHoverXCoordinate, lastHoverYCoordinate))
-                        updateScreenGrapics.DrawRectangle(Pens.Black, gameMapButtonPositions(lastHoverXCoordinate, lastHoverYCoordinate))
-                        PictureBox1.Image = updateScreenBitmap
+                        If gameMapButtons(lastHoverXCoordinate, lastHoverYCoordinate) = buttonState.Initial Then
+                            updateScreenGrapics.FillRectangle(New SolidBrush(SystemColors.HotTrack), gameMapButtonPositions(lastHoverXCoordinate, lastHoverYCoordinate))
+                            updateScreenGrapics.DrawRectangle(Pens.Black, gameMapButtonPositions(lastHoverXCoordinate, lastHoverYCoordinate))
+                            PictureBox1.Image = updateScreenBitmap
+                        End If
                     End If
                 End If
             End If
@@ -268,6 +274,35 @@ Public Class Form1
     Private Sub PictureBox1_MouseLeave(sender As Object, e As EventArgs) Handles PictureBox1.MouseLeave
         mouseInGameMap = False
     End Sub
+
+    Private Sub PictureBox1_Click(sender As Object, e As MouseEventArgs) Handles PictureBox1.Click
+        currentHoverXCoordinate = CInt((Cursor.Position.X - PictureBox1.Location.X) / MineSize) - 1
+        currentHoverYCoordinate = CInt((Cursor.Position.Y - PictureBox1.Location.Y) / MineSize) - 2
+        If ((currentHoverXCoordinate >= 0) And (currentHoverXCoordinate < numberOfColumns)) Then
+            If ((currentHoverYCoordinate >= 0) And (currentHoverYCoordinate < numberOfRows)) Then
+                If MouseButtons.Left = e.Button Then
+                    LeftClickGameMapButton(currentHoverXCoordinate, currentHoverYCoordinate)
+                End If
+                If MouseButtons.Right = e.Button Then
+                    RightClickGameMapButton(currentHoverXCoordinate, currentHoverYCoordinate)
+                End If
+
+            End If
+        End If
+    End Sub
+
+    Private Sub LeftClickGameMapButton(column As Integer, row As Integer)
+        updateScreenGrapics.FillRectangle(Brushes.White, gameMapButtonPositions(currentHoverXCoordinate, currentHoverYCoordinate))
+        updateScreenGrapics.DrawRectangle(Pens.Black, gameMapButtonPositions(currentHoverXCoordinate, currentHoverYCoordinate))
+        gameMapButtons(column, row) = buttonState.Pressed
+        PictureBox1.Image = updateScreenBitmap
+    End Sub
+
+    Private Sub RightClickGameMapButton(column As Integer, row As Integer)
+        gameMapButtons(column, row) = buttonState.FlaggedAsUnsafe
+    End Sub
+
+
 End Class
 
 Public Class myObjectInForm
