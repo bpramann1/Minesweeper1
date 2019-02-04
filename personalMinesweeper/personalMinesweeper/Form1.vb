@@ -34,6 +34,9 @@ Public Class Form1
     Public lastHoverXCoordinate As Integer
     Public lastHoverYCoordinate As Integer
 
+    Public containsBomb(16, 16) As Integer
+    Public numberOfTouchingBombs(16, 16) As Integer
+
     Public Enum buttonState
         Initial
         MappedAsSafe
@@ -193,12 +196,16 @@ Public Class Form1
         updateScreenGrapics = Graphics.FromImage(updateScreenBitmap)
         ReDim gameMapButtons(numberOfColumns, numberOfRows)
         ReDim gameMapButtonPositions(numberOfColumns, numberOfRows)
+        ReDim containsBomb(numberOfColumns, numberOfRows)
+        ReDim numberOfTouchingBombs(numberOfColumns, numberOfRows)
         updateScreenGrapics.Clear(SystemColors.HotTrack)
+        Randomize()
         For rowIndex = 1 To numberOfRows
             For columnIndex = 1 To numberOfColumns
                 gameMapButtonPositions(columnIndex - 1, rowIndex - 1) = New Rectangle((columnIndex - 1) * MineSize, (rowIndex - 1) * MineSize, MineSize, MineSize)
                 updateScreenGrapics.DrawRectangle(Pens.Black, 0, 0, columnIndex * MineSize, rowIndex * MineSize)
                 gameMapButtons(columnIndex - 1, rowIndex - 1) = buttonState.Initial
+                containsBomb(columnIndex - 1, rowIndex - 1) = CInt(Int(2 * Rnd()))
             Next
         Next
         game.Show()
@@ -292,11 +299,71 @@ Public Class Form1
     End Sub
 
     Private Sub LeftClickGameMapButton(column As Integer, row As Integer)
-        updateScreenGrapics.FillRectangle(Brushes.White, gameMapButtonPositions(currentHoverXCoordinate, currentHoverYCoordinate))
-        updateScreenGrapics.DrawRectangle(Pens.Black, gameMapButtonPositions(currentHoverXCoordinate, currentHoverYCoordinate))
+        If containsBomb(column, row) Then
+            updateScreenGrapics.FillRectangle(Brushes.Black, gameMapButtonPositions(currentHoverXCoordinate, currentHoverYCoordinate))
+            updateScreenGrapics.DrawRectangle(Pens.Black, gameMapButtonPositions(currentHoverXCoordinate, currentHoverYCoordinate))
+        Else
+            updateScreenGrapics.FillRectangle(Brushes.White, gameMapButtonPositions(currentHoverXCoordinate, currentHoverYCoordinate))
+            updateScreenGrapics.DrawRectangle(Pens.Black, gameMapButtonPositions(currentHoverXCoordinate, currentHoverYCoordinate))
+            NmbrBombsTouch(column, row)
+            updateScreenGrapics.DrawString(CStr(numberOfTouchingBombs(column, row)), Form1.DefaultFont, Brushes.Black, gameMapButtonPositions(currentHoverXCoordinate, currentHoverYCoordinate).Location)
+            If (numberOfTouchingBombs(column, row) = 0) Then
+
+            End If
+
+        End If
         gameMapButtons(column, row) = buttonState.Pressed
         PictureBox1.Image = updateScreenBitmap
+
+
     End Sub
+
+    Public Sub NmbrBombsTouch(column As Integer, row As Integer)
+        numberOfTouchingBombs(column, row) = 0
+        If (column > 0) Then
+            If (row > 0) Then
+                If containsBomb(column - 1, row - 1) Then
+                    numberOfTouchingBombs(column, row) = numberOfTouchingBombs(column, row) + 1
+                End If
+            End If
+            If containsBomb(column - 1, row) Then
+                numberOfTouchingBombs(column, row) = numberOfTouchingBombs(column, row) + 1
+            End If
+            If row < numberOfRows - 1 Then
+                If containsBomb(column - 1, row + 1) Then
+                    numberOfTouchingBombs(column, row) = numberOfTouchingBombs(column, row) + 1
+                End If
+            End If
+        End If
+
+        If (row > 0) Then
+
+            If containsBomb(column, row - 1) Then
+                numberOfTouchingBombs(column, row) = numberOfTouchingBombs(column, row) + 1
+            End If
+            If column < numberOfColumns - 1 Then
+                If containsBomb(column + 1, row - 1) Then
+                    numberOfTouchingBombs(column, row) = numberOfTouchingBombs(column, row) + 1
+                End If
+            End If
+        End If
+        If column < numberOfColumns - 1 Then
+            If row < numberOfRows - 1 Then
+                If containsBomb(column + 1, row + 1) Then
+                    numberOfTouchingBombs(column, row) = numberOfTouchingBombs(column, row) + 1
+                End If
+            End If
+            If containsBomb(column + 1, row) Then
+                numberOfTouchingBombs(column, row) = numberOfTouchingBombs(column, row) + 1
+            End If
+        End If
+        If row < numberOfRows - 1 Then
+            If containsBomb(column, row + 1) Then
+                numberOfTouchingBombs(column, row) = numberOfTouchingBombs(column, row) + 1
+            End If
+        End If
+    End Sub
+
 
     Private Sub RightClickGameMapButton(column As Integer, row As Integer)
         gameMapButtons(column, row) = buttonState.FlaggedAsUnsafe
