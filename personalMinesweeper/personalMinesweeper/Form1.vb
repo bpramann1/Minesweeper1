@@ -37,6 +37,8 @@ Public Class Form1
     Public containsBomb(16, 16) As Integer
     Public numberOfTouchingBombs(16, 16) As Integer
 
+    Dim lostGameInitiated As Boolean = False
+
     Public Enum buttonState
         Initial
         MappedAsSafe
@@ -175,6 +177,7 @@ Public Class Form1
         game.Controls.Add(PictureBox1)
         PictureBox1.Visible = True
         CreateGameMap()
+        lostGameInitiated = False
 
         'Me.Hide()
     End Sub
@@ -299,11 +302,18 @@ Public Class Form1
     End Sub
 
     Private Sub LeftClickGameMapButton(column As Integer, row As Integer)
-        If gameMapButtons(column, row) = buttonState.Initial Then
+        If gameMapButtons(column, row) <> buttonState.Pressed Then
+            If gameMapButtons(column, row) <> buttonState.FlaggedAsUnsafe Then
+
+            End If
+
             gameMapButtons(column, row) = buttonState.Pressed
             If containsBomb(column, row) Then
                 updateScreenGrapics.FillRectangle(Brushes.Black, gameMapButtonPositions(column, row))
                 updateScreenGrapics.DrawRectangle(Pens.Black, gameMapButtonPositions(column, row))
+                If Not lostGameInitiated Then
+                    LostGameQue()
+                End If
             Else
                 updateScreenGrapics.FillRectangle(Brushes.White, gameMapButtonPositions(column, row))
                 updateScreenGrapics.DrawRectangle(Pens.Black, gameMapButtonPositions(column, row))
@@ -319,6 +329,16 @@ Public Class Form1
 
 
         End If
+    End Sub
+
+    Public Sub LostGameQue()
+        lostGameInitiated = True
+        For columnIndex = 0 To numberOfColumns - 1
+            For rowIndex = 0 To numberOfRows - 1
+                LeftClickGameMapButton(columnIndex, rowIndex)
+            Next
+        Next
+        MsgBox("Only losers lose!")
     End Sub
 
     Public Sub NmbrBombsTouch(column As Integer, row As Integer)
@@ -398,7 +418,24 @@ Public Class Form1
 
 
     Private Sub RightClickGameMapButton(column As Integer, row As Integer)
-        gameMapButtons(column, row) = buttonState.FlaggedAsUnsafe
+        Select Case gameMapButtons(column, row)
+            Case buttonState.Initial
+                updateScreenGrapics.FillRectangle(Brushes.Red, gameMapButtonPositions(column, row))
+                gameMapButtons(column, row) = buttonState.FlaggedAsUnsafe
+                Exit Select
+            Case buttonState.FlaggedAsUnsafe
+                updateScreenGrapics.FillRectangle(Brushes.Green, gameMapButtonPositions(column, row))
+                gameMapButtons(column, row) = buttonState.MappedAsSafe
+                Exit Select
+            Case buttonState.MappedAsSafe
+                updateScreenGrapics.FillRectangle(New SolidBrush(SystemColors.HotTrack), gameMapButtonPositions(column, row))
+                gameMapButtons(column, row) = buttonState.Initial
+                Exit Select
+            Case Else
+
+        End Select
+        updateScreenGrapics.DrawRectangle(Pens.Black, gameMapButtonPositions(column, row))
+        PictureBox1.Image = updateScreenBitmap
     End Sub
 
 
