@@ -38,6 +38,7 @@ Public Class Form1
     Public numberOfTouchingBombs(16, 16) As Integer
 
     Dim lostGameInitiated As Boolean = False
+    Dim skip As Boolean = False
 
     Public Enum buttonState
         Initial
@@ -303,30 +304,38 @@ Public Class Form1
 
     Private Sub LeftClickGameMapButton(column As Integer, row As Integer)
         If gameMapButtons(column, row) <> buttonState.Pressed Then
-            If gameMapButtons(column, row) <> buttonState.FlaggedAsUnsafe Then
+            If Not lostGameInitiated Then
+                If gameMapButtons(column, row) = buttonState.FlaggedAsUnsafe Then
+                    If MsgBox("Are you sure you want to step on a space you marked as dangerous?", MsgBoxStyle.YesNo, "Space marked unsafe has been clicked") = vbYes Then
+                        skip = False
+                    Else
+                        skip = True
+                    End If
+
+                End If
 
             End If
-
-            gameMapButtons(column, row) = buttonState.Pressed
-            If containsBomb(column, row) Then
-                updateScreenGrapics.FillRectangle(Brushes.Black, gameMapButtonPositions(column, row))
-                updateScreenGrapics.DrawRectangle(Pens.Black, gameMapButtonPositions(column, row))
-                If Not lostGameInitiated Then
-                    LostGameQue()
-                End If
-            Else
-                updateScreenGrapics.FillRectangle(Brushes.White, gameMapButtonPositions(column, row))
-                updateScreenGrapics.DrawRectangle(Pens.Black, gameMapButtonPositions(column, row))
-                NmbrBombsTouch(column, row)
-                If (numberOfTouchingBombs(column, row) = 0) Then
-                    AutoPressAdjacentSpots(column, row)
+            If (Not skip) Then
+                gameMapButtons(column, row) = buttonState.Pressed
+                If containsBomb(column, row) Then
+                    updateScreenGrapics.FillRectangle(Brushes.Black, gameMapButtonPositions(column, row))
+                    updateScreenGrapics.DrawRectangle(Pens.Black, gameMapButtonPositions(column, row))
+                    If Not lostGameInitiated Then
+                        LostGameQue()
+                    End If
                 Else
-                    updateScreenGrapics.DrawString(CStr(numberOfTouchingBombs(column, row)), Form1.DefaultFont, Brushes.Black, gameMapButtonPositions(column, row).Location)
+                    updateScreenGrapics.FillRectangle(Brushes.White, gameMapButtonPositions(column, row))
+                    updateScreenGrapics.DrawRectangle(Pens.Black, gameMapButtonPositions(column, row))
+                    NmbrBombsTouch(column, row)
+                    If (numberOfTouchingBombs(column, row) = 0) Then
+                        AutoPressAdjacentSpots(column, row)
+                    Else
+                        updateScreenGrapics.DrawString(CStr(numberOfTouchingBombs(column, row)), Form1.DefaultFont, Brushes.Black, gameMapButtonPositions(column, row).Location)
+                    End If
+
                 End If
-
+                PictureBox1.Image = updateScreenBitmap
             End If
-            PictureBox1.Image = updateScreenBitmap
-
 
         End If
     End Sub
