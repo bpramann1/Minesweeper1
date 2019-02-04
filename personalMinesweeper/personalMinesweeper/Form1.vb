@@ -205,7 +205,7 @@ Public Class Form1
                 gameMapButtonPositions(columnIndex - 1, rowIndex - 1) = New Rectangle((columnIndex - 1) * MineSize, (rowIndex - 1) * MineSize, MineSize, MineSize)
                 updateScreenGrapics.DrawRectangle(Pens.Black, 0, 0, columnIndex * MineSize, rowIndex * MineSize)
                 gameMapButtons(columnIndex - 1, rowIndex - 1) = buttonState.Initial
-                containsBomb(columnIndex - 1, rowIndex - 1) = CInt(Int(2 * Rnd()))
+                containsBomb(columnIndex - 1, rowIndex - 1) = CInt(Int(2 * Rnd() * Rnd()))
             Next
         Next
         game.Show()
@@ -299,23 +299,26 @@ Public Class Form1
     End Sub
 
     Private Sub LeftClickGameMapButton(column As Integer, row As Integer)
-        If containsBomb(column, row) Then
-            updateScreenGrapics.FillRectangle(Brushes.Black, gameMapButtonPositions(currentHoverXCoordinate, currentHoverYCoordinate))
-            updateScreenGrapics.DrawRectangle(Pens.Black, gameMapButtonPositions(currentHoverXCoordinate, currentHoverYCoordinate))
-        Else
-            updateScreenGrapics.FillRectangle(Brushes.White, gameMapButtonPositions(currentHoverXCoordinate, currentHoverYCoordinate))
-            updateScreenGrapics.DrawRectangle(Pens.Black, gameMapButtonPositions(currentHoverXCoordinate, currentHoverYCoordinate))
-            NmbrBombsTouch(column, row)
-            updateScreenGrapics.DrawString(CStr(numberOfTouchingBombs(column, row)), Form1.DefaultFont, Brushes.Black, gameMapButtonPositions(currentHoverXCoordinate, currentHoverYCoordinate).Location)
-            If (numberOfTouchingBombs(column, row) = 0) Then
+        If gameMapButtons(column, row) = buttonState.Initial Then
+            gameMapButtons(column, row) = buttonState.Pressed
+            If containsBomb(column, row) Then
+                updateScreenGrapics.FillRectangle(Brushes.Black, gameMapButtonPositions(column, row))
+                updateScreenGrapics.DrawRectangle(Pens.Black, gameMapButtonPositions(column, row))
+            Else
+                updateScreenGrapics.FillRectangle(Brushes.White, gameMapButtonPositions(column, row))
+                updateScreenGrapics.DrawRectangle(Pens.Black, gameMapButtonPositions(column, row))
+                NmbrBombsTouch(column, row)
+                If (numberOfTouchingBombs(column, row) = 0) Then
+                    AutoPressAdjacentSpots(column, row)
+                Else
+                    updateScreenGrapics.DrawString(CStr(numberOfTouchingBombs(column, row)), Form1.DefaultFont, Brushes.Black, gameMapButtonPositions(column, row).Location)
+                End If
 
             End If
+            PictureBox1.Image = updateScreenBitmap
+
 
         End If
-        gameMapButtons(column, row) = buttonState.Pressed
-        PictureBox1.Image = updateScreenBitmap
-
-
     End Sub
 
     Public Sub NmbrBombsTouch(column As Integer, row As Integer)
@@ -361,6 +364,35 @@ Public Class Form1
             If containsBomb(column, row + 1) Then
                 numberOfTouchingBombs(column, row) = numberOfTouchingBombs(column, row) + 1
             End If
+        End If
+    End Sub
+
+
+    Public Sub AutoPressAdjacentSpots(column As Integer, row As Integer)
+        If (column > 0) Then
+            If (row > 0) Then
+                LeftClickGameMapButton(column - 1, row - 1)
+            End If
+            LeftClickGameMapButton(column - 1, row)
+            If row < numberOfRows - 1 Then
+                LeftClickGameMapButton(column - 1, row + 1)
+            End If
+        End If
+
+        If (row > 0) Then
+            LeftClickGameMapButton(column, row - 1)
+            If column < numberOfColumns - 1 Then
+                LeftClickGameMapButton(column + 1, row - 1)
+            End If
+        End If
+        If column < numberOfColumns - 1 Then
+            If row < numberOfRows - 1 Then
+                LeftClickGameMapButton(column + 1, row + 1)
+            End If
+            LeftClickGameMapButton(column + 1, row)
+        End If
+        If row < numberOfRows - 1 Then
+            LeftClickGameMapButton(column, row + 1)
         End If
     End Sub
 
