@@ -165,11 +165,14 @@ Public Class Form1
         ReDim gameMapButtons(numberOfRows, numberOfColumns)
         Dim rowIndex As Integer
         Dim columnIndex As Integer
-        Dim mineSpacesPoints(2 * (numberOfColumns + numberOfRows)) As Point
+        Dim mineSpacesPoints(2 * (numberOfColumns + numberOfRows) + 6) As Point
 
         For rowIndex = 0 To numberOfRows - 1
+
             mineSpacesPoints(2 * rowIndex) = New Point(numberOfColumns * MineSize * (rowIndex Mod 2), rowIndex * MineSize + 24)
-            mineSpacesPoints((2 * rowIndex) + 1) = New Point(numberOfColumns * MineSize * (rowIndex Mod 2), (rowIndex + 1) * MineSize + 24)
+            If Not (((numberOfRows Mod 2) = 0 And (rowIndex = numberOfRows - 1))) Then
+                mineSpacesPoints((2 * rowIndex) + 1) = New Point(numberOfColumns * MineSize * (rowIndex Mod 2), (rowIndex + 1) * MineSize + 24)
+            End If
             'gameMapButtons(rowIndex, columnIndex) = New Button
             'gameMapButtons(rowIndex, columnIndex).Location = New Point(MineSize * columnIndex, (MineSize * rowIndex) + 24)
             'gameMapButtons(rowIndex, columnIndex).Height = MineSize
@@ -177,9 +180,13 @@ Public Class Form1
             'gameMapButtons(rowIndex, columnIndex).FlatStyle = FlatStyle.Flat
             'game.Controls.Add(gameMapButtons(rowIndex, columnIndex))
         Next
+        mineSpacesPoints(2 * (numberOfRows)) = New Point(0, 24)
+
         For columnIndex = 0 To numberOfColumns - 1
-            mineSpacesPoints(2 * (numberOfRows + columnIndex)) = New Point(columnIndex * MineSize, (numberOfRows * MineSize * (columnIndex Mod 2)) + 24)
-            mineSpacesPoints((2 * (numberOfRows + columnIndex) + 1)) = New Point((columnIndex + 1) * MineSize, (numberOfRows * MineSize * (columnIndex Mod 2)) + 24)
+            mineSpacesPoints(2 * (numberOfRows + columnIndex) + 1) = New Point(columnIndex * MineSize, (numberOfRows * MineSize * (columnIndex Mod 2)) + 24)
+            If Not (((numberOfColumns Mod 2) = 0) And (columnIndex = numberOfColumns - 1)) Then
+                mineSpacesPoints((2 * (numberOfRows + columnIndex) + 2)) = New Point((columnIndex + 1) * MineSize, (numberOfRows * MineSize * (columnIndex Mod 2)) + 24)
+            End If
             'gameMapButtons(rowIndex, columnIndex) = New Button
             'gameMapButtons(rowIndex, columnIndex).Location = New Point(MineSize * columnIndex, (MineSize * rowIndex) + 24)
             'gameMapButtons(rowIndex, columnIndex).Height = MineSize
@@ -187,6 +194,11 @@ Public Class Form1
             'gameMapButtons(rowIndex, columnIndex).FlatStyle = FlatStyle.Flat
             'game.Controls.Add(gameMapButtons(rowIndex, columnIndex))
         Next
+        mineSpacesPoints((2 * (numberOfRows + numberOfColumns)) + 2) = New Point(0, numberOfRows * MineSize + 24)
+        mineSpacesPoints((2 * (numberOfRows + numberOfColumns)) + 3) = New Point(0, 24)
+        mineSpacesPoints((2 * (numberOfRows + numberOfColumns)) + 4) = New Point(numberOfColumns * MineSize, 24)
+        mineSpacesPoints((2 * (numberOfRows + numberOfColumns)) + 5) = New Point(numberOfColumns * MineSize, numberOfRows * MineSize + 24)
+        mineSpacesPoints((2 * (numberOfRows + numberOfColumns)) + 6) = New Point(0, numberOfRows * MineSize + 24)
         game.Width = 16 + (numberOfColumns * MineSize)
         game.Height = 62 + (numberOfRows * MineSize)
         game.Show()
