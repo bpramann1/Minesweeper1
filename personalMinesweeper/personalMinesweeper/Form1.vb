@@ -4,7 +4,7 @@ Public Class Form1
     'Dim objects
     Const MinObjectWidth As Integer = 50
     Const MineSize As Integer = 20
-    Dim game As Form
+    Public game As Form
 
     Dim RowsNumberTextbox As New TextBox
     Dim ColumnsNumberTextbox As New TextBox
@@ -152,7 +152,7 @@ Public Class Form1
 
     Private Function ValidateTextDimOfGame(validatingObject As Object) As Boolean
         Try
-            If (CInt(validatingObject.Text) > 0) And (CInt(validatingObject.Text) < 31) Then
+            If (CInt(validatingObject.Text) > 0) And (CInt(validatingObject.Text) < 101) Then
                 Return True
             Else
                 MsgBox("Please enter a valid number for the number of rows and columns")
@@ -167,20 +167,20 @@ Public Class Form1
 
 
     Private Sub CreateGame()
-        game = New Form
-        game.Name = "Minesweeper"
-        AddHandler game.FormClosing, AddressOf game_FormClosing
-        numberOfColumns = CInt(ColumnsNumberTextbox.Text)
-        numberOfRows = CInt(RowsNumberTextbox.Text)
-        Me.Controls.Remove(MenuStrip1)
-        game.Controls.Add(MenuStrip1)
-        SaveToolStripMenuItem.Visible = True
-        game.Controls.Add(PictureBox1)
-        PictureBox1.Visible = True
-        CreateGameMap()
-        lostGameInitiated = False
+        'game = New Form
+        'game.Name = "Minesweeper"
+        'AddHandler game.FormClosing, AddressOf game_FormClosing
+        'numberOfColumns = CInt(ColumnsNumberTextbox.Text)
+        'numberOfRows = CInt(RowsNumberTextbox.Text)
+        'Me.Controls.Remove(MenuStrip1)
+        'game.Controls.Add(MenuStrip1)
+        'SaveToolStripMenuItem.Visible = True
+        'game.Controls.Add(PictureBox1)
+        'PictureBox1.Visible = True
+        'CreateGameMap()
+        'lostGameInitiated = False
 
-        'Me.Hide()
+        ''Me.Hide()
     End Sub
 
     Private Sub game_FormClosing()
@@ -249,6 +249,7 @@ Public Class Form1
 
 
     Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
+
         If mouseInGameMap Then
             currentHoverXCoordinate = CInt((Cursor.Position.X - PictureBox1.Location.X) / MineSize) - 1
             currentHoverYCoordinate = CInt((Cursor.Position.Y - PictureBox1.Location.Y) / MineSize) - 2
@@ -263,7 +264,7 @@ Public Class Form1
             End If
 
             If Not ((lastHoverXCoordinate = currentHoverXCoordinate) And (lastHoverYCoordinate = currentHoverYCoordinate)) Then
-                    If ((lastHoverXCoordinate >= 0) And (lastHoverXCoordinate < numberOfColumns)) Then
+                If ((lastHoverXCoordinate >= 0) And (lastHoverXCoordinate < numberOfColumns)) Then
                     If ((lastHoverYCoordinate >= 0) And (lastHoverYCoordinate < numberOfRows)) Then
                         If gameMapButtons(lastHoverXCoordinate, lastHoverYCoordinate) = buttonState.Initial Then
                             updateScreenGrapics.FillRectangle(New SolidBrush(SystemColors.HotTrack), gameMapButtonPositions(lastHoverXCoordinate, lastHoverYCoordinate))
@@ -315,6 +316,7 @@ Public Class Form1
                 End If
 
             End If
+            skip = False
             If (Not skip) Then
                 gameMapButtons(column, row) = buttonState.Pressed
                 If containsBomb(column, row) Then
@@ -610,4 +612,30 @@ Public Class fraction
         denomanator = fractionDenomanator
         decimalRepresentation = fractionNumerator / fractionDenomanator
     End Sub
+End Class
+
+
+
+Public Class Game
+    Dim containingForm As Form
+
+    Public Sub New()
+        Using Form1
+            containingForm = New Form
+            containingForm.Name = "Minesweeper"
+            'AddHandler Game.FormClosing, AddressOf game_FormClosing
+            'numberOfColumns = CInt(ColumnsNumberTextbox.Text)
+            'numberOfRows = CInt(RowsNumberTextbox.Text)
+            'Me.Controls.Remove(MenuStrip1)
+            'Game.Controls.Add(MenuStrip1)
+            'SaveToolStripMenuItem.Visible = True
+            'Game.Controls.Add(PictureBox1)
+            'PictureBox1.Visible = True
+            'CreateGameMap()
+            'lostGameInitiated = False
+        End Using
+        'Me.Hide()
+    End Sub
+
+
 End Class
