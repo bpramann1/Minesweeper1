@@ -15,6 +15,15 @@ namespace Minesweeper
         public Form1()
         {
             InitializeComponent();
+
+            gameMap myNewGame; // used for testing
+            //Uncomment one (or more) of the following to test each constructer of the object
+            //myNewGame = new gameMap();
+            //myNewGame = new gameMap(40);
+            //myNewGame = new gameMap(25, 25);
+            // myNewGame = new gameMap(5,5,50);
+
+
         }
     }
 }
