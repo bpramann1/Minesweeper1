@@ -152,5 +152,5 @@ Partial Class Form1
     Friend WithEvents IntermediateToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AdvancedToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CustomToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents PictureBox1 As PictureBox
+    Public WithEvents PictureBox1 As PictureBox
 End Class

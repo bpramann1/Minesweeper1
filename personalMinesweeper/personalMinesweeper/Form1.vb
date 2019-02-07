@@ -2,12 +2,12 @@
 
 Public Class Form1
     'Dim objects
-    Const MinObjectWidth As Integer = 50
-    Const MineSize As Integer = 20
-    Public game As Form
+    Public Const MinObjectWidth As Integer = 50
+    Public Const MineSize As Integer = 20
 
-    Dim RowsNumberTextbox As New TextBox
-    Dim ColumnsNumberTextbox As New TextBox
+
+    Public RowsNumberTextbox As New TextBox
+    Public ColumnsNumberTextbox As New TextBox
 
     Dim RowsNumberLabel As New Label
     Dim ColumnsNumberLabel As New Label
@@ -21,36 +21,13 @@ Public Class Form1
     Dim originalSender As Object
     Dim originalEventArg As EventArgs
 
-    Public numberOfRows As Integer
-    Public numberOfColumns As Integer
 
-    Public updateScreenBitmap As Drawing.Bitmap
-    Public updateScreenGrapics As Graphics
 
-    Public mouseInGameMap As Boolean = False
 
-    Public currentHoverXCoordinate As Integer
-    Public currentHoverYCoordinate As Integer
-    Public lastHoverXCoordinate As Integer
-    Public lastHoverYCoordinate As Integer
 
-    Public containsBomb(16, 16) As Integer
-    Public numberOfTouchingBombs(16, 16) As Integer
 
-    Dim lostGameInitiated As Boolean = False
-    Dim skip As Boolean = False
 
-    Public Enum buttonState
-        Initial
-        MappedAsSafe
-        FlaggedAsUnsafe
-        Pressed
-    End Enum
-    Public gameMapButtons(16, 16) As buttonState
 
-    Public gameMapButtonPositions(16, 16) As Rectangle
-
-    Public TerminateGameClose As Boolean = True
 
 
     'Done with dim
@@ -183,40 +160,9 @@ Public Class Form1
         ''Me.Hide()
     End Sub
 
-    Private Sub game_FormClosing()
-        If TerminateGameClose Then
-            Close()
-        End If
-        TerminateGameClose = True
-    End Sub
 
-    Private Sub CreateGameMap()
-        PictureBox1.Location = New Point(0, 26)
-        game.Width = 17 + (numberOfColumns * MineSize)
-        game.Height = 65 + (numberOfRows * MineSize)
-        PictureBox1.Width = game.Width
-        PictureBox1.Height = game.Height
-        updateScreenBitmap = New Drawing.Bitmap(PictureBox1.Width, PictureBox1.Height)
-        updateScreenGrapics = Graphics.FromImage(updateScreenBitmap)
-        ReDim gameMapButtons(numberOfColumns, numberOfRows)
-        ReDim gameMapButtonPositions(numberOfColumns, numberOfRows)
-        ReDim containsBomb(numberOfColumns, numberOfRows)
-        ReDim numberOfTouchingBombs(numberOfColumns, numberOfRows)
-        updateScreenGrapics.Clear(SystemColors.HotTrack)
-        Randomize()
-        For rowIndex = 1 To numberOfRows
-            For columnIndex = 1 To numberOfColumns
-                gameMapButtonPositions(columnIndex - 1, rowIndex - 1) = New Rectangle((columnIndex - 1) * MineSize, (rowIndex - 1) * MineSize, MineSize, MineSize)
-                updateScreenGrapics.DrawRectangle(Pens.Black, 0, 0, columnIndex * MineSize, rowIndex * MineSize)
-                gameMapButtons(columnIndex - 1, rowIndex - 1) = buttonState.Initial
-                containsBomb(columnIndex - 1, rowIndex - 1) = CInt(Int(2 * Rnd() * Rnd()))
-            Next
-        Next
-        game.Show()
-        Hide()
-        game.Location = New Point(0, 0)
-        PictureBox1.Image = updateScreenBitmap
-    End Sub
+
+
 
 
     Private Sub SubmitBoardSizeButton_Click()
@@ -248,11 +194,270 @@ Public Class Form1
 
 
 
-    Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
+
+
+End Class
+
+Public Class myObjectInForm
+    Public myObject As Object
+    Public myPosition As Point
+    Public relativePositionX As Decimal
+    Public relativePositionY As Decimal
+    Public myInitialText As String
+    Const MinObjectWidth As Integer = 50
+    Public relativeToObject As Boolean
+    Public distanceFromObjectX As Integer
+    Public distanceFromObjectY As Integer
+    Public focusObject As Object
+    Dim relativeObjectPositionX As Integer
+    Dim relativeObjectPositionY As Integer
+
+
+    Public Sub New(addedObject As Object, addedPositionX As Integer, addedPositionY As Integer) 'fixed position without initialized text
+        myObject = addedObject
+        myPosition = New Point(addedPositionX, addedPositionY)
+        relativePositionX = 0
+        relativePositionY = 0
+        myInitialText = ""
+        relativeToObject = False
+    End Sub
+
+    Public Sub New(addedObject As Object, addedPositionX As Integer, addedPositionY As Integer, addedInitialText As String) 'fixed position with initialized text
+        myObject = addedObject
+        myPosition = New Point(addedPositionX, addedPositionY)
+        relativePositionX = 0
+        relativePositionY = 0
+        myInitialText = addedInitialText
+        relativeToObject = False
+    End Sub
+
+    Public Sub New(addedObject As Object, basisObject As Object, addedPositionX As Integer, addedPositionY As Integer) 'fixed position relative to another object without initialized text
+        myObject = addedObject
+        relativeToObject = True
+        focusObject = basisObject
+        distanceFromObjectX = addedPositionX
+        distanceFromObjectY = addedPositionY
+        addedPositionX = 0
+        addedPositionY = 0
+        For Each item In Form1.Form1Objects
+            If (item.myObject Is basisObject) Then
+                addedPositionX = item.myPosition.X
+                addedPositionY = item.myPosition.Y
+            End If
+        Next
+        myPosition = New Point(addedPositionX + distanceFromObjectX, addedPositionY + distanceFromObjectY)
+        relativePositionX = 0
+        relativePositionY = 0
+        myInitialText = ""
+    End Sub
+
+    Public Sub New(addedObject As Object, basisObject As Object, addedPositionX As Integer, addedPositionY As Integer, addedInitialText As String) 'fixed position relative to another object with initialized text
+        myObject = addedObject
+        relativeToObject = True
+        focusObject = basisObject
+        distanceFromObjectX = addedPositionX
+        distanceFromObjectY = addedPositionY
+        addedPositionX = 0
+        addedPositionY = 0
+        For Each item In Form1.Form1Objects
+            If (item.myObject Is basisObject) Then
+                addedPositionX = item.myPosition.X
+                addedPositionY = item.myPosition.Y
+            End If
+        Next
+        myPosition = New Point(addedPositionX + distanceFromObjectX, addedPositionY + distanceFromObjectY)
+        relativePositionX = 0
+        relativePositionY = 0
+        myInitialText = addedInitialText
+    End Sub
+
+    Public Sub New(addedObject As Object, addedPositionX As fraction, addedPositionY As fraction) 'relative position without initialized text
+        myObject = addedObject
+        relativePositionX = addedPositionX.decimalRepresentation
+        relativePositionY = addedPositionY.decimalRepresentation
+        myPosition = New Point(Form1.Width * relativePositionX, Form1.Height * relativePositionY)
+        myInitialText = ""
+        relativeToObject = False
+    End Sub
+
+
+    Public Sub New(addedObject As Object, addedPositionX As fraction, addedPositionY As fraction, addedInitialText As String) 'relatve position with initialized text
+        myObject = addedObject
+        relativePositionX = addedPositionX.decimalRepresentation
+        relativePositionY = addedPositionY.decimalRepresentation
+        myPosition = New Point(Form1.Width * relativePositionX, Form1.Height * relativePositionY)
+        myInitialText = addedInitialText
+        relativeToObject = False
+    End Sub
+
+    Public Sub setObject(objectType As Object)
+        myObject = objectType
+    End Sub
+    Public Sub setObject(objectPositionx As Integer, objectPositiony As Integer)
+        myPosition = New Point(objectPositionx, objectPositiony)
+    End Sub
+
+    Private Function MeasureText() As Integer
+        Return TextRenderer.MeasureText(myObject.Text + "W", myObject.Font).Width
+    End Function
+
+    Public Sub positonObject()
+
+        'calculates width
+        If (MeasureText() > MinObjectWidth) Then
+            myObject.Width = (MeasureText())
+        Else
+            myObject.Width = MinObjectWidth
+        End If
+        'end width
+
+        'set height
+        'end height
+
+        'calculate position
+        If relativeToObject Then
+            relativeObjectPositionX = 0
+            relativeObjectPositionY = 0
+            For Each item In Form1.Form1Objects
+                If (item.myObject Is focusObject) Then
+                    relativeObjectPositionX = item.myPosition.X
+                    relativeObjectPositionY = item.myPosition.Y
+                End If
+            Next
+            myPosition = New Point(relativeObjectPositionX + distanceFromObjectX, relativeObjectPositionY + distanceFromObjectY)
+        Else
+            If (relativePositionX <> 0) Or (relativePositionY <> 0) Then
+                myPosition = New Point(Form1.Width * relativePositionX, Form1.Height * relativePositionY)
+            End If
+        End If
+
+
+
+        myObject.Location = myPosition
+
+    End Sub
+
+    Public Sub showObject()
+        Form1.Controls.Add(myObject)
+        If myInitialText <> "" Then
+            myObject.Text = myInitialText
+        End If
+        myObject.Show()
+    End Sub
+
+End Class
+
+
+Public Class fraction
+    Public numerator As Integer
+    Public denomanator As Integer
+    Public decimalRepresentation As Decimal
+
+    Public Sub New(fractionNumerator As Integer, fractionDenomanator As Integer)
+        numerator = fractionNumerator
+        denomanator = fractionDenomanator
+        decimalRepresentation = fractionNumerator / fractionDenomanator
+    End Sub
+End Class
+
+
+
+Public Class Game
+    Dim containingForm As Form
+    Public numberOfRows As Integer
+    Public numberOfColumns As Integer
+    Dim lostGameInitiated As Boolean = False
+    Public TerminateGameClose As Boolean = True
+
+    Public updateScreenBitmap As Drawing.Bitmap
+    Public updateScreenGrapics As Graphics
+
+    Public mouseInGameMap As Boolean = False
+
+    Public currentHoverXCoordinate As Integer
+    Public currentHoverYCoordinate As Integer
+    Public lastHoverXCoordinate As Integer
+    Public lastHoverYCoordinate As Integer
+
+    Public containsBomb(16, 16) As Integer
+    Public numberOfTouchingBombs(16, 16) As Integer
+
+
+
+
+    Dim skip As Boolean = False
+
+    Public Enum buttonState
+        Initial
+        MappedAsSafe
+        FlaggedAsUnsafe
+        Pressed
+    End Enum
+    Public gameMapButtons(16, 16) As buttonState
+
+    Public gameMapButtonPositions(16, 16) As Rectangle
+
+    Public Sub New()
+        Using Form1
+            containingForm = New Form
+            containingForm.Name = "Minesweeper"
+            AddHandler containingForm.FormClosing, AddressOf containingForm_FormClosing
+            numberOfColumns = CInt(Form1.ColumnsNumberTextbox.Text)
+            numberOfRows = CInt(Form1.RowsNumberTextbox.Text)
+            Form1.Controls.Remove(Form1.MenuStrip1)
+            containingForm.Controls.Add(Form1.MenuStrip1)
+            Form1.SaveToolStripMenuItem.Visible = True
+            containingForm.Controls.Add(Form1.PictureBox1)
+            Form1.PictureBox1.Visible = True
+            CreateGameMap()
+            lostGameInitiated = False
+
+        End Using
+    End Sub
+
+
+    Private Sub containingForm_FormClosing()
+        If TerminateGameClose Then
+            Form1.Close()
+        End If
+        TerminateGameClose = True
+    End Sub
+
+
+    Private Sub CreateGameMap()
+        Form1.PictureBox1.Location = New Point(0, 26)
+        containingForm.Width = 17 + (numberOfColumns * Form1.MineSize)
+        containingForm.Height = 65 + (numberOfRows * Form1.MineSize)
+        Form1.PictureBox1.Width = containingForm.Width
+        Form1.PictureBox1.Height = containingForm.Height
+        updateScreenBitmap = New Drawing.Bitmap(Form1.PictureBox1.Width, Form1.PictureBox1.Height)
+        updateScreenGrapics = Graphics.FromImage(updateScreenBitmap)
+        ReDim gameMapButtons(numberOfColumns, numberOfRows)
+        ReDim gameMapButtonPositions(numberOfColumns, numberOfRows)
+        ReDim containsBomb(numberOfColumns, numberOfRows)
+        ReDim numberOfTouchingBombs(numberOfColumns, numberOfRows)
+        updateScreenGrapics.Clear(SystemColors.HotTrack)
+        Randomize()
+        For rowIndex = 1 To numberOfRows
+            For columnIndex = 1 To numberOfColumns
+                gameMapButtonPositions(columnIndex - 1, rowIndex - 1) = New Rectangle((columnIndex - 1) * Form1.MineSize, (rowIndex - 1) * Form1.MineSize, Form1.MineSize, Form1.MineSize)
+                updateScreenGrapics.DrawRectangle(Pens.Black, 0, 0, columnIndex * Form1.MineSize, rowIndex * Form1.MineSize)
+                gameMapButtons(columnIndex - 1, rowIndex - 1) = ButtonState.Initial
+                containsBomb(columnIndex - 1, rowIndex - 1) = CInt(Int(2 * Rnd() * Rnd()))
+            Next
+        Next
+        containingForm.Show()
+        Form1.Hide()
+        containingForm.Location = New Point(0, 0)
+        Form1.PictureBox1.Image = updateScreenBitmap
+    End Sub
+
+    Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles containingForm.MouseMove
+
 
         If mouseInGameMap Then
-            currentHoverXCoordinate = CInt((Cursor.Position.X - PictureBox1.Location.X) / MineSize) - 1
-            currentHoverYCoordinate = CInt((Cursor.Position.Y - PictureBox1.Location.Y) / MineSize) - 2
+            currentHoverXCoordinate = CInt((Cursor.Position.X - Form1.PictureBox1.Location.X) / MineSize) - 1
+            currentHoverYCoordinate = CInt((Cursor.Position.Y - Form1.PictureBox1.Location.Y) / MineSize) - 2
 
             If ((currentHoverXCoordinate >= 0) And (currentHoverXCoordinate < numberOfColumns)) Then
                 If ((currentHoverYCoordinate >= 0) And (currentHoverYCoordinate < numberOfRows)) Then
@@ -448,194 +653,5 @@ Public Class Form1
         updateScreenGrapics.DrawRectangle(Pens.Black, gameMapButtonPositions(column, row))
         PictureBox1.Image = updateScreenBitmap
     End Sub
-
-
-End Class
-
-Public Class myObjectInForm
-    Public myObject As Object
-    Public myPosition As Point
-    Public relativePositionX As Decimal
-    Public relativePositionY As Decimal
-    Public myInitialText As String
-    Const MinObjectWidth As Integer = 50
-    Public relativeToObject As Boolean
-    Public distanceFromObjectX As Integer
-    Public distanceFromObjectY As Integer
-    Public focusObject As Object
-    Dim relativeObjectPositionX As Integer
-    Dim relativeObjectPositionY As Integer
-
-
-    Public Sub New(addedObject As Object, addedPositionX As Integer, addedPositionY As Integer) 'fixed position without initialized text
-        myObject = addedObject
-        myPosition = New Point(addedPositionX, addedPositionY)
-        relativePositionX = 0
-        relativePositionY = 0
-        myInitialText = ""
-        relativeToObject = False
-    End Sub
-
-    Public Sub New(addedObject As Object, addedPositionX As Integer, addedPositionY As Integer, addedInitialText As String) 'fixed position with initialized text
-        myObject = addedObject
-        myPosition = New Point(addedPositionX, addedPositionY)
-        relativePositionX = 0
-        relativePositionY = 0
-        myInitialText = addedInitialText
-        relativeToObject = False
-    End Sub
-
-    Public Sub New(addedObject As Object, basisObject As Object, addedPositionX As Integer, addedPositionY As Integer) 'fixed position relative to another object without initialized text
-        myObject = addedObject
-        relativeToObject = True
-        focusObject = basisObject
-        distanceFromObjectX = addedPositionX
-        distanceFromObjectY = addedPositionY
-        addedPositionX = 0
-        addedPositionY = 0
-        For Each item In Form1.Form1Objects
-            If (item.myObject Is basisObject) Then
-                addedPositionX = item.myPosition.X
-                addedPositionY = item.myPosition.Y
-            End If
-        Next
-        myPosition = New Point(addedPositionX + distanceFromObjectX, addedPositionY + distanceFromObjectY)
-        relativePositionX = 0
-        relativePositionY = 0
-        myInitialText = ""
-    End Sub
-
-    Public Sub New(addedObject As Object, basisObject As Object, addedPositionX As Integer, addedPositionY As Integer, addedInitialText As String) 'fixed position relative to another object with initialized text
-        myObject = addedObject
-        relativeToObject = True
-        focusObject = basisObject
-        distanceFromObjectX = addedPositionX
-        distanceFromObjectY = addedPositionY
-        addedPositionX = 0
-        addedPositionY = 0
-        For Each item In Form1.Form1Objects
-            If (item.myObject Is basisObject) Then
-                addedPositionX = item.myPosition.X
-                addedPositionY = item.myPosition.Y
-            End If
-        Next
-        myPosition = New Point(addedPositionX + distanceFromObjectX, addedPositionY + distanceFromObjectY)
-        relativePositionX = 0
-        relativePositionY = 0
-        myInitialText = addedInitialText
-    End Sub
-
-    Public Sub New(addedObject As Object, addedPositionX As fraction, addedPositionY As fraction) 'relative position without initialized text
-        myObject = addedObject
-        relativePositionX = addedPositionX.decimalRepresentation
-        relativePositionY = addedPositionY.decimalRepresentation
-        myPosition = New Point(Form1.Width * relativePositionX, Form1.Height * relativePositionY)
-        myInitialText = ""
-        relativeToObject = False
-    End Sub
-
-
-    Public Sub New(addedObject As Object, addedPositionX As fraction, addedPositionY As fraction, addedInitialText As String) 'relatve position with initialized text
-        myObject = addedObject
-        relativePositionX = addedPositionX.decimalRepresentation
-        relativePositionY = addedPositionY.decimalRepresentation
-        myPosition = New Point(Form1.Width * relativePositionX, Form1.Height * relativePositionY)
-        myInitialText = addedInitialText
-        relativeToObject = False
-    End Sub
-
-    Public Sub setObject(objectType As Object)
-        myObject = objectType
-    End Sub
-    Public Sub setObject(objectPositionx As Integer, objectPositiony As Integer)
-        myPosition = New Point(objectPositionx, objectPositiony)
-    End Sub
-
-    Private Function MeasureText() As Integer
-        Return TextRenderer.MeasureText(myObject.Text + "W", myObject.Font).Width
-    End Function
-
-    Public Sub positonObject()
-
-        'calculates width
-        If (MeasureText() > MinObjectWidth) Then
-            myObject.Width = (MeasureText())
-        Else
-            myObject.Width = MinObjectWidth
-        End If
-        'end width
-
-        'set height
-        'end height
-
-        'calculate position
-        If relativeToObject Then
-            relativeObjectPositionX = 0
-            relativeObjectPositionY = 0
-            For Each item In Form1.Form1Objects
-                If (item.myObject Is focusObject) Then
-                    relativeObjectPositionX = item.myPosition.X
-                    relativeObjectPositionY = item.myPosition.Y
-                End If
-            Next
-            myPosition = New Point(relativeObjectPositionX + distanceFromObjectX, relativeObjectPositionY + distanceFromObjectY)
-        Else
-            If (relativePositionX <> 0) Or (relativePositionY <> 0) Then
-                myPosition = New Point(Form1.Width * relativePositionX, Form1.Height * relativePositionY)
-            End If
-        End If
-
-
-
-        myObject.Location = myPosition
-
-    End Sub
-
-    Public Sub showObject()
-        Form1.Controls.Add(myObject)
-        If myInitialText <> "" Then
-            myObject.Text = myInitialText
-        End If
-        myObject.Show()
-    End Sub
-
-End Class
-
-
-Public Class fraction
-    Public numerator As Integer
-    Public denomanator As Integer
-    Public decimalRepresentation As Decimal
-
-    Public Sub New(fractionNumerator As Integer, fractionDenomanator As Integer)
-        numerator = fractionNumerator
-        denomanator = fractionDenomanator
-        decimalRepresentation = fractionNumerator / fractionDenomanator
-    End Sub
-End Class
-
-
-
-Public Class Game
-    Dim containingForm As Form
-
-    Public Sub New()
-        Using Form1
-            containingForm = New Form
-            containingForm.Name = "Minesweeper"
-            'AddHandler Game.FormClosing, AddressOf game_FormClosing
-            'numberOfColumns = CInt(ColumnsNumberTextbox.Text)
-            'numberOfRows = CInt(RowsNumberTextbox.Text)
-            'Me.Controls.Remove(MenuStrip1)
-            'Game.Controls.Add(MenuStrip1)
-            'SaveToolStripMenuItem.Visible = True
-            'Game.Controls.Add(PictureBox1)
-            'PictureBox1.Visible = True
-            'CreateGameMap()
-            'lostGameInitiated = False
-        End Using
-        'Me.Hide()
-    End Sub
-
 
 End Class
