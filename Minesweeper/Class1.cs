@@ -9,7 +9,7 @@ using System.Diagnostics;
 
 namespace Minesweeper
 {
-    class gameMap
+    class GameMap
     {
         private int numberOfRows;                       //This variable indicates the number of rows. It has a default constructed value of 16 although it can be customized by user input
         private int numberOfColumns;                    //This variable indicates the number of Columns. It has a default constructed value of 16 although it can be customized by user input
@@ -39,7 +39,7 @@ namespace Minesweeper
         Form Game;                                   //This is the object that will contain the game and game map
 
 
-        public gameMap()                //Default Constuctor
+        public GameMap()                //Default Constuctor
         {
             numberOfRows = 16;          //Default Value
             numberOfColumns = 16;       //Default Value
@@ -47,7 +47,7 @@ namespace Minesweeper
             createMap();            //All the variables are set up, so draw the map.
         }
 
-        public gameMap(int rows, int columns)                //Constructor for custom number of rows and columns
+        public GameMap(int rows, int columns)                //Constructor for custom number of rows and columns
         {
             numberOfRows = rows;          //custom number of rows
             numberOfColumns = columns;       //custom number of columns
@@ -57,7 +57,7 @@ namespace Minesweeper
             createMap();            //All the variables are set up, so draw the map.
         }
 
-        public gameMap(int rows, int columns, int mineSize)                //Constructor for custom number of rows and columns and custom mine size
+        public GameMap(int rows, int columns, int mineSize)                //Constructor for custom number of rows and columns and custom mine size
         {
             numberOfRows = rows;          //custom number of rows
             numberOfColumns = columns;       //custom number of columns
@@ -67,7 +67,7 @@ namespace Minesweeper
             createMap();            //All the variables are set up, so draw the map.
         }
 
-        public gameMap(int mineSize)                //Constructor for custom mine size
+        public GameMap(int mineSize)                //Constructor for custom mine size
         {
             numberOfRows = 16;          //Default number of columns
             numberOfColumns = 16;       //Default number of columns
@@ -82,6 +82,7 @@ namespace Minesweeper
             numberOfCallsOnStack = new StackTrace().FrameCount;
             stateOfMineSpace = new MineSpaceStates[numberOfColumns, numberOfRows];      //Set the array size. All the elements are automatically intiated to zero, which is the value of initial state in our enum.
             containsMine = new bool[numberOfColumns,numberOfRows];
+            CreateBombMap();
             gameMapWidthInPixels = (numberOfColumns * mineSizeInPixels) + 1;            //Width is calculated by the combined width of the mine spaces plus one for the ending line to create the ending mine
             gameMapHeightInPixels = (numberOfRows * mineSizeInPixels)+ 1;               //Height is calculated by the combined height of the mine spaces plus one for the ending line to create the ending mine
             Game = new Form();  
@@ -331,21 +332,21 @@ namespace Minesweeper
             //Top row
             if (ColumnRowInGameArray(column - 1, row - 1))
             {
-                if (stateOfMineSpace[column - 1, row - 1] == MineSpaceStates.Initial)
+                if (stateOfMineSpace[column - 1, row - 1] != MineSpaceStates.Pressed)
                 {
                     RevealMineSpace(column - 1, row - 1);
                 }
             }
             if (ColumnRowInGameArray(column, row - 1))
             {
-                if (stateOfMineSpace[column, row - 1] == MineSpaceStates.Initial)
+                if (stateOfMineSpace[column, row - 1] != MineSpaceStates.Pressed)
                 {
                     RevealMineSpace(column, row - 1);
                 }
             }
             if (ColumnRowInGameArray(column + 1, row - 1))
             {
-                if (stateOfMineSpace[column + 1, row - 1] == MineSpaceStates.Initial)
+                if (stateOfMineSpace[column + 1, row - 1] != MineSpaceStates.Pressed)
                 {
                     RevealMineSpace(column + 1, row - 1);
                 }
@@ -353,14 +354,14 @@ namespace Minesweeper
             //Middle row
             if (ColumnRowInGameArray(column - 1, row))
             {
-                if (stateOfMineSpace[column - 1, row] == MineSpaceStates.Initial)
+                if (stateOfMineSpace[column - 1, row] != MineSpaceStates.Pressed)
                 {
                     RevealMineSpace(column - 1, row);
                 }
             }
             if (ColumnRowInGameArray(column + 1, row))
             {
-                if (stateOfMineSpace[column + 1, row] == MineSpaceStates.Initial)
+                if (stateOfMineSpace[column + 1, row] != MineSpaceStates.Pressed)
                 {
                     RevealMineSpace(column + 1, row);
                 }
@@ -368,25 +369,49 @@ namespace Minesweeper
             //Bottom row
             if (ColumnRowInGameArray(column - 1, row + 1))
             {
-                if (stateOfMineSpace[column - 1, row + 1] == MineSpaceStates.Initial)
+                if (stateOfMineSpace[column - 1, row + 1] != MineSpaceStates.Pressed)
                 {
                     RevealMineSpace(column - 1, row + 1);
                 }
             }
             if (ColumnRowInGameArray(column, row + 1))
             {
-                if (stateOfMineSpace[column, row + 1] == MineSpaceStates.Initial)
+                if (stateOfMineSpace[column, row + 1] != MineSpaceStates.Pressed)
                 {
                     RevealMineSpace(column, row + 1);
                 }
             }
             if (ColumnRowInGameArray(column + 1, row + 1))
             {
-                if (stateOfMineSpace[column + 1, row + 1] == MineSpaceStates.Initial)
+                if (stateOfMineSpace[column + 1, row + 1] != MineSpaceStates.Pressed)
                 {
                     RevealMineSpace(column + 1, row + 1);
                 }
             }
         }
+
+
+        private void CreateBombMap()
+        {
+            Random rnd = new Random();
+            for (int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++)
+            {
+                for (int rowIndex = 0; rowIndex < numberOfRows; rowIndex++)
+                {
+                    if (rnd.Next(8) > 0)
+                    {
+                        containsMine[columnIndex,rowIndex] = false;
+                    }
+                    else
+                    {
+                        containsMine[columnIndex,rowIndex] = true;
+                    }
+                }
+            }
+        }
     }
+
+
+
+    
 }

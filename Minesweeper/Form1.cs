@@ -16,15 +16,15 @@ namespace Minesweeper
         {
             InitializeComponent();
 
-            gameMap myNewGame; // used for testing
+            GameMap myNewGame; // used for testing
                                //Uncomment one (or more) of the following to test each constructer of the object
                                //myNewGame = new gameMap();
                                //myNewGame = new gameMap(40);
                                //myNewGame = new gameMap(25, 25);
                                //myNewGame = new gameMap(25,50,20);
-           // myNewGame = new gameMap(5, 10, 50);
-          myNewGame = new gameMap(50,50,5);//Test this to test our speed of loading
-
+                               // myNewGame = new gameMap(5, 10, 50);
+                               myNewGame = new GameMap(40,80,15);
+            //myNewGame = new GameMap(120, 240, 5);//Test this to test our speed of loading
 
 
         }
