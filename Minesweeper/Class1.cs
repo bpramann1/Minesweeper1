@@ -21,7 +21,7 @@ namespace Minesweeper
         private int oldColumnPositionOfMouse;
         private int oldRowPositionOfMouse;
         private int numberOfCallsOnStack;
-
+        private int automaticClickNumber;
 
         enum MineSpaceStates
         {
@@ -183,37 +183,59 @@ namespace Minesweeper
             }
         }
 
-        private void RevealMineSpace(int column, int row)
+        private void RevealMineSpace(int column, int row)//Only Call when you know that the column and row are in game
         {
             stateOfMineSpace[column, row] = MineSpaceStates.Pressed;
-            int numberOfAdjacentBombs = numberOfTouchingBombs(column, row);
-            if (ColumnRowInGameArray(column, row))
+            if (containsMine[column, row])
             {
-                if (containsMine[column, row])
+
+                //Higlight the current rectangle
+                updateScreenGraphics.FillRectangle(Brushes.Black, column * mineSizeInPixels + 1, row * mineSizeInPixels + 1, mineSizeInPixels - 1, mineSizeInPixels - 1); //fill the rectangle with the black color
+
+                EndReveal();
+            }
+
+
+            else
+            {
+                int numberOfAdjacentBombs = numberOfTouchingBombs(column, row);
+                //Higlight the current rectangle
+                updateScreenGraphics.FillRectangle(Brushes.White, column * mineSizeInPixels + 1, row * mineSizeInPixels + 1, mineSizeInPixels - 1, mineSizeInPixels - 1); //fill the rectangle with the white color
+                if (numberOfAdjacentBombs == 0)
                 {
-                    //Higlight the current rectangle
-                    updateScreenGraphics.FillRectangle(Brushes.Black, column * mineSizeInPixels+1, row * mineSizeInPixels+1, mineSizeInPixels-1, mineSizeInPixels-1); //fill the rectangle with the black color
-                    EndReveal();
+                    automaticClickNumber++;
+                    switch ((automaticClickNumber%40)/10)
+                    {
+                        case 0:
+                            ClickAdjacentSpacesUpFirst(column, row);
+                            break;
+                        case 1:
+                            ClickAdjacentSpacesLeftFirst(column, row);
+                            break;
+                        case 2:
+                            ClickAdjacentSpacesDownFirst(column, row);
+                            break;
+                        case 3:
+                            ClickAdjacentSpacesRightFirst(column, row);
+                            break;
+                        default:
+                            break;
+                    }
+                    //updateScreenGraphics.DrawString(automaticClickNumber.ToString(), SystemFonts.DefaultFont, Brushes.Black, column * mineSizeInPixels, row * mineSizeInPixels);
                 }
                 else
                 {
-                    //Higlight the current rectangle
-                    updateScreenGraphics.FillRectangle(Brushes.White, column * mineSizeInPixels+1, row * mineSizeInPixels+1, mineSizeInPixels-1, mineSizeInPixels-1); //fill the rectangle with the white color
-                    if (numberOfAdjacentBombs == 0)
-                    {
-                        ClickAdjacentSpaces(column, row);                   }
-                    else
-                    {
-                        updateScreenGraphics.DrawString(numberOfAdjacentBombs.ToString(), SystemFonts.DefaultFont, Brushes.Black, column * mineSizeInPixels, row * mineSizeInPixels);
-                    }
+                    updateScreenGraphics.DrawString(numberOfAdjacentBombs.ToString(), SystemFonts.DefaultFont, Brushes.Black, column * mineSizeInPixels, row * mineSizeInPixels);
                 }
-   //             if(numberOfCallsOnStack < 20)
-   //             {
-                    bitmapContainer.Image = updateScreenBitmap;
- //               }
-
             }
+            //             if(numberOfCallsOnStack < 20)
+            //             {
+            bitmapContainer.Image = updateScreenBitmap;
+
+            //               }
+
         }
+
 
         private void RightMouseButtonClicked()
         {
@@ -321,68 +343,7 @@ namespace Minesweeper
             return numberOfBombs;
         }
 
-        private void ClickAdjacentSpaces(int column, int row)
-        {
-            //Top row
-            if (ColumnRowInGameArray(column - 1, row - 1))
-            {
-                if (stateOfMineSpace[column - 1, row - 1] != MineSpaceStates.Pressed)
-                {
-                    RevealMineSpace(column - 1, row - 1);
-                }
-            }
-            if (ColumnRowInGameArray(column, row - 1))
-            {
-                if (stateOfMineSpace[column, row - 1] != MineSpaceStates.Pressed)
-                {
-                    RevealMineSpace(column, row - 1);
-                }
-            }
-            if (ColumnRowInGameArray(column + 1, row - 1))
-            {
-                if (stateOfMineSpace[column + 1, row - 1] != MineSpaceStates.Pressed)
-                {
-                    RevealMineSpace(column + 1, row - 1);
-                }
-            }
-            //Middle row
-            if (ColumnRowInGameArray(column - 1, row))
-            {
-                if (stateOfMineSpace[column - 1, row] != MineSpaceStates.Pressed)
-                {
-                    RevealMineSpace(column - 1, row);
-                }
-            }
-            if (ColumnRowInGameArray(column + 1, row))
-            {
-                if (stateOfMineSpace[column + 1, row] != MineSpaceStates.Pressed)
-                {
-                    RevealMineSpace(column + 1, row);
-                }
-            }
-            //Bottom row
-            if (ColumnRowInGameArray(column - 1, row + 1))
-            {
-                if (stateOfMineSpace[column - 1, row + 1] != MineSpaceStates.Pressed)
-                {
-                    RevealMineSpace(column - 1, row + 1);
-                }
-            }
-            if (ColumnRowInGameArray(column, row + 1))
-            {
-                if (stateOfMineSpace[column, row + 1] != MineSpaceStates.Pressed)
-                {
-                    RevealMineSpace(column, row + 1);
-                }
-            }
-            if (ColumnRowInGameArray(column + 1, row + 1))
-            {
-                if (stateOfMineSpace[column + 1, row + 1] != MineSpaceStates.Pressed)
-                {
-                    RevealMineSpace(column + 1, row + 1);
-                }
-            }
-        }
+
 
 
         private void CreateBombMap()
@@ -441,6 +402,345 @@ namespace Minesweeper
             bitmapContainer.Image = updateScreenBitmap;
         }
 
+
+        private void ClickAdjacentSpacesUpFirst(int column, int row)
+        {
+            //Up
+            if ((column >= 0) && (column < numberOfColumns) && (row - 1 >= 0) && (row - 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column, row - 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column, row - 1);
+                }
+            }
+            //automaticClickNumber = 0;
+            //UpLeft
+            if ((column - 1 >= 0) && (column - 1 < numberOfColumns) && (row - 1 >= 0) && (row - 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column - 1, row - 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column - 1, row - 1);
+                }
+            }
+
+            //UpRight
+            if ((column + 1 >= 0) && (column + 1 < numberOfColumns) && (row - 1 >= 0) && (row - 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column + 1, row - 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column + 1, row - 1);
+                }
+            }
+            //Left
+            if ((column - 1 >= 0) && (column - 1 < numberOfColumns) && (row >= 0) && (row < numberOfRows))
+            {
+                if (stateOfMineSpace[column - 1, row] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column - 1, row);
+                }
+            }//Right
+            if ((column + 1 >= 0) && (column + 1 < numberOfColumns) && (row >= 0) && (row < numberOfRows))
+            {
+                if (stateOfMineSpace[column + 1, row] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column + 1, row);
+                }
+            }
+            //DownLeft
+            if ((column - 1 >= 0) && (column - 1 < numberOfColumns) && (row + 1 >= 0) && (row + 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column - 1, row + 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column - 1, row + 1);
+                }
+            }
+            //Down
+            if ((column >= 0) && (column < numberOfColumns) && (row + 1 >= 0) && (row + 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column, row + 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column, row + 1);
+                }
+            }
+            //Down Right
+            if ((column + 1 >= 0) && (column + 1 < numberOfColumns) && (row + 1 >= 0) && (row + 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column + 1, row + 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column + 1, row + 1);
+                }
+            }
+        }
+
+        private void ClickAdjacentSpacesLeftFirst(int column, int row)
+        {
+            //Left
+            if ((column - 1 >= 0) && (column - 1 < numberOfColumns) && (row >= 0) && (row < numberOfRows))
+            {
+                if (stateOfMineSpace[column - 1, row] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column - 1, row);
+                }
+            }
+            //automaticClickNumber = 0;
+            //UpLeft
+            if ((column - 1 >= 0) && (column - 1 < numberOfColumns) && (row - 1 >= 0) && (row - 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column - 1, row - 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column - 1, row - 1);
+                }
+            }
+            //Up
+            if ((column >= 0) && (column < numberOfColumns) && (row - 1 >= 0) && (row - 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column, row - 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column, row - 1);
+                }
+            }
+            //UpRight
+            if ((column + 1 >= 0) && (column + 1 < numberOfColumns) && (row - 1 >= 0) && (row - 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column + 1, row - 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column + 1, row - 1);
+                }
+            }
+            //Right
+            if ((column + 1 >= 0) && (column + 1 < numberOfColumns) && (row >= 0) && (row < numberOfRows))
+            {
+                if (stateOfMineSpace[column + 1, row] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column + 1, row);
+                }
+            }
+            //DownLeft
+            if ((column - 1 >= 0) && (column - 1 < numberOfColumns) && (row + 1 >= 0) && (row + 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column - 1, row + 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column - 1, row + 1);
+                }
+            }
+            //Down
+            if ((column >= 0) && (column < numberOfColumns) && (row + 1 >= 0) && (row + 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column, row + 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column, row + 1);
+                }
+            }
+            //Down Right
+            if ((column + 1 >= 0) && (column + 1 < numberOfColumns) && (row + 1 >= 0) && (row + 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column + 1, row + 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column + 1, row + 1);
+                }
+            }
+        }
+        private void ClickAdjacentSpacesDownFirst(int column, int row)
+        {
+            //Down
+            if ((column >= 0) && (column < numberOfColumns) && (row + 1 >= 0) && (row + 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column, row + 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column, row + 1);
+                }
+            }
+            //automaticClickNumber = 0;
+            //UpLeft
+            if ((column - 1 >= 0) && (column - 1 < numberOfColumns) && (row - 1 >= 0) && (row - 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column - 1, row - 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column - 1, row - 1);
+                }
+            }
+            //Up
+            if ((column >= 0) && (column < numberOfColumns) && (row - 1 >= 0) && (row - 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column, row - 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column, row - 1);
+                }
+            }
+            //UpRight
+            if ((column + 1 >= 0) && (column + 1 < numberOfColumns) && (row - 1 >= 0) && (row - 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column + 1, row - 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column + 1, row - 1);
+                }
+            }
+            //Left
+            if ((column - 1 >= 0) && (column - 1 < numberOfColumns) && (row >= 0) && (row < numberOfRows))
+            {
+                if (stateOfMineSpace[column - 1, row] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column - 1, row);
+                }
+            }//Right
+            if ((column + 1 >= 0) && (column + 1 < numberOfColumns) && (row >= 0) && (row < numberOfRows))
+            {
+                if (stateOfMineSpace[column + 1, row] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column + 1, row);
+                }
+            }
+            //DownLeft
+            if ((column - 1 >= 0) && (column - 1 < numberOfColumns) && (row + 1 >= 0) && (row + 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column - 1, row + 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column - 1, row + 1);
+                }
+            }
+            //Down Right
+            if ((column + 1 >= 0) && (column + 1 < numberOfColumns) && (row + 1 >= 0) && (row + 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column + 1, row + 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column + 1, row + 1);
+                }
+            }
+        }
+        private void ClickAdjacentSpacesRightFirst(int column, int row)
+        {
+            //Right
+            if ((column + 1 >= 0) && (column + 1 < numberOfColumns) && (row >= 0) && (row < numberOfRows))
+            {
+                if (stateOfMineSpace[column + 1, row] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column + 1, row);
+                }
+            }
+            //automaticClickNumber = 0;
+            //UpLeft
+            if ((column - 1 >= 0) && (column - 1 < numberOfColumns) && (row - 1 >= 0) && (row - 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column - 1, row - 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column - 1, row - 1);
+                }
+            }
+            //Up
+            if ((column >= 0) && (column < numberOfColumns) && (row - 1 >= 0) && (row - 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column, row - 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column, row - 1);
+                }
+            }
+            //UpRight
+            if ((column + 1 >= 0) && (column + 1 < numberOfColumns) && (row - 1 >= 0) && (row - 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column + 1, row - 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column + 1, row - 1);
+                }
+            }
+            //Left
+            if ((column - 1 >= 0) && (column - 1 < numberOfColumns) && (row >= 0) && (row < numberOfRows))
+            {
+                if (stateOfMineSpace[column - 1, row] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column - 1, row);
+                }
+            }
+            //DownLeft
+            if ((column - 1 >= 0) && (column - 1 < numberOfColumns) && (row + 1 >= 0) && (row + 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column - 1, row + 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column - 1, row + 1);
+                }
+            }
+            //Down
+            if ((column >= 0) && (column < numberOfColumns) && (row + 1 >= 0) && (row + 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column, row + 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column, row + 1);
+                }
+            }
+            //Down Right
+            if ((column + 1 >= 0) && (column + 1 < numberOfColumns) && (row + 1 >= 0) && (row + 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column + 1, row + 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column + 1, row + 1);
+                }
+            }
+        }
+        private void ClickAdjacentSpacesGeneric(int column, int row)
+        {
+            //UpLeft
+            if ((column - 1 >= 0) && (column - 1 < numberOfColumns) && (row - 1 >= 0) && (row - 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column - 1, row - 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column - 1, row - 1);
+                }
+            }
+            //Up
+            if ((column >= 0) && (column < numberOfColumns) && (row - 1 >= 0) && (row - 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column, row - 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column, row - 1);
+                }
+            }
+            //UpRight
+            if ((column + 1 >= 0) && (column + 1 < numberOfColumns) && (row - 1 >= 0) && (row - 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column + 1, row - 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column + 1, row - 1);
+                }
+            }
+            //Left
+            if ((column - 1 >= 0) && (column - 1 < numberOfColumns) && (row >= 0) && (row < numberOfRows))
+            {
+                if (stateOfMineSpace[column - 1, row] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column - 1, row);
+                }
+            }//Right
+            if ((column + 1 >= 0) && (column + 1 < numberOfColumns) && (row >= 0) && (row < numberOfRows))
+            {
+                if (stateOfMineSpace[column + 1, row] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column + 1, row);
+                }
+            }
+            //DownLeft
+            if ((column - 1 >= 0) && (column - 1 < numberOfColumns) && (row + 1 >= 0) && (row + 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column - 1, row + 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column - 1, row + 1);
+                }
+            }
+            //Down
+            if ((column >= 0) && (column < numberOfColumns) && (row + 1 >= 0) && (row + 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column, row + 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column, row + 1);
+                }
+            }
+            //Down Right
+            if ((column + 1 >= 0) && (column + 1 < numberOfColumns) && (row + 1 >= 0) && (row + 1 < numberOfRows))
+            {
+                if (stateOfMineSpace[column + 1, row + 1] != MineSpaceStates.Pressed)
+                {
+                    RevealMineSpace(column + 1, row + 1);
+                }
+            }
+        }
 
     }
 
