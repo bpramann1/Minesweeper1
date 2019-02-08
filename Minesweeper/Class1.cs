@@ -195,6 +195,7 @@ namespace Minesweeper
                     //Higlight the current rectangle
                     updateScreenGraphics.FillRectangle(Brushes.Black, column * mineSizeInPixels, row * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); //fill the rectangle with the black color
                     updateScreenGraphics.DrawRectangle(Pens.Black, column * mineSizeInPixels, row * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); // surround the rectangle with a black border
+                    EndReveal();
                 }
                 else
                 {
@@ -409,9 +410,50 @@ namespace Minesweeper
                 }
             }
         }
+
+
+        private void EndReveal()
+        {
+            for (int rowIndex = 0; rowIndex < numberOfRows; rowIndex++)
+            {
+                for (int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++)
+                {
+                    if (stateOfMineSpace[columnIndex,rowIndex] != MineSpaceStates.Pressed)
+                    {
+                        stateOfMineSpace[columnIndex, rowIndex] = MineSpaceStates.Pressed;
+                        int numberOfAdjacentBombs = numberOfTouchingBombs(columnIndex, rowIndex);
+                        if (ColumnRowInGameArray(columnIndex, rowIndex))
+                        {
+                            if (containsMine[columnIndex, rowIndex])
+                            {
+                                //Higlight the current rectangle
+                                updateScreenGraphics.FillRectangle(Brushes.Black, columnIndex * mineSizeInPixels, rowIndex * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); //fill the rectangle with the black color
+                                updateScreenGraphics.DrawRectangle(Pens.Black, columnIndex * mineSizeInPixels, rowIndex * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); // surround the rectangle with a black border
+                            }
+                            else
+                            {
+                                //Higlight the current rectangle
+                                updateScreenGraphics.FillRectangle(Brushes.White, columnIndex * mineSizeInPixels, rowIndex * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); //fill the rectangle with the black color
+                                updateScreenGraphics.DrawRectangle(Pens.Black, columnIndex * mineSizeInPixels, rowIndex * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); // surround the rectangle with a black border
+                                if (numberOfAdjacentBombs != 0)
+                                {
+                                    updateScreenGraphics.DrawString(numberOfAdjacentBombs.ToString(), SystemFonts.DefaultFont, Brushes.Black, columnIndex * mineSizeInPixels, rowIndex * mineSizeInPixels);
+                                }
+                            }
+
+                        }
+
+                    }
+                }
+
+            }
+            bitmapContainer.Image = updateScreenBitmap;
+        }
+
+
     }
 
 
 
-    
+
 }
