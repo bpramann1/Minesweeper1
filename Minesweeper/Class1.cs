@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Minesweeper
 {
@@ -19,6 +20,18 @@ namespace Minesweeper
         private int rowPositionOfMouse;
         private int oldColumnPositionOfMouse;
         private int oldRowPositionOfMouse;
+        private int numberOfCallsOnStack;
+
+        enum MineSpaceStates
+        {
+            Initial,
+        MappedAsSafe,
+        FlaggedAsUnsafe,
+        Pressed
+        }
+
+        private MineSpaceStates[,] stateOfMineSpace;
+        private bool[,] containsMine;
 
         private Bitmap updateScreenBitmap;           //This variable is the bitmap we will update and then display to the screen when it is fully updated
         private Graphics updateScreenGraphics;       //This variable enables us to draw to the bitmap
@@ -30,9 +43,7 @@ namespace Minesweeper
         {
             numberOfRows = 16;          //Default Value
             numberOfColumns = 16;       //Default Value
-            mineSizeInPixels = 20;      //Default Value
-
-            
+            mineSizeInPixels = 20;      //Default Value         
             createMap();            //All the variables are set up, so draw the map.
         }
 
@@ -68,6 +79,9 @@ namespace Minesweeper
 
         private void createMap()
         {
+            numberOfCallsOnStack = new StackTrace().FrameCount;
+            stateOfMineSpace = new MineSpaceStates[numberOfColumns, numberOfRows];      //Set the array size. All the elements are automatically intiated to zero, which is the value of initial state in our enum.
+            containsMine = new bool[numberOfColumns,numberOfRows];
             gameMapWidthInPixels = (numberOfColumns * mineSizeInPixels) + 1;            //Width is calculated by the combined width of the mine spaces plus one for the ending line to create the ending mine
             gameMapHeightInPixels = (numberOfRows * mineSizeInPixels)+ 1;               //Height is calculated by the combined height of the mine spaces plus one for the ending line to create the ending mine
             Game = new Form();  
@@ -80,6 +94,7 @@ namespace Minesweeper
             bitmapContainer.Height = gameMapHeightInPixels;             //bitmap is just big enough to hold the game map
             Game.Controls.Add(bitmapContainer);                         //Add the PictureBox object called bitmapContainer to the form called Game. This makes the bitmapContainer be displayed in game.
             bitmapContainer.MouseMove += new MouseEventHandler(MouseMoveInGame);        //Adds the event handler so that the method MouseMoveInGame is called when the mouse moves in the bitmapContainer
+            bitmapContainer.MouseDown += new MouseEventHandler(MineSpaceClicked);
             updateScreenBitmap = new Bitmap(gameMapWidthInPixels, gameMapHeightInPixels);
             updateScreenGraphics = Graphics.FromImage(updateScreenBitmap);      //This cause updateScreenGraphics to work with our bitmap
 
@@ -116,24 +131,262 @@ namespace Minesweeper
             and the thickness of the border of the form and the location of the bitmapContainer in the form.
             */
             columnPositionOfMouse = (mousePositionX / mineSizeInPixels); //Calculates the mine position of the mouse
-            rowPositionOfMouse = (mousePositionY / mineSizeInPixels);    //Calculates the mine position of the mouse
+            rowPositionOfMouse = (mousePositionY / mineSizeInPixels);    //Calculates the mine position of the mouse    
             if ((columnPositionOfMouse != oldColumnPositionOfMouse) || (rowPositionOfMouse != oldRowPositionOfMouse)) // Check to see if the mouse changed mine spaces
             {
-                //Higlight the current rectangle
-                updateScreenGraphics.FillRectangle(Brushes.LightGray, columnPositionOfMouse * mineSizeInPixels, rowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); //fill the rectangle with the highlight color
-                updateScreenGraphics.DrawRectangle(Pens.Black, columnPositionOfMouse * mineSizeInPixels, rowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); // surround the rectangle with a black border
-
-                //Redraw over the last hightlighted rectangle
-                updateScreenGraphics.FillRectangle(Brushes.Gray, oldColumnPositionOfMouse * mineSizeInPixels, oldRowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels);//fill the rectangle with the normal mine color
-                updateScreenGraphics.DrawRectangle(Pens.Black, oldColumnPositionOfMouse * mineSizeInPixels, oldRowPositionOfMouse * mineSizeInPixels, mineSizeInPixels,  mineSizeInPixels);// surround the rectangle with a black border
-
-
-
+                if (ColumnRowInGameArray(columnPositionOfMouse, rowPositionOfMouse))
+                {
+                    if (stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse] == MineSpaceStates.Initial) //Check to see if the mine should be highlighted
+                    {
+                        //Higlight the current rectangle
+                        updateScreenGraphics.FillRectangle(Brushes.LightGray, columnPositionOfMouse * mineSizeInPixels, rowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); //fill the rectangle with the highlight color
+                        updateScreenGraphics.DrawRectangle(Pens.Black, columnPositionOfMouse * mineSizeInPixels, rowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); // surround the rectangle with a black border
+                    }
+                }
+                if (ColumnRowInGameArray(oldColumnPositionOfMouse, oldRowPositionOfMouse))
+                {
+                    if (stateOfMineSpace[oldColumnPositionOfMouse, oldRowPositionOfMouse] == MineSpaceStates.Initial) //Check to see if the mine should draw to initial color
+                    {
+                        //Redraw over the last hightlighted rectangle
+                        updateScreenGraphics.FillRectangle(Brushes.Gray, oldColumnPositionOfMouse * mineSizeInPixels, oldRowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels);//fill the rectangle with the normal mine color
+                        updateScreenGraphics.DrawRectangle(Pens.Black, oldColumnPositionOfMouse * mineSizeInPixels, oldRowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels);// surround the rectangle with a black border
+                    }
+                }
                 bitmapContainer.Image = updateScreenBitmap; // physically update the screen with the bitmap
             }
             //Done Drawing the Rectangle
             oldColumnPositionOfMouse = columnPositionOfMouse;// Set the value to hold the mouse position so that we can check to see if it had changed
             oldRowPositionOfMouse = rowPositionOfMouse;// Set the value to hold the mouse position so that we can check to see if it had changed
+        }
+
+
+        private void MineSpaceClicked(object sender, MouseEventArgs mouse)
+        {
+            if (mouse.Button == MouseButtons.Left)
+                {
+                LeftMouseButtonClicked(columnPositionOfMouse, rowPositionOfMouse);
+            }
+            else if(mouse.Button == MouseButtons.Right)
+            {
+                RightMouseButtonClicked();
+            }
+        }
+
+        private void LeftMouseButtonClicked(int column, int row)
+        {
+            if (ColumnRowInGameArray(column,row))
+            {
+                if (stateOfMineSpace[column, row] == MineSpaceStates.Initial)
+                {
+                    RevealMineSpace(column, row);
+                }
+            }
+        }
+
+        private void RevealMineSpace(int column, int row)
+        {
+            stateOfMineSpace[column, row] = MineSpaceStates.Pressed;
+            int numberOfAdjacentBombs = numberOfTouchingBombs(column, row);
+            if (ColumnRowInGameArray(column, row))
+            {
+                if (containsMine[column, row])
+                {
+                    //Higlight the current rectangle
+                    updateScreenGraphics.FillRectangle(Brushes.Black, column * mineSizeInPixels, row * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); //fill the rectangle with the black color
+                    updateScreenGraphics.DrawRectangle(Pens.Black, column * mineSizeInPixels, row * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); // surround the rectangle with a black border
+                }
+                else
+                {
+                    //Higlight the current rectangle
+                    updateScreenGraphics.FillRectangle(Brushes.White, column * mineSizeInPixels, row * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); //fill the rectangle with the black color
+                    updateScreenGraphics.DrawRectangle(Pens.Black, column * mineSizeInPixels, row * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); // surround the rectangle with a black border
+                    if (numberOfAdjacentBombs == 0)
+                    {
+                        ClickAdjacentSpaces(column, row);
+                    }
+                    else
+                    {
+                        updateScreenGraphics.DrawString(numberOfAdjacentBombs.ToString(), SystemFonts.DefaultFont, Brushes.Black, column * mineSizeInPixels, row * mineSizeInPixels);
+                    }
+                }
+   //             if(numberOfCallsOnStack < 20)
+   //             {
+                    bitmapContainer.Image = updateScreenBitmap;
+ //               }
+
+            }
+        }
+
+        private void RightMouseButtonClicked()
+        {
+            if (ColumnRowInGameArray(columnPositionOfMouse, rowPositionOfMouse))
+            {
+                switch (stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse])
+                {
+                    case MineSpaceStates.Initial:
+                        //Higlight the current rectangle
+                        updateScreenGraphics.FillRectangle(Brushes.Red, columnPositionOfMouse * mineSizeInPixels, rowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); //fill the rectangle with the black color
+                        updateScreenGraphics.DrawRectangle(Pens.Black, columnPositionOfMouse * mineSizeInPixels, rowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); // surround the rectangle with a black border
+                        stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse] = MineSpaceStates.FlaggedAsUnsafe;
+                        break;
+                    case MineSpaceStates.FlaggedAsUnsafe:
+                        //Higlight the current rectangle
+                        updateScreenGraphics.FillRectangle(Brushes.Green, columnPositionOfMouse * mineSizeInPixels, rowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); //fill the rectangle with the black color
+                        updateScreenGraphics.DrawRectangle(Pens.Black, columnPositionOfMouse * mineSizeInPixels, rowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); // surround the rectangle with a black border
+                        stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse] = MineSpaceStates.MappedAsSafe;
+                        break;
+                    case MineSpaceStates.MappedAsSafe:
+                        //Higlight the current rectangle
+                        updateScreenGraphics.FillRectangle(Brushes.Gray, columnPositionOfMouse * mineSizeInPixels, rowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); //fill the rectangle with the black color
+                        updateScreenGraphics.DrawRectangle(Pens.Black, columnPositionOfMouse * mineSizeInPixels, rowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); // surround the rectangle with a black border
+                        stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse] = MineSpaceStates.Initial;
+                        break;
+                    default:
+                        break;
+                }
+                bitmapContainer.Image = updateScreenBitmap;
+            }
+        }
+
+
+        private bool ColumnRowInGameArray(int column, int row)//Bounds Checking
+        {
+            if ((column >= 0) && (column < numberOfColumns) && (row >= 0) && (row < numberOfRows))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private int numberOfTouchingBombs(int column, int row)
+        {
+            int numberOfBombs = 0;
+            //Top row
+            if (ColumnRowInGameArray(column - 1, row - 1))
+            {
+                if(containsMine[column - 1, row - 1])
+                {
+                    numberOfBombs++;
+                }
+            }
+            if (ColumnRowInGameArray(column, row - 1))
+            {
+                if (containsMine[column, row - 1])
+                {
+                    numberOfBombs++;
+                }
+            }
+            if (ColumnRowInGameArray(column + 1, row - 1))
+            {
+                if (containsMine[column + 1, row - 1])
+                {
+                    numberOfBombs++;
+                }
+            }
+            //Middle row
+            if (ColumnRowInGameArray(column - 1, row))
+            {
+                if (containsMine[column - 1, row])
+                {
+                    numberOfBombs++;
+                }
+            }
+            if (ColumnRowInGameArray(column + 1, row))
+            {
+                if (containsMine[column + 1, row])
+                {
+                    numberOfBombs++;
+                }
+            }
+            //Bottom row
+            if (ColumnRowInGameArray(column - 1, row + 1))
+            {
+                if (containsMine[column - 1, row + 1])
+                {
+                    numberOfBombs++;
+                }
+            }
+            if (ColumnRowInGameArray(column, row + 1))
+            {
+                if (containsMine[column, row + 1])
+                {
+                    numberOfBombs++;
+                }
+            }
+            if (ColumnRowInGameArray(column + 1, row + 1))
+            {
+                if (containsMine[column + 1, row + 1])
+                {
+                    numberOfBombs++;
+                }
+            }
+            return numberOfBombs;
+        }
+
+        private void ClickAdjacentSpaces(int column, int row)
+        {
+            //Top row
+            if (ColumnRowInGameArray(column - 1, row - 1))
+            {
+                if (stateOfMineSpace[column - 1, row - 1] == MineSpaceStates.Initial)
+                {
+                    RevealMineSpace(column - 1, row - 1);
+                }
+            }
+            if (ColumnRowInGameArray(column, row - 1))
+            {
+                if (stateOfMineSpace[column, row - 1] == MineSpaceStates.Initial)
+                {
+                    RevealMineSpace(column, row - 1);
+                }
+            }
+            if (ColumnRowInGameArray(column + 1, row - 1))
+            {
+                if (stateOfMineSpace[column + 1, row - 1] == MineSpaceStates.Initial)
+                {
+                    RevealMineSpace(column + 1, row - 1);
+                }
+            }
+            //Middle row
+            if (ColumnRowInGameArray(column - 1, row))
+            {
+                if (stateOfMineSpace[column - 1, row] == MineSpaceStates.Initial)
+                {
+                    RevealMineSpace(column - 1, row);
+                }
+            }
+            if (ColumnRowInGameArray(column + 1, row))
+            {
+                if (stateOfMineSpace[column + 1, row] == MineSpaceStates.Initial)
+                {
+                    RevealMineSpace(column + 1, row);
+                }
+            }
+            //Bottom row
+            if (ColumnRowInGameArray(column - 1, row + 1))
+            {
+                if (stateOfMineSpace[column - 1, row + 1] == MineSpaceStates.Initial)
+                {
+                    RevealMineSpace(column - 1, row + 1);
+                }
+            }
+            if (ColumnRowInGameArray(column, row + 1))
+            {
+                if (stateOfMineSpace[column, row + 1] == MineSpaceStates.Initial)
+                {
+                    RevealMineSpace(column, row + 1);
+                }
+            }
+            if (ColumnRowInGameArray(column + 1, row + 1))
+            {
+                if (stateOfMineSpace[column + 1, row + 1] == MineSpaceStates.Initial)
+                {
+                    RevealMineSpace(column + 1, row + 1);
+                }
+            }
         }
     }
 }
