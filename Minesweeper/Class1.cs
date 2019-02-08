@@ -22,6 +22,8 @@ namespace Minesweeper
         private int oldRowPositionOfMouse;
         private int numberOfCallsOnStack;
         private int automaticClickNumber;
+        private int totalNumberOfBombsLeft;
+        private int totalNumberOfSafeSpacesLeft;
 
         enum MineSpaceStates
         {
@@ -38,7 +40,8 @@ namespace Minesweeper
         private Graphics updateScreenGraphics;       //This variable enables us to draw to the bitmap
         PictureBox bitmapContainer;                  //This variable is the object we will display the object in.
         Form Game;                                   //This is the object that will contain the game and game map
-
+        Label NumberOfBombsLeftLabel;
+        Label NumberOfSafeSpacesLeftLabel;
 
         public GameMap()                //Default Constuctor
         {
@@ -89,12 +92,24 @@ namespace Minesweeper
             Game = new Form();  
             Game.Show();
             Game.Width = gameMapWidthInPixels + 16;                     //16 is the added width of the edges of the form, so width is the width of the game map plus the width of the edges of the form               
-            Game.Height = gameMapHeightInPixels + 38;                   //38 is the added height of the edges of the form, so height is the height of the game map plus the height of the edges of the form
+            Game.Height = gameMapHeightInPixels + 60;                   //38 is the added height of the edges of the form, so height is the height of the game map plus the height of the edges of the form
             Game.Text = "Minesweeper";                                  //Names the title of the form to "Minesweeper"
+            NumberOfBombsLeftLabel = new Label();
+            NumberOfBombsLeftLabel.Text = totalNumberOfBombsLeft.ToString() + " bombs left";
+            NumberOfBombsLeftLabel.Width = gameMapWidthInPixels / 2;
+            Game.Controls.Add(NumberOfBombsLeftLabel);
+            NumberOfBombsLeftLabel.Location = new Point(0, 0);
+            NumberOfSafeSpacesLeftLabel = new Label();
+            NumberOfSafeSpacesLeftLabel.Text = totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
+            Game.Controls.Add(NumberOfSafeSpacesLeftLabel);
+            NumberOfSafeSpacesLeftLabel.Location = new Point(gameMapWidthInPixels / 2, 0);
+            NumberOfSafeSpacesLeftLabel.Width = gameMapWidthInPixels / 2;
+            NumberOfSafeSpacesLeftLabel.Height = NumberOfBombsLeftLabel.Height;
             bitmapContainer = new PictureBox();
             bitmapContainer.Width = gameMapWidthInPixels;               //bitmap is just big enough to hold the game map
             bitmapContainer.Height = gameMapHeightInPixels;             //bitmap is just big enough to hold the game map
             Game.Controls.Add(bitmapContainer);                         //Add the PictureBox object called bitmapContainer to the form called Game. This makes the bitmapContainer be displayed in game.
+            bitmapContainer.Location= new Point(0, NumberOfBombsLeftLabel.Height);
             bitmapContainer.MouseMove += new MouseEventHandler(MouseMoveInGame);        //Adds the event handler so that the method MouseMoveInGame is called when the mouse moves in the bitmapContainer
             bitmapContainer.MouseDown += new MouseEventHandler(MineSpaceClicked);
             updateScreenBitmap = new Bitmap(gameMapWidthInPixels, gameMapHeightInPixels);
@@ -185,13 +200,22 @@ namespace Minesweeper
 
         private void RevealMineSpace(int column, int row)//Only Call when you know that the column and row are in game
         {
+            if (stateOfMineSpace[column, row] == MineSpaceStates.FlaggedAsUnsafe)
+            {
+                totalNumberOfBombsLeft++;
+                NumberOfBombsLeftLabel.Text = totalNumberOfBombsLeft.ToString() + " bombs left";
+            }
+            if (stateOfMineSpace[column,row]!= MineSpaceStates.MappedAsSafe)
+            {
+                totalNumberOfSafeSpacesLeft--;
+                NumberOfSafeSpacesLeftLabel.Text = totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
+            }
             stateOfMineSpace[column, row] = MineSpaceStates.Pressed;
             if (containsMine[column, row])
             {
 
                 //Higlight the current rectangle
                 updateScreenGraphics.FillRectangle(Brushes.Black, column * mineSizeInPixels + 1, row * mineSizeInPixels + 1, mineSizeInPixels - 1, mineSizeInPixels - 1); //fill the rectangle with the black color
-
                 EndReveal();
             }
 
@@ -247,20 +271,26 @@ namespace Minesweeper
                         //Higlight the current rectangle
                         updateScreenGraphics.FillRectangle(Brushes.Red, columnPositionOfMouse * mineSizeInPixels+1, rowPositionOfMouse * mineSizeInPixels+1, mineSizeInPixels-1, mineSizeInPixels-1); //fill the rectangle with the black color
                         stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse] = MineSpaceStates.FlaggedAsUnsafe;
+                        totalNumberOfBombsLeft--;
                         break;
                     case MineSpaceStates.FlaggedAsUnsafe:
                         //Higlight the current rectangle
                         updateScreenGraphics.FillRectangle(Brushes.Green, columnPositionOfMouse * mineSizeInPixels + 1, rowPositionOfMouse * mineSizeInPixels + 1, mineSizeInPixels - 1, mineSizeInPixels - 1); //fill the rectangle with the black color
                         stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse] = MineSpaceStates.MappedAsSafe;
+                        totalNumberOfBombsLeft++;
+                        totalNumberOfSafeSpacesLeft--;
                         break;
                     case MineSpaceStates.MappedAsSafe:
                         //Higlight the current rectangle
                         updateScreenGraphics.FillRectangle(Brushes.Gray, columnPositionOfMouse * mineSizeInPixels + 1, rowPositionOfMouse * mineSizeInPixels + 1, mineSizeInPixels - 1, mineSizeInPixels - 1); //fill the rectangle with the black color
                         stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse] = MineSpaceStates.Initial;
+                        totalNumberOfSafeSpacesLeft++;
                         break;
                     default:
                         break;
                 }
+                NumberOfSafeSpacesLeftLabel.Text = totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
+                NumberOfBombsLeftLabel.Text = totalNumberOfBombsLeft.ToString() + " bombs left";
                 bitmapContainer.Image = updateScreenBitmap;
             }
         }
@@ -343,9 +373,6 @@ namespace Minesweeper
             return numberOfBombs;
         }
 
-
-
-
         private void CreateBombMap()
         {
             Random rnd = new Random();
@@ -355,10 +382,12 @@ namespace Minesweeper
                 {
                     if (rnd.Next(8) > 0)
                     {
+                        totalNumberOfSafeSpacesLeft++;
                         containsMine[columnIndex,rowIndex] = false;
                     }
                     else
                     {
+                        totalNumberOfBombsLeft++;
                         containsMine[columnIndex,rowIndex] = true;
                     }
                 }
