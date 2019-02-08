@@ -21,7 +21,7 @@ namespace Minesweeper
             //myNewGame = new gameMap();
             //myNewGame = new gameMap(40);
             //myNewGame = new gameMap(25, 25);
-            // myNewGame = new gameMap(5,5,50);
+            myNewGame = new gameMap(5,5,50);
 
 
         }
