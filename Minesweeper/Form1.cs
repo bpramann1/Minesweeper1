@@ -21,10 +21,10 @@ namespace Minesweeper
                                //myNewGame = new gameMap();
                                //myNewGame = new gameMap(40);
                                //myNewGame = new gameMap(25, 25);
-                               //myNewGame = new gameMap(25,50,20);
-                               // myNewGame = new gameMap(5, 10, 50);
-                               myNewGame = new GameMap(40,80,15);
-            //myNewGame = new GameMap(120, 240, 5);//Test this to test our speed of loading
+                               myNewGame = new GameMap(50,60,20);
+                               //myNewGame = new GameMap(5, 10, 50);
+                              // myNewGame = new GameMap(40,80,15);
+           // myNewGame = new GameMap(120, 240, 5);//Test this to test our speed of loading
 
 
         }

@@ -22,6 +22,7 @@ namespace Minesweeper
         private int oldRowPositionOfMouse;
         private int numberOfCallsOnStack;
 
+
         enum MineSpaceStates
         {
             Initial,
@@ -140,8 +141,7 @@ namespace Minesweeper
                     if (stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse] == MineSpaceStates.Initial) //Check to see if the mine should be highlighted
                     {
                         //Higlight the current rectangle
-                        updateScreenGraphics.FillRectangle(Brushes.LightGray, columnPositionOfMouse * mineSizeInPixels, rowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); //fill the rectangle with the highlight color
-                        updateScreenGraphics.DrawRectangle(Pens.Black, columnPositionOfMouse * mineSizeInPixels, rowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); // surround the rectangle with a black border
+                        updateScreenGraphics.FillRectangle(Brushes.LightGray, columnPositionOfMouse * mineSizeInPixels+1, rowPositionOfMouse * mineSizeInPixels+1, mineSizeInPixels-1, mineSizeInPixels-1); //fill the rectangle with the highlight color
                     }
                 }
                 if (ColumnRowInGameArray(oldColumnPositionOfMouse, oldRowPositionOfMouse))
@@ -149,8 +149,7 @@ namespace Minesweeper
                     if (stateOfMineSpace[oldColumnPositionOfMouse, oldRowPositionOfMouse] == MineSpaceStates.Initial) //Check to see if the mine should draw to initial color
                     {
                         //Redraw over the last hightlighted rectangle
-                        updateScreenGraphics.FillRectangle(Brushes.Gray, oldColumnPositionOfMouse * mineSizeInPixels, oldRowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels);//fill the rectangle with the normal mine color
-                        updateScreenGraphics.DrawRectangle(Pens.Black, oldColumnPositionOfMouse * mineSizeInPixels, oldRowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels);// surround the rectangle with a black border
+                        updateScreenGraphics.FillRectangle(Brushes.Gray, oldColumnPositionOfMouse * mineSizeInPixels +1, oldRowPositionOfMouse * mineSizeInPixels+1, mineSizeInPixels-1, mineSizeInPixels-1);//fill the rectangle with the normal mine color
                     }
                 }
                 bitmapContainer.Image = updateScreenBitmap; // physically update the screen with the bitmap
@@ -193,19 +192,16 @@ namespace Minesweeper
                 if (containsMine[column, row])
                 {
                     //Higlight the current rectangle
-                    updateScreenGraphics.FillRectangle(Brushes.Black, column * mineSizeInPixels, row * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); //fill the rectangle with the black color
-                    updateScreenGraphics.DrawRectangle(Pens.Black, column * mineSizeInPixels, row * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); // surround the rectangle with a black border
+                    updateScreenGraphics.FillRectangle(Brushes.Black, column * mineSizeInPixels+1, row * mineSizeInPixels+1, mineSizeInPixels-1, mineSizeInPixels-1); //fill the rectangle with the black color
                     EndReveal();
                 }
                 else
                 {
                     //Higlight the current rectangle
-                    updateScreenGraphics.FillRectangle(Brushes.White, column * mineSizeInPixels, row * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); //fill the rectangle with the black color
-                    updateScreenGraphics.DrawRectangle(Pens.Black, column * mineSizeInPixels, row * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); // surround the rectangle with a black border
+                    updateScreenGraphics.FillRectangle(Brushes.White, column * mineSizeInPixels+1, row * mineSizeInPixels+1, mineSizeInPixels-1, mineSizeInPixels-1); //fill the rectangle with the white color
                     if (numberOfAdjacentBombs == 0)
                     {
-                        ClickAdjacentSpaces(column, row);
-                    }
+                        ClickAdjacentSpaces(column, row);                   }
                     else
                     {
                         updateScreenGraphics.DrawString(numberOfAdjacentBombs.ToString(), SystemFonts.DefaultFont, Brushes.Black, column * mineSizeInPixels, row * mineSizeInPixels);
@@ -227,20 +223,17 @@ namespace Minesweeper
                 {
                     case MineSpaceStates.Initial:
                         //Higlight the current rectangle
-                        updateScreenGraphics.FillRectangle(Brushes.Red, columnPositionOfMouse * mineSizeInPixels, rowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); //fill the rectangle with the black color
-                        updateScreenGraphics.DrawRectangle(Pens.Black, columnPositionOfMouse * mineSizeInPixels, rowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); // surround the rectangle with a black border
+                        updateScreenGraphics.FillRectangle(Brushes.Red, columnPositionOfMouse * mineSizeInPixels+1, rowPositionOfMouse * mineSizeInPixels+1, mineSizeInPixels-1, mineSizeInPixels-1); //fill the rectangle with the black color
                         stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse] = MineSpaceStates.FlaggedAsUnsafe;
                         break;
                     case MineSpaceStates.FlaggedAsUnsafe:
                         //Higlight the current rectangle
-                        updateScreenGraphics.FillRectangle(Brushes.Green, columnPositionOfMouse * mineSizeInPixels, rowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); //fill the rectangle with the black color
-                        updateScreenGraphics.DrawRectangle(Pens.Black, columnPositionOfMouse * mineSizeInPixels, rowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); // surround the rectangle with a black border
+                        updateScreenGraphics.FillRectangle(Brushes.Green, columnPositionOfMouse * mineSizeInPixels + 1, rowPositionOfMouse * mineSizeInPixels + 1, mineSizeInPixels - 1, mineSizeInPixels - 1); //fill the rectangle with the black color
                         stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse] = MineSpaceStates.MappedAsSafe;
                         break;
                     case MineSpaceStates.MappedAsSafe:
                         //Higlight the current rectangle
-                        updateScreenGraphics.FillRectangle(Brushes.Gray, columnPositionOfMouse * mineSizeInPixels, rowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); //fill the rectangle with the black color
-                        updateScreenGraphics.DrawRectangle(Pens.Black, columnPositionOfMouse * mineSizeInPixels, rowPositionOfMouse * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); // surround the rectangle with a black border
+                        updateScreenGraphics.FillRectangle(Brushes.Gray, columnPositionOfMouse * mineSizeInPixels + 1, rowPositionOfMouse * mineSizeInPixels + 1, mineSizeInPixels - 1, mineSizeInPixels - 1); //fill the rectangle with the black color
                         stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse] = MineSpaceStates.Initial;
                         break;
                     default:
@@ -427,14 +420,12 @@ namespace Minesweeper
                             if (containsMine[columnIndex, rowIndex])
                             {
                                 //Higlight the current rectangle
-                                updateScreenGraphics.FillRectangle(Brushes.Black, columnIndex * mineSizeInPixels, rowIndex * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); //fill the rectangle with the black color
-                                updateScreenGraphics.DrawRectangle(Pens.Black, columnIndex * mineSizeInPixels, rowIndex * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); // surround the rectangle with a black border
+                                updateScreenGraphics.FillRectangle(Brushes.Black, columnIndex * mineSizeInPixels+1, rowIndex * mineSizeInPixels+1, mineSizeInPixels-1, mineSizeInPixels-1); //fill the rectangle with the black color
                             }
                             else
                             {
                                 //Higlight the current rectangle
-                                updateScreenGraphics.FillRectangle(Brushes.White, columnIndex * mineSizeInPixels, rowIndex * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); //fill the rectangle with the black color
-                                updateScreenGraphics.DrawRectangle(Pens.Black, columnIndex * mineSizeInPixels, rowIndex * mineSizeInPixels, mineSizeInPixels, mineSizeInPixels); // surround the rectangle with a black border
+                                updateScreenGraphics.FillRectangle(Brushes.White, columnIndex * mineSizeInPixels+1, rowIndex * mineSizeInPixels+1, mineSizeInPixels-1, mineSizeInPixels-1); //fill the rectangle with the black color
                                 if (numberOfAdjacentBombs != 0)
                                 {
                                     updateScreenGraphics.DrawString(numberOfAdjacentBombs.ToString(), SystemFonts.DefaultFont, Brushes.Black, columnIndex * mineSizeInPixels, rowIndex * mineSizeInPixels);
