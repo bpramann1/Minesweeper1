@@ -91,9 +91,11 @@ namespace Minesweeper
             gameMapHeightInPixels = (numberOfRows * mineSizeInPixels)+ 1;               //Height is calculated by the combined height of the mine spaces plus one for the ending line to create the ending mine
             Game = new Form();  
             Game.Show();
-            Game.Width = gameMapWidthInPixels + 16;                     //16 is the added width of the edges of the form, so width is the width of the game map plus the width of the edges of the form               
-            Game.Height = gameMapHeightInPixels + 60;                   //38 is the added height of the edges of the form, so height is the height of the game map plus the height of the edges of the form
+            Game.Location = new Point(0, 0);
+            Game.Width = Math.Min(gameMapWidthInPixels + 16,Screen.PrimaryScreen.WorkingArea.Width);                     //16 is the added width of the edges of the form, so width is the width of the game map plus the width of the edges of the form               
+            Game.Height = Math.Min(gameMapHeightInPixels + 60,Screen.PrimaryScreen.WorkingArea.Height);                   //38 is the added height of the edges of the form, so height is the height of the game map plus the height of the edges of the form
             Game.Text = "Minesweeper";                                  //Names the title of the form to "Minesweeper"
+            Game.FormBorderStyle = FormBorderStyle.Fixed3D;
             NumberOfBombsLeftLabel = new Label();
             NumberOfBombsLeftLabel.Text = totalNumberOfBombsLeft.ToString() + " bombs left";
             NumberOfBombsLeftLabel.Width = gameMapWidthInPixels / 2;
