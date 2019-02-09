@@ -11,10 +11,10 @@ namespace Minesweeper
 {
     class GameMap
     {
-        private int numberOfRows;                       //This variable indicates the number of rows. It has a default constructed value of 16 although it can be customized by user input
-        private int numberOfColumns;                    //This variable indicates the number of Columns. It has a default constructed value of 16 although it can be customized by user input
+        public int numberOfRows;                       //This variable indicates the number of rows. It has a default constructed value of 16 although it can be customized by user input
+        public int numberOfColumns;                    //This variable indicates the number of Columns. It has a default constructed value of 16 although it can be customized by user input
         private int mineSizeInPixels;                   //This variable indicates the size of a possible mine space. It has a default constructed value of 20 although it can be customized by user input
-        private int numberOfBombs;
+        public int numberOfBombs;
         private int gameMapWidthInPixels;
         private int gameMapHeightInPixels;
         private int columnPositionOfMouse;
@@ -23,10 +23,10 @@ namespace Minesweeper
         private int oldRowPositionOfMouse;
         private int numberOfCallsOnStack;
         private int automaticClickNumber;
-        private int totalNumberOfBombsLeft;
-        private int totalNumberOfSafeSpacesLeft;
+        public int totalNumberOfBombsLeft;
+        public int totalNumberOfSafeSpacesLeft;
 
-        enum MineSpaceStates
+        public enum MineSpaceStates
         {
             Initial,
         MappedAsSafe,
@@ -34,15 +34,15 @@ namespace Minesweeper
         Pressed
         }
 
-        private MineSpaceStates[,] stateOfMineSpace;
-        private bool[,] containsMine;
+        public MineSpaceStates[,] stateOfMineSpace;
+        public bool[,] containsMine;
 
-        private Bitmap updateScreenBitmap;           //This variable is the bitmap we will update and then display to the screen when it is fully updated
-        private Graphics updateScreenGraphics;       //This variable enables us to draw to the bitmap
-        PictureBox bitmapContainer;                  //This variable is the object we will display the object in.
-        Form Game;                                   //This is the object that will contain the game and game map
-        Label NumberOfBombsLeftLabel;
-        Label NumberOfSafeSpacesLeftLabel;
+        public Bitmap updateScreenBitmap;           //This variable is the bitmap we will update and then display to the screen when it is fully updated
+        public Graphics updateScreenGraphics;       //This variable enables us to draw to the bitmap
+        public PictureBox bitmapContainer;                  //This variable is the object we will display the object in.
+        public Form Game;                                   //This is the object that will contain the game and game map
+        public Label NumberOfBombsLeftLabel;
+        public Label NumberOfSafeSpacesLeftLabel;
 
         public GameMap()                //Default Constuctor
         {
