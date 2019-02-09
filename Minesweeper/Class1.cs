@@ -14,6 +14,7 @@ namespace Minesweeper
         private int numberOfRows;                       //This variable indicates the number of rows. It has a default constructed value of 16 although it can be customized by user input
         private int numberOfColumns;                    //This variable indicates the number of Columns. It has a default constructed value of 16 although it can be customized by user input
         private int mineSizeInPixels;                   //This variable indicates the size of a possible mine space. It has a default constructed value of 20 although it can be customized by user input
+        private int numberOfBombs;
         private int gameMapWidthInPixels;
         private int gameMapHeightInPixels;
         private int columnPositionOfMouse;
@@ -47,37 +48,37 @@ namespace Minesweeper
         {
             numberOfRows = 16;          //Default Value
             numberOfColumns = 16;       //Default Value
-            mineSizeInPixels = 20;      //Default Value         
+            mineSizeInPixels = 20;      //Default Value  
+            numberOfBombs = 16;
             createMap();            //All the variables are set up, so draw the map.
         }
 
-        public GameMap(int rows, int columns)                //Constructor for custom number of rows and columns
+        public GameMap(int rows, int columns, int bombs)                //Constructor for custom number of rows and columns
         {
             numberOfRows = rows;          //custom number of rows
             numberOfColumns = columns;       //custom number of columns
             mineSizeInPixels = 20;      //Default Value
-
+            numberOfBombs = bombs;
 
             createMap();            //All the variables are set up, so draw the map.
         }
 
-        public GameMap(int rows, int columns, int mineSize)                //Constructor for custom number of rows and columns and custom mine size
+        public GameMap(int rows, int columns, int mineSize, int bombs)                //Constructor for custom number of rows and columns and custom mine size
         {
             numberOfRows = rows;          //custom number of rows
             numberOfColumns = columns;       //custom number of columns
             mineSizeInPixels = mineSize;      //custom mine size
-
+            numberOfBombs = bombs;
 
             createMap();            //All the variables are set up, so draw the map.
         }
 
-        public GameMap(int mineSize)                //Constructor for custom mine size
+        public GameMap(int mineSize, int bombs)                //Constructor for custom mine size
         {
             numberOfRows = 16;          //Default number of columns
             numberOfColumns = 16;       //Default number of columns
             mineSizeInPixels = mineSize;      //custom mine size
-
-
+            numberOfBombs = bombs;
             createMap();            //All the variables are set up, so draw the map.
         }
 

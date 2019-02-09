@@ -18,13 +18,8 @@ namespace Minesweeper
 
             GameMap myNewGame; // used for testing
                                //Uncomment one (or more) of the following to test each constructer of the object
-                               //myNewGame = new gameMap();
-                               //myNewGame = new gameMap(40);
-                               //myNewGame = new gameMap(25, 25);
-                              // myNewGame = new GameMap(35,65,20);
-                               //myNewGame = new GameMap(5, 10, 50);
-                               myNewGame = new GameMap(40,80,30);
-          // myNewGame = new GameMap(120, 240, 5);//Test this to test our speed of loading
+                               myNewGame = new GameMap(40,80,15, 30);
+          // myNewGame = new GameMap(120, 240, 5, 6000);//Test this to test our speed of loading
 
 
         }
