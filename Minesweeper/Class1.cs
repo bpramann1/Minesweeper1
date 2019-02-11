@@ -813,7 +813,7 @@ namespace Minesweeper
                 //make a form that pops up and shows an ending if the player hit the bomb. 
                 LoseScreen lScreen;
                 lScreen = new LoseScreen();
-                
+                lScreen.TopMost = true;
                 lScreen.Show();
             }
             else
@@ -821,7 +821,7 @@ namespace Minesweeper
                 //make a form that pops up and shows and ending if the player did not hit a bomb.
                 WinScreen wScreen;
                 wScreen = new WinScreen();
-
+                wScreen.TopMost = true;
                 wScreen.Show();
             }
         }
