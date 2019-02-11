@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Media;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,6 +28,11 @@ namespace Minesweeper
         {
             // Close the form
             this.Close();
+        }
+
+        private void LoseScreen_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
