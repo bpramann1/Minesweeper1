@@ -99,7 +99,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "WinScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "WinScreen";
+            this.Text = "Minesweeper";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
