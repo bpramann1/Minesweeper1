@@ -220,8 +220,9 @@ namespace Minesweeper
 
                 //Higlight the current rectangle
                 updateScreenGraphics.FillRectangle(Brushes.Black, column * mineSizeInPixels + 1, row * mineSizeInPixels + 1, mineSizeInPixels - 1, mineSizeInPixels - 1); //fill the rectangle with the black color
-                EndGame theEnd = new EndGame(this);
+                Ending theEnd = new Ending(this);
                 theEnd.hitMine();
+                this.EndReveal();
                 theEnd.displayEnd();
                 
             }
@@ -780,55 +781,8 @@ namespace Minesweeper
 
     }
 
-    class EndGame
-    {
-        private bool gameWon;
-        private bool hitBomb;
-        private object m_object;
-
-        public EndGame(object sender)
-        {
-            m_object = sender;
-        }
-        public EndGame(object sender, bool endedByBomb)
-        {
-            m_object = sender;
-            if (endedByBomb == true)
-            {
-                hitBomb = true;
-            }
-            else
-            {
-                hitBomb = false;
-            }
-        }
-        public void hitMine()
-        {
-            hitBomb = true;
-        }
-        public void displayEnd()
-        {
-            if (hitBomb == true)
-            {
-                //make a form that pops up and shows an ending if the player hit the bomb. 
-                LoseScreen lScreen;
-                lScreen = new LoseScreen();
-                lScreen.TopMost = true;
-                lScreen.Show();
-            }
-            else
-            {
-                //make a form that pops up and shows and ending if the player did not hit a bomb.
-                WinScreen wScreen;
-                wScreen = new WinScreen();
-                wScreen.TopMost = true;
-                wScreen.Show();
-            }
-        }
-
-
     }
 
 
 
-}
+
