@@ -223,6 +223,7 @@ namespace Minesweeper
                 EndGame theEnd = new EndGame(this);
                 theEnd.hitMine();
                 theEnd.displayEnd();
+                
             }
 
 
@@ -785,33 +786,6 @@ namespace Minesweeper
         private bool hitBomb;
         private object m_object;
 
-        public Bitmap updateScreenBitmap;           //This variable is the bitmap we will update and then display to the screen when it is fully updated
-        public Graphics updateScreenGraphics;       //This variable enables us to draw to the bitmap
-        public PictureBox bitmapContainer;          //This variable is the object we will display the object in.
-
-        public Button retry;
-        public Button quit;
-        public void CreateLoseScreen()
-        {
-            Form lScreen = new Form();
-            lScreen.Size = new Size(500, 900);
-            lScreen.StartPosition = FormStartPosition.CenterScreen;
-            lScreen.FormBorderStyle = FormBorderStyle.Fixed3D;
-
-            lScreen.Text = "Minesweeper";
-            retry = new Button();
-            quit = new Button();
-            retry.Text = "RETRY";
-            quit.Text = "QUIT";
-            retry.Location = new Point(10, 10);
-            quit.Location = new Point(retry.Left, retry.Height + retry.Top + 10);
-            retry.Size = new Size(40, 40);
-            quit.Size = new Size(40, 40);
-            lScreen.HelpButton = true;
-            lScreen.Show();
-
-        }
-
         public EndGame(object sender)
         {
             m_object = sender;
@@ -837,13 +811,18 @@ namespace Minesweeper
             if (hitBomb == true)
             {
                 //make a form that pops up and shows an ending if the player hit the bomb. 
-                CreateLoseScreen();
+                LoseScreen lScreen;
+                lScreen = new LoseScreen();
                 
+                lScreen.Show();
             }
             else
             {
                 //make a form that pops up and shows and ending if the player did not hit a bomb.
+                WinScreen wScreen;
+                wScreen = new WinScreen();
 
+                wScreen.Show();
             }
         }
 
