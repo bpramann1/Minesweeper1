@@ -38,15 +38,13 @@ namespace Minesweeper
     {
         private bool gameWon;
         private bool hitBomb;
-        private object m_object;
 
-        public Ending(object sender)
+        public Ending(GameMap sender)
         {
-            m_object = sender;
+            endResult(sender);
         }
-        public Ending(object sender, bool endedByBomb)
+        public Ending(GameMap sender, bool endedByBomb)
         {
-            m_object = sender;
             if (endedByBomb == true)
             {
                 hitBomb = true;
@@ -55,35 +53,78 @@ namespace Minesweeper
             {
                 hitBomb = false;
             }
+            endResult(sender);
         }
         public void hitMine()
         {
             hitBomb = true;
         }
-        public void displayEnd()
+        private void endResult(GameMap m_GameMap)
         {
+            //#TODO: Create method that figures out if you won or lost.
+            //1st scenario.. Bomb is hit
             if (hitBomb == true)
             {
-                //make a form that pops up and shows an ending if the player hit the bomb. 
                 LoseScreen lScreen;
                 lScreen = new LoseScreen();
                 lScreen.TopMost = true;
                 System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.retroExplosion);
                 player.Play();
                 lScreen.Show();
+                m_GameMap.EndReveal();
+                m_GameMap.totalNumberOfBombsLeft = 0;
+                m_GameMap.totalNumberOfSafeSpacesLeft = 0;
+                m_GameMap.NumberOfSafeSpacesLeftLabel.Text = m_GameMap.totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
+                m_GameMap.NumberOfBombsLeftLabel.Text = m_GameMap.totalNumberOfBombsLeft.ToString() + " bombs left";
             }
             else
             {
-                //make a form that pops up and shows and ending if the player did not hit a bomb.
-                WinScreen wScreen;
-                wScreen = new WinScreen();
-                System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.retroExplosion);
-                player.Play();
-                wScreen.TopMost = true;
-                wScreen.Show();
+                int rows = m_GameMap.numberOfRows;
+                int cols = m_GameMap.numberOfColumns;
+                bool gameLost = false;
+                for (int i = 0; i < cols; i++)
+                {
+                    for (int j = 0; j < rows; j++)
+                    {
+                        if ((m_GameMap.stateOfMineSpace[i, j] == GameMap.MineSpaceStates.FlaggedAsUnsafe) && (m_GameMap.containsMine[i, j] == false))
+                        {
+                            gameLost = true;
+                            break;
+                        }
+                    }
+                }
+                if (gameLost == true)
+                {
+                    LoseScreen lScreen;
+                    lScreen = new LoseScreen();
+                    lScreen.TopMost = true;
+                    System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.retroExplosion);
+                    player.Play();
+                    lScreen.Show();
+                    m_GameMap.EndReveal();
+                    m_GameMap.totalNumberOfBombsLeft = 0;
+                    m_GameMap.totalNumberOfSafeSpacesLeft = 0;
+                    m_GameMap.NumberOfSafeSpacesLeftLabel.Text = m_GameMap.totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
+                    m_GameMap.NumberOfBombsLeftLabel.Text = m_GameMap.totalNumberOfBombsLeft.ToString() + " bombs left";
+                }
+                else
+                {
+                    WinScreen wScreen;
+                    wScreen = new WinScreen();
+                    System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.retroExplosion);
+                    player.Play();
+                    wScreen.TopMost = true;
+                    wScreen.Show();
+                    m_GameMap.EndReveal();
+                    m_GameMap.totalNumberOfBombsLeft = 0;
+                    m_GameMap.totalNumberOfSafeSpacesLeft = 0;
+                    m_GameMap.NumberOfSafeSpacesLeftLabel.Text = m_GameMap.totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
+                    m_GameMap.NumberOfBombsLeftLabel.Text = m_GameMap.totalNumberOfBombsLeft.ToString() + " bombs left";
+                }
+
             }
+
+
         }
-
-
     }
 }

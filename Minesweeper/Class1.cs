@@ -212,6 +212,10 @@ namespace Minesweeper
             if (stateOfMineSpace[column,row]!= MineSpaceStates.MappedAsSafe)
             {
                 totalNumberOfSafeSpacesLeft--;
+                if(totalNumberOfSafeSpacesLeft == 0)
+                {
+                    Ending end = new Ending(this);
+                }
                 NumberOfSafeSpacesLeftLabel.Text = totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
             }
             stateOfMineSpace[column, row] = MineSpaceStates.Pressed;
@@ -220,10 +224,8 @@ namespace Minesweeper
 
                 //Higlight the current rectangle
                 updateScreenGraphics.FillRectangle(Brushes.Black, column * mineSizeInPixels + 1, row * mineSizeInPixels + 1, mineSizeInPixels - 1, mineSizeInPixels - 1); //fill the rectangle with the black color
-                Ending theEnd = new Ending(this);
-                theEnd.hitMine();
-                this.EndReveal();
-                theEnd.displayEnd();
+                Ending end = new Ending(this,true);
+                //this.EndReveal();
                 
             }
 
@@ -280,6 +282,10 @@ namespace Minesweeper
                         updateScreenGraphics.FillRectangle(Brushes.Red, columnPositionOfMouse * mineSizeInPixels+1, rowPositionOfMouse * mineSizeInPixels+1, mineSizeInPixels-1, mineSizeInPixels-1); //fill the rectangle with the black color
                         stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse] = MineSpaceStates.FlaggedAsUnsafe;
                         totalNumberOfBombsLeft--;
+                        if(totalNumberOfBombsLeft == 0)
+                        {
+                            Ending end = new Ending(this);
+                        }
                         break;
                     case MineSpaceStates.FlaggedAsUnsafe:
                         //Higlight the current rectangle
@@ -287,6 +293,11 @@ namespace Minesweeper
                         stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse] = MineSpaceStates.MappedAsSafe;
                         totalNumberOfBombsLeft++;
                         totalNumberOfSafeSpacesLeft--;
+                        if (totalNumberOfSafeSpacesLeft == 0)
+                        {
+                            Ending end = new Ending(this);
+                        }
+
                         break;
                     case MineSpaceStates.MappedAsSafe:
                         //Higlight the current rectangle
@@ -391,19 +402,19 @@ namespace Minesweeper
                     if (rnd.Next(8) > 0)
                     {
                         totalNumberOfSafeSpacesLeft++;
-                        containsMine[columnIndex,rowIndex] = false;
+                        containsMine[columnIndex, rowIndex] = false;
                     }
                     else
                     {
                         totalNumberOfBombsLeft++;
-                        containsMine[columnIndex,rowIndex] = true;
+                        containsMine[columnIndex, rowIndex] = true;
                     }
                 }
             }
         }
 
 
-        private void EndReveal()
+        public void EndReveal()
         {
             for (int rowIndex = 0; rowIndex < numberOfRows; rowIndex++)
             {
