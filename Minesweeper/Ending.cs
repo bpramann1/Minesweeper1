@@ -20,7 +20,19 @@ namespace Minesweeper
      * Methods:
      *      Constructors:
      *          public Ending(object sender): 
-     *               @param 'object sender' - object sender inherits vital information about the gamemap including 
+     *               @param 'object sender' - used to give access to Game class variables and data
+     *          
+     *          public Ending(object sender, bool endedByBomb)
+     *               @param 'object sender' - see above
+     *               @param 'bool endedByBomb' - used to indicate whether or not the player set off a bomb. constructor updates m_object and hitBomb private member variables.
+     *              
+     *      General:
+     *          public void hitMine()
+     *               @call - sets private member variable 'hitBomb' to value true.
+     *          
+     *          public void displayEnd()
+     *               @call - displays either a win screen or a lose screen based on the value of hitBomb, if it is a lose screen the retroExplosion.wav should play. 
+     *               currently also plays retroExplosion.wav when the win screen is shown however final version will have a more appropriate file.
      */
     class Ending
     {
@@ -65,6 +77,8 @@ namespace Minesweeper
                 //make a form that pops up and shows and ending if the player did not hit a bomb.
                 WinScreen wScreen;
                 wScreen = new WinScreen();
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.retroExplosion);
+                player.Play();
                 wScreen.TopMost = true;
                 wScreen.Show();
             }
