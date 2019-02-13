@@ -101,12 +101,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="8-bit_Explosion.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="retroExplosion.wav.wav" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="retroExplosion.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
