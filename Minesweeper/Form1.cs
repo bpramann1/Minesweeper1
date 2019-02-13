@@ -12,6 +12,8 @@ namespace Minesweeper
 {
     public partial class Form1 : Form
     {
+        gameMap game;
+
         public Form1()
         {
             InitializeComponent();
@@ -24,6 +26,35 @@ namespace Minesweeper
             myNewGame = new gameMap(5,5,50);
 
 
+        }
+
+        private void continueButton_Click(object sender, EventArgs e)
+        {
+            var numRows = 0;
+            var numCols = 0;
+            var numMines = 0;
+            var rowsParsed = Int32.TryParse(this.rowTextBox.Text, out numRows);
+            var colsParsed = Int32.TryParse(this.columnTextBox.Text, out numCols);
+            var minesParsed = Int32.TryParse(this.mineTextBox.Text, out numMines);
+            var numericInput = rowsParsed && colsParsed && minesParsed;
+            var validNumberOfMines = numMines > 0 && numMines < (numRows * numCols);
+
+            if (numericInput)
+            {
+                if (validNumberOfMines)
+                {
+                    game = new gameMap(numRows, numCols, 50);
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show(this, "Invlid Number of mines");
+                }
+            }
+            else
+            {
+                MessageBox.Show(this, "Non-Numeric Input");
+            }
         }
     }
 }
