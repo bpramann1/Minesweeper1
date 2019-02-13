@@ -95,11 +95,13 @@
             this.continueButton.UseVisualStyleBackColor = true;
             this.continueButton.Click += new System.EventHandler(this.continueButton_Click);
             // 
+            this.SuspendLayout();
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(403, 237);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.continueButton);
             this.Controls.Add(this.mineTextBox);
             this.Controls.Add(this.columnTextBox);
@@ -111,6 +113,7 @@
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
+            this.Load += new System.EventHandler(this.Form1_Load);
 
         }
 

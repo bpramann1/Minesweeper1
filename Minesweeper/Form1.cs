@@ -55,5 +55,10 @@ namespace Minesweeper
                 MessageBox.Show(this, "Non-Numeric Input");
             }
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
