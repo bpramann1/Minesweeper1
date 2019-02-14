@@ -20,17 +20,17 @@ namespace Minesweeper
 
         private void retryButton_Click(object sender, EventArgs e)
         {
-            // Restart the game
+            System.Diagnostics.Process.Start(Application.ExecutablePath);
+            Application.Exit();
 
         }
 
         private void quitButton_Click(object sender, EventArgs e)
         {
             // Close the form
-            this.Close();
+            Application.Exit();
         }
 
-        private void LoseScreen_Load(object sender, EventArgs e)
         //private void LoseScreen_FormClosing(object sender, FormClosingEventArgs e)
         //{
         //    Application.Exit();
