@@ -27,6 +27,7 @@ namespace Minesweeper
         public int totalNumberOfBombsLeft;
         public int totalNumberOfSafeSpacesLeft;
 
+
         public enum MineSpaceStates
         {
             Initial,
@@ -44,6 +45,12 @@ namespace Minesweeper
         public Form Game;                                   //This is the object that will contain the game and game map
         public Label NumberOfBombsLeftLabel;
         public Label NumberOfSafeSpacesLeftLabel;
+        public MenuStrip myMenuStrip;
+        public ToolStripMenuItem File;
+        public ToolStripMenuItem NewGame;
+        public ToolStripMenuItem SaveGame;
+        public ToolStripMenuItem LoadGame;
+
 
         public GameMap()                //Default Constuctor
         {
@@ -88,14 +95,14 @@ namespace Minesweeper
             numberOfCallsOnStack = new StackTrace().FrameCount;
             stateOfMineSpace = new MineSpaceStates[numberOfColumns, numberOfRows];      //Set the array size. All the elements are automatically intiated to zero, which is the value of initial state in our enum.
             containsMine = new bool[numberOfColumns,numberOfRows];
-            CreateBombMap();
+            //CreateBombMap();
             gameMapWidthInPixels = (numberOfColumns * mineSizeInPixels) + 1;            //Width is calculated by the combined width of the mine spaces plus one for the ending line to create the ending mine
             gameMapHeightInPixels = (numberOfRows * mineSizeInPixels)+ 1;               //Height is calculated by the combined height of the mine spaces plus one for the ending line to create the ending mine
             Game = new Form();  
             Game.Show();
             Game.Location = new Point(0, 0);
             Game.Width = Math.Min(gameMapWidthInPixels + 16,Screen.PrimaryScreen.WorkingArea.Width);                     //16 is the added width of the edges of the form, so width is the width of the game map plus the width of the edges of the form               
-            Game.Height = Math.Min(gameMapHeightInPixels + 60,Screen.PrimaryScreen.WorkingArea.Height);                   //38 is the added height of the edges of the form, so height is the height of the game map plus the height of the edges of the form
+            Game.Height = Math.Min(gameMapHeightInPixels + 82,Screen.PrimaryScreen.WorkingArea.Height);                   //38 is the added height of the edges of the form, so height is the height of the game map plus the height of the edges of the form
             Game.Text = "Minesweeper";                                  //Names the title of the form to "Minesweeper"
             Game.FormBorderStyle = FormBorderStyle.Fixed3D;
             if ((gameMapHeightInPixels>Game.Height) || (gameMapWidthInPixels>Game.Width))
@@ -103,22 +110,34 @@ namespace Minesweeper
                 Game.AutoScroll = true;
             }
             Game.FormClosing += new FormClosingEventHandler(this.ExitApplication);
+            myMenuStrip = new MenuStrip();
+            myMenuStrip.BackColor = SystemColors.Menu;
+            Game.MainMenuStrip = myMenuStrip;
+            Game.Controls.Add(myMenuStrip);
+            File = new ToolStripMenuItem("File");
+            myMenuStrip.Items.Add(File);
+            NewGame = new ToolStripMenuItem("New Game");
+            SaveGame = new ToolStripMenuItem("Save Game");
+            LoadGame = new ToolStripMenuItem("Load Game");
+            ToolStripItem[] myMenuItem = { NewGame, SaveGame, LoadGame };
+            File.DropDownItems.AddRange(myMenuItem);
+
             NumberOfBombsLeftLabel = new Label();
             NumberOfBombsLeftLabel.Text = totalNumberOfBombsLeft.ToString() + " bombs left";
             NumberOfBombsLeftLabel.Width = gameMapWidthInPixels / 2;
             Game.Controls.Add(NumberOfBombsLeftLabel);
-            NumberOfBombsLeftLabel.Location = new Point(0, 0);
+            NumberOfBombsLeftLabel.Location = new Point(0, myMenuStrip.Height);
             NumberOfSafeSpacesLeftLabel = new Label();
             NumberOfSafeSpacesLeftLabel.Text = totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
             Game.Controls.Add(NumberOfSafeSpacesLeftLabel);
-            NumberOfSafeSpacesLeftLabel.Location = new Point(gameMapWidthInPixels / 2, 0);
+            NumberOfSafeSpacesLeftLabel.Location = new Point(gameMapWidthInPixels / 2, myMenuStrip.Height);
             NumberOfSafeSpacesLeftLabel.Width = gameMapWidthInPixels / 2;
             NumberOfSafeSpacesLeftLabel.Height = NumberOfBombsLeftLabel.Height;
             bitmapContainer = new PictureBox();
             bitmapContainer.Width = gameMapWidthInPixels;               //bitmap is just big enough to hold the game map
             bitmapContainer.Height = gameMapHeightInPixels;             //bitmap is just big enough to hold the game map
             Game.Controls.Add(bitmapContainer);                         //Add the PictureBox object called bitmapContainer to the form called Game. This makes the bitmapContainer be displayed in game.
-            bitmapContainer.Location= new Point(0, NumberOfBombsLeftLabel.Height);
+            bitmapContainer.Location= new Point(0, NumberOfBombsLeftLabel.Height + myMenuStrip.Height);
             bitmapContainer.MouseMove += new MouseEventHandler(MouseMoveInGame);        //Adds the event handler so that the method MouseMoveInGame is called when the mouse moves in the bitmapContainer
             bitmapContainer.MouseDown += new MouseEventHandler(MineSpaceClicked);
             updateScreenBitmap = new Bitmap(gameMapWidthInPixels, gameMapHeightInPixels);
