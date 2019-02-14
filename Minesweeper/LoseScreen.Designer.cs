@@ -106,7 +106,6 @@
             this.Name = "LoseScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Minesweeper";
-            this.Load += new System.EventHandler(this.LoseScreen_Load);
             //this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoseScreen_FormClosing);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
