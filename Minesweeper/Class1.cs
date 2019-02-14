@@ -98,6 +98,10 @@ namespace Minesweeper
             Game.Height = Math.Min(gameMapHeightInPixels + 60,Screen.PrimaryScreen.WorkingArea.Height);                   //38 is the added height of the edges of the form, so height is the height of the game map plus the height of the edges of the form
             Game.Text = "Minesweeper";                                  //Names the title of the form to "Minesweeper"
             Game.FormBorderStyle = FormBorderStyle.Fixed3D;
+            if ((gameMapHeightInPixels>Game.Height) || (gameMapWidthInPixels>Game.Width))
+            {
+                Game.AutoScroll = true;
+            }
             Game.FormClosing += new FormClosingEventHandler(this.ExitApplication);
             NumberOfBombsLeftLabel = new Label();
             NumberOfBombsLeftLabel.Text = totalNumberOfBombsLeft.ToString() + " bombs left";
