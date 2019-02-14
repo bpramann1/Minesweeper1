@@ -31,8 +31,10 @@ namespace Minesweeper
         }
 
         private void LoseScreen_Load(object sender, EventArgs e)
-        {
+        //private void LoseScreen_FormClosing(object sender, FormClosingEventArgs e)
+        //{
+        //    Application.Exit();
+        //}
 
-        }
     }
 }

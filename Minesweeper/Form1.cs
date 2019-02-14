@@ -13,7 +13,7 @@ namespace Minesweeper
 {
     public partial class Form1 : Form
     {
-        GameMap game;
+        public GameMap game;
 
         public Form1()
         {

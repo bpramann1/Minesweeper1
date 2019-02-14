@@ -27,5 +27,9 @@ namespace Minesweeper
         {
 
         }
+        //private void WinScreen_FormClosing(object sender, FormClosingEventArgs e)
+        //{
+        //    Application.Exit();
+        //}
     }
 }

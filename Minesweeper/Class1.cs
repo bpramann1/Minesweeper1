@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Minesweeper
 {
-    class GameMap
+    public class GameMap
     {
         public int numberOfRows;                       //This variable indicates the number of rows. It has a default constructed value of 16 although it can be customized by user input
         public int numberOfColumns;                    //This variable indicates the number of Columns. It has a default constructed value of 16 although it can be customized by user input
@@ -98,6 +98,7 @@ namespace Minesweeper
             Game.Height = Math.Min(gameMapHeightInPixels + 60,Screen.PrimaryScreen.WorkingArea.Height);                   //38 is the added height of the edges of the form, so height is the height of the game map plus the height of the edges of the form
             Game.Text = "Minesweeper";                                  //Names the title of the form to "Minesweeper"
             Game.FormBorderStyle = FormBorderStyle.Fixed3D;
+            Game.FormClosing += new FormClosingEventHandler(this.ExitApplication);
             NumberOfBombsLeftLabel = new Label();
             NumberOfBombsLeftLabel.Text = totalNumberOfBombsLeft.ToString() + " bombs left";
             NumberOfBombsLeftLabel.Width = gameMapWidthInPixels / 2;
@@ -788,6 +789,12 @@ namespace Minesweeper
                     RevealMineSpace(column + 1, row + 1);
                 }
             }
+        }
+
+
+        private void ExitApplication(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
 
     }
