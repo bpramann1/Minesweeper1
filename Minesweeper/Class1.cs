@@ -121,6 +121,9 @@ namespace Minesweeper
             LoadGame = new ToolStripMenuItem("Load Game");
             ToolStripItem[] myMenuItem = { NewGame, SaveGame, LoadGame };
             File.DropDownItems.AddRange(myMenuItem);
+            NewGame.Click += new EventHandler(MenuNewGame);
+            SaveGame.Click += new EventHandler(MenuSaveGame);
+            LoadGame.Click += new EventHandler(MenuLoadGame);
 
             NumberOfBombsLeftLabel = new Label();
             NumberOfBombsLeftLabel.Text = totalNumberOfBombsLeft.ToString() + " bombs left";
@@ -820,6 +823,18 @@ namespace Minesweeper
             Application.Exit();
         }
 
+        private void MenuNewGame(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        private void MenuSaveGame(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        private void MenuLoadGame(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 
     }
