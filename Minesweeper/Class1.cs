@@ -12,6 +12,7 @@ namespace Minesweeper
 {
     public class GameMap
     {
+        //Declaration of variables
         public int numberOfRows;                       //This variable indicates the number of rows. It has a default constructed value of 16 although it can be customized by user input
         public int numberOfColumns;                    //This variable indicates the number of Columns. It has a default constructed value of 16 although it can be customized by user input
         private int mineSizeInPixels;                   //This variable indicates the size of a possible mine space. It has a default constructed value of 20 although it can be customized by user input
@@ -105,19 +106,29 @@ namespace Minesweeper
 
         private void createMap()
         {
-            stateOfMineSpace = new MineSpaceStates[numberOfColumns, numberOfRows];      //Set the array size. All the elements are automatically intiated to zero, which is the value of initial state in our enum.
-            containsMine = new bool[numberOfColumns,numberOfRows];
+            initializeMapVarsBeforeBombsCreated();
             CreateBombMap();
+            initializeMapVarsAfterBombsCreated();
+            drawMap();
+            Game.TopMost = true;                                //Make the game form be the topmost form.
+        }
+       
+        
+
+        private void initializeMapVarsBeforeBombsCreated()
+        {
+            stateOfMineSpace = new MineSpaceStates[numberOfColumns, numberOfRows];      //Set the array size. All the elements are automatically intiated to zero, which is the value of initial state in our enum.
+            containsMine = new bool[numberOfColumns, numberOfRows];
             gameMapWidthInPixels = (numberOfColumns * mineSizeInPixels) + 1;            //Width is calculated by the combined width of the mine spaces plus one for the ending line to create the ending mine
-            gameMapHeightInPixels = (numberOfRows * mineSizeInPixels)+ 1;               //Height is calculated by the combined height of the mine spaces plus one for the ending line to create the ending mine
-            Game = new Form();  
+            gameMapHeightInPixels = (numberOfRows * mineSizeInPixels) + 1;               //Height is calculated by the combined height of the mine spaces plus one for the ending line to create the ending mine
+            Game = new Form();
             Game.Show();
             Game.Location = new Point(0, 0);
-            Game.Width = Math.Min(gameMapWidthInPixels + 16,Screen.PrimaryScreen.WorkingArea.Width);                     //16 is the added width of the edges of the form, so width is the width of the game map plus the width of the edges of the form               
-            Game.Height = Math.Min(gameMapHeightInPixels + 82,Screen.PrimaryScreen.WorkingArea.Height);                   //38 is the added height of the edges of the form, so height is the height of the game map plus the height of the edges of the form
+            Game.Width = Math.Min(gameMapWidthInPixels + 16, Screen.PrimaryScreen.WorkingArea.Width);                     //16 is the added width of the edges of the form, so width is the width of the game map plus the width of the edges of the form               
+            Game.Height = Math.Min(gameMapHeightInPixels + 82, Screen.PrimaryScreen.WorkingArea.Height);                   //38 is the added height of the edges of the form, so height is the height of the game map plus the height of the edges of the form
             Game.Text = "Minesweeper";                                  //Names the title of the form to "Minesweeper"
             Game.FormBorderStyle = FormBorderStyle.Fixed3D;
-            if ((gameMapHeightInPixels>Game.Height) || (gameMapWidthInPixels>Game.Width))
+            if ((gameMapHeightInPixels > Game.Height) || (gameMapWidthInPixels > Game.Width))
             {
                 Game.AutoScroll = true;
             }
@@ -136,14 +147,12 @@ namespace Minesweeper
             NewGame.Click += new EventHandler(MenuNewGame);
             SaveGame.Click += new EventHandler(MenuSaveGame);
             LoadGame.Click += new EventHandler(MenuLoadGame);
-
             NumberOfBombsLeftLabel = new Label();
-            NumberOfBombsLeftLabel.Text = totalNumberOfBombsLeft.ToString() + " bombs left";
             NumberOfBombsLeftLabel.Width = gameMapWidthInPixels / 2;
+
             Game.Controls.Add(NumberOfBombsLeftLabel);
             NumberOfBombsLeftLabel.Location = new Point(0, myMenuStrip.Height);
             NumberOfSafeSpacesLeftLabel = new Label();
-            NumberOfSafeSpacesLeftLabel.Text = totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
             Game.Controls.Add(NumberOfSafeSpacesLeftLabel);
             NumberOfSafeSpacesLeftLabel.Location = new Point(gameMapWidthInPixels / 2, myMenuStrip.Height);
             NumberOfSafeSpacesLeftLabel.Width = gameMapWidthInPixels / 2;
@@ -152,17 +161,25 @@ namespace Minesweeper
             bitmapContainer.Width = gameMapWidthInPixels;               //bitmap is just big enough to hold the game map
             bitmapContainer.Height = gameMapHeightInPixels;             //bitmap is just big enough to hold the game map
             Game.Controls.Add(bitmapContainer);                         //Add the PictureBox object called bitmapContainer to the form called Game. This makes the bitmapContainer be displayed in game.
-            bitmapContainer.Location= new Point(0, NumberOfBombsLeftLabel.Height + myMenuStrip.Height);
+            bitmapContainer.Location = new Point(0, NumberOfBombsLeftLabel.Height + myMenuStrip.Height);
             bitmapContainer.MouseMove += new MouseEventHandler(MouseMoveInGame);        //Adds the event handler so that the method MouseMoveInGame is called when the mouse moves in the bitmapContainer
             bitmapContainer.MouseDown += new MouseEventHandler(MineSpaceClicked);
             updateScreenBitmap = new Bitmap(gameMapWidthInPixels, gameMapHeightInPixels);
             updateScreenGraphics = Graphics.FromImage(updateScreenBitmap);      //This cause updateScreenGraphics to work with our bitmap
 
-            updateScreenGraphics.FillRectangle(Brushes.Gray, 0, 0, gameMapWidthInPixels, gameMapHeightInPixels);        //Color the whole bitmap the color of the mine spaces
-            
-            
+        }
 
-            
+        private void initializeMapVarsAfterBombsCreated()
+        {
+            NumberOfBombsLeftLabel.Text = totalNumberOfBombsLeft.ToString() + " bombs left";
+            NumberOfSafeSpacesLeftLabel.Text = totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
+        }
+
+
+
+        private void drawMap()
+        {
+            updateScreenGraphics.FillRectangle(Brushes.Gray, 0, 0, gameMapWidthInPixels, gameMapHeightInPixels);        //Color the whole bitmap the color of the mine spaces           
             for (int rowIndex = 0; rowIndex <= numberOfRows; rowIndex++)        // Iterate from 0 to the number of rows plus one. We will do plus one because we need to draw one more line than we have mine spaces.
             {
                 updateScreenGraphics.DrawLine(Pens.Black, 0, rowIndex * mineSizeInPixels, gameMapWidthInPixels, rowIndex * mineSizeInPixels);       //Draw horizontal lines that are rowIndex mines down. This will cause all the horizontal lines of the mine spaces to be drawn.
@@ -173,9 +190,13 @@ namespace Minesweeper
                 updateScreenGraphics.DrawLine(Pens.Black, columnIndex * mineSizeInPixels, 0, columnIndex * mineSizeInPixels, gameMapHeightInPixels);        //Draw vertical lines that are columnIndex mines right of the left of the screen. This will cause all the vertical lines of the mine spaces to be drawn.
             }
             bitmapContainer.Image = updateScreenBitmap;         //physically drawn our bitmap to the PictureBox which is in the form called game. Since we only physically draw once, this is very fast.
-            Game.TopMost = true;                                //Make the game form be the topmost form.
+
         }
-       
+
+
+
+
+
 
         private void MouseMoveInGame(object sender, System.EventArgs e)
         {
