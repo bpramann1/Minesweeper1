@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="DrawMap.cs" />
     <Compile Include="Ending.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
