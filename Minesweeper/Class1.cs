@@ -454,20 +454,23 @@ namespace Minesweeper
 
         private void CreateBombMap()
         {
-            Random rnd = new Random();
-            for (int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++)
+            if (!fromLoad)
             {
-                for (int rowIndex = 0; rowIndex < numberOfRows; rowIndex++)
+                Random rnd = new Random();
+                for (int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++)
                 {
-                    if (rnd.Next(8) > 0)
+                    for (int rowIndex = 0; rowIndex < numberOfRows; rowIndex++)
                     {
-                        totalNumberOfSafeSpacesLeft++;
-                        containsMine[columnIndex, rowIndex] = false;
-                    }
-                    else
-                    {
-                        totalNumberOfBombsLeft++;
-                        containsMine[columnIndex, rowIndex] = true;
+                        if (rnd.Next(8) > 0)
+                        {
+                            totalNumberOfSafeSpacesLeft++;
+                            containsMine[columnIndex, rowIndex] = false;
+                        }
+                        else
+                        {
+                            totalNumberOfBombsLeft++;
+                            containsMine[columnIndex, rowIndex] = true;
+                        }
                     }
                 }
             }
