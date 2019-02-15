@@ -26,7 +26,7 @@ namespace Minesweeper
         private int automaticClickNumber;
         public int totalNumberOfBombsLeft;
         public int totalNumberOfSafeSpacesLeft;
-
+        public bool fromLoad = false;
 
         public enum MineSpaceStates
         {
@@ -89,6 +89,20 @@ namespace Minesweeper
             numberOfBombs = bombs;
             createMap();            //All the variables are set up, so draw the map.
         }
+
+        public GameMap(bool isLoadGame)                //Default Constuctor
+        {
+            numberOfRows = 16;          //Default Value
+            numberOfColumns = 16;       //Default Value
+            mineSizeInPixels = 20;      //Default Value  
+            numberOfBombs = 16;
+            fromLoad = isLoadGame;
+            createMap();            //All the variables are set up, so draw the map.
+        }
+
+
+
+
 
         private void createMap()
         {
