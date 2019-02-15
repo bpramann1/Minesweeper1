@@ -95,7 +95,7 @@ namespace Minesweeper
             numberOfCallsOnStack = new StackTrace().FrameCount;
             stateOfMineSpace = new MineSpaceStates[numberOfColumns, numberOfRows];      //Set the array size. All the elements are automatically intiated to zero, which is the value of initial state in our enum.
             containsMine = new bool[numberOfColumns,numberOfRows];
-            //CreateBombMap();
+            CreateBombMap();
             gameMapWidthInPixels = (numberOfColumns * mineSizeInPixels) + 1;            //Width is calculated by the combined width of the mine spaces plus one for the ending line to create the ending mine
             gameMapHeightInPixels = (numberOfRows * mineSizeInPixels)+ 1;               //Height is calculated by the combined height of the mine spaces plus one for the ending line to create the ending mine
             Game = new Form();  
@@ -825,15 +825,24 @@ namespace Minesweeper
 
         private void MenuNewGame(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult shouldSave = MessageBox.Show("Do you want to save your current game?", "Save Dialog", MessageBoxButtons.YesNo);
+            if (shouldSave == DialogResult.Yes)
+            {
+                new SaveGame(this, Minesweeper.SaveGame.ActionsAfterSave.Restart);
+            }
+            else
+            {
+                System.Diagnostics.Process.Start(Application.ExecutablePath);
+                Application.Exit();
+            }
         }
         private void MenuSaveGame(object sender, EventArgs e)
         {
-            Application.Exit();
+            new SaveGame(this, Minesweeper.SaveGame.ActionsAfterSave.Nothing);
         }
         private void MenuLoadGame(object sender, EventArgs e)
         {
-            Application.Exit();
+            
         }
     }
 
