@@ -118,7 +118,9 @@ namespace Minesweeper
         private void initializeMapVarsBeforeBombsCreated()
         {
             stateOfMineSpace = new MineSpaceStates[numberOfColumns, numberOfRows];      //Set the array size. All the elements are automatically intiated to zero, which is the value of initial state in our enum.
+
             containsMine = new bool[numberOfColumns, numberOfRows];
+
             gameMapWidthInPixels = (numberOfColumns * mineSizeInPixels) + 1;            //Width is calculated by the combined width of the mine spaces plus one for the ending line to create the ending mine
             gameMapHeightInPixels = (numberOfRows * mineSizeInPixels) + 1;               //Height is calculated by the combined height of the mine spaces plus one for the ending line to create the ending mine
             Game = new Form();
@@ -454,28 +456,58 @@ namespace Minesweeper
 
         private void CreateBombMap()
         {
+
             if (!fromLoad)
             {
+                totalNumberOfBombsLeft = numberOfBombs;
+                int totalNumberOfSpaces = numberOfColumns * numberOfRows;
+                totalNumberOfSafeSpacesLeft = numberOfBombs - totalNumberOfSpaces;
+                for (int i = 0; i < numberOfColumns; i++)
+                {
+                    for (int j = 0; j < numberOfRows; j++)
+                    {
+                        containsMine[i, j] = false;
+                    }
+                }
+                int bombStock = numberOfBombs;
+                Random blg = new Random();
+                while (bombStock > 0)
+                {
+                    int chosenCol = blg.Next(numberOfColumns);
+                    int chosenRow = blg.Next(numberOfColumns);
+                    if (containsMine[chosenCol, chosenRow] == false)
+                    {
+                        containsMine[chosenCol, chosenRow] = true;
+                        bombStock--;
+                    }
+                }
+
+                /*
                 Random rnd = new Random();
                 for (int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++)
+    >>>>>>> Stashed changes
                 {
-                    for (int rowIndex = 0; rowIndex < numberOfRows; rowIndex++)
+                    Random rnd = new Random();
+                    for (int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++)
                     {
-                        if (rnd.Next(8) > 0)
+                        for (int rowIndex = 0; rowIndex < numberOfRows; rowIndex++)
                         {
-                            totalNumberOfSafeSpacesLeft++;
-                            containsMine[columnIndex, rowIndex] = false;
-                        }
-                        else
-                        {
-                            totalNumberOfBombsLeft++;
-                            containsMine[columnIndex, rowIndex] = true;
+                            if (rnd.Next(8) > 0)
+                            {
+                                totalNumberOfSafeSpacesLeft++;
+                                containsMine[columnIndex, rowIndex] = false;
+                            }
+                            else
+                            {
+                                totalNumberOfBombsLeft++;
+                                containsMine[columnIndex, rowIndex] = true;
+                            }
                         }
                     }
                 }
+                */
             }
         }
-
 
         public void EndReveal()
         {
