@@ -22,7 +22,6 @@ namespace Minesweeper
         private int rowPositionOfMouse;
         private int oldColumnPositionOfMouse;
         private int oldRowPositionOfMouse;
-        private int numberOfCallsOnStack;
         private int automaticClickNumber;
         public int totalNumberOfBombsLeft;
         public int totalNumberOfSafeSpacesLeft;
@@ -106,7 +105,6 @@ namespace Minesweeper
 
         private void createMap()
         {
-            numberOfCallsOnStack = new StackTrace().FrameCount;
             stateOfMineSpace = new MineSpaceStates[numberOfColumns, numberOfRows];      //Set the array size. All the elements are automatically intiated to zero, which is the value of initial state in our enum.
             containsMine = new bool[numberOfColumns,numberOfRows];
             CreateBombMap();
