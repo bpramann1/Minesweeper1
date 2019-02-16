@@ -63,19 +63,20 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Arial Black", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(280, 25);
+            this.label1.Font = new System.Drawing.Font("Arial Black", 27.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(269, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(237, 48);
+            this.label1.Size = new System.Drawing.Size(259, 52);
             this.label1.TabIndex = 0;
             this.label1.Text = "Game Over!";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // retryButton
             // 
             this.retryButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.retryButton.BackColor = System.Drawing.SystemColors.Control;
-            this.retryButton.Font = new System.Drawing.Font("Arial Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.retryButton.Font = new System.Drawing.Font("Arial Black", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.retryButton.Location = new System.Drawing.Point(302, 159);
             this.retryButton.Name = "retryButton";
             this.retryButton.Size = new System.Drawing.Size(194, 56);
@@ -88,7 +89,7 @@
             // 
             this.quitButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.quitButton.BackColor = System.Drawing.SystemColors.Control;
-            this.quitButton.Font = new System.Drawing.Font("Arial Black", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quitButton.Font = new System.Drawing.Font("Arial Black", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quitButton.Location = new System.Drawing.Point(302, 269);
             this.quitButton.Name = "quitButton";
             this.quitButton.Size = new System.Drawing.Size(194, 56);
@@ -106,7 +107,6 @@
             this.Name = "LoseScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Minesweeper";
-            //this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoseScreen_FormClosing);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
