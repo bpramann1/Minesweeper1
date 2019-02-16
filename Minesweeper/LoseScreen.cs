@@ -21,14 +21,14 @@ namespace Minesweeper
         private void retryButton_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(Application.ExecutablePath);
-            Application.Exit();
+            Environment.Exit(0);
 
         }
 
         private void quitButton_Click(object sender, EventArgs e)
         {
             // Close the form
-            Application.Exit();
+            Environment.Exit(0);
         }
 
         //private void LoseScreen_FormClosing(object sender, FormClosingEventArgs e)
