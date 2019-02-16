@@ -12,7 +12,8 @@ namespace Minesweeper
         public static GameMap gameMap;
         public static SaveGame SaveGame;
         public static LoadGame LoadGame;
-        
+        public static DeleteSave DeleteGame;
+
         public static void createGameMap()
         {
             gameMap = new GameMap();
@@ -23,11 +24,15 @@ namespace Minesweeper
         }
         public static void createSaveGameDialog(GameMap sender, GameFilesDialog.ActionsAfterDialog actionAfterSave)
         {
-            new SaveGame(sender, actionAfterSave);
+            SaveGame = new SaveGame(sender, actionAfterSave);
         }
         public static void createLoadGameDialog(GameMap sender)
         {
             LoadGame = new LoadGame(sender);
+        }
+        public static void deleteSaveGameDialog(GameMap sender, GameFilesDialog.ActionsAfterDialog actionAfterSave)
+        {
+            DeleteGame = new DeleteSave(sender, actionAfterSave);
         }
     }
 }

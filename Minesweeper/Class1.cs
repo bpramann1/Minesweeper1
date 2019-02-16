@@ -52,6 +52,7 @@ namespace Minesweeper
         public ToolStripMenuItem NewGame;
         public ToolStripMenuItem SaveGame;
         public ToolStripMenuItem LoadGame;
+        public ToolStripMenuItem DeleteGame;
 
 
         public GameMap()                //Default Constuctor
@@ -185,11 +186,13 @@ namespace Minesweeper
             NewGame = new ToolStripMenuItem("New Game");
             SaveGame = new ToolStripMenuItem("Save Game");
             LoadGame = new ToolStripMenuItem("Load Game");
-            ToolStripItem[] myMenuItem = { NewGame, SaveGame, LoadGame };
+            DeleteGame = new ToolStripMenuItem("Delete Game");
+            ToolStripItem[] myMenuItem = { NewGame, SaveGame, LoadGame,DeleteGame };
             File.DropDownItems.AddRange(myMenuItem);
             NewGame.Click += new EventHandler(MenuNewGame);
             SaveGame.Click += new EventHandler(MenuSaveGame);
             LoadGame.Click += new EventHandler(MenuLoadGame);
+            DeleteGame.Click += new EventHandler(MenuDeleteGame);
             NumberOfBombsLeftLabel = new Label();
             NumberOfBombsLeftLabel.Width = gameMapWidthInPixels / 2;
 
@@ -923,6 +926,10 @@ namespace Minesweeper
         private void MenuLoadGame(object sender, EventArgs e)
         {
             ObjectController.createLoadGameDialog(this);
+        }
+        private void MenuDeleteGame(object sender, EventArgs e)
+        {
+            ObjectController.deleteSaveGameDialog(this, GameFilesDialog.ActionsAfterDialog.Nothing);
         }
     }
 

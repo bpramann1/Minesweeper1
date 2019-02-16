@@ -62,8 +62,8 @@ namespace Minesweeper
             saveGameLabel = new Label();
             GameFilesForm.Controls.Add(saveGameLabel);
             saveGameLabel.Width = 60;
-            saveGameLabel.Location = new System.Drawing.Point(savedGamesList.Location.X - saveGameLabel.Width - 10, selectedGameTextbox.Location.Y);
-            saveGameLabel.Text = "Save As:";
+            saveGameLabel.Location = new System.Drawing.Point(savedGamesList.Location.X - saveGameLabel.Width ,selectedGameTextbox.Location.Y+5);
+            saveGameLabel.Text = "Name:";
             saveGameButton = new Button();
             GameFilesForm.Controls.Add(saveGameButton);
             saveGameButton.Width = savedGamesList.Width;
@@ -142,11 +142,11 @@ namespace Minesweeper
 
         }
 
-        private void PopulateSaveList()
+        public void PopulateSaveList()
         {
             string path = Application.StartupPath;
             int substringIndex = 0;
-
+            savedGamesList.Items.Clear();
             foreach (string file in System.IO.Directory.GetFiles(path))
             {
                 if (file.Substring(file.Length - 4) == ".txt")
