@@ -370,10 +370,10 @@ namespace Minesweeper
                         break;
                     case MineSpaceStates.FlaggedAsUnsafe:
                         //Higlight the current rectangle
-                        mapEditor.DrawBitmap(columnPositionOfMouse, rowPositionOfMouse, Properties.Resources.greenflag);
-                        stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse] = MineSpaceStates.MappedAsSafe;
+                        //mapEditor.DrawBitmap(columnPositionOfMouse, rowPositionOfMouse, Properties.Resources.greenflag);
+                        mapEditor.FillRectangle(columnPositionOfMouse, rowPositionOfMouse, Brushes.Gray);
+                        stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse] = MineSpaceStates.Initial;
                         totalNumberOfBombsLeft++;
-                        totalNumberOfSafeSpacesLeft--;
                         if (totalNumberOfSafeSpacesLeft == 0)
                         {
                             Ending end = new Ending(this);
