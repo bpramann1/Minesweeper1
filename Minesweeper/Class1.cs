@@ -12,10 +12,10 @@ namespace Minesweeper
 {
     class GameMap
     {
-        public int numberOfRows;                       //This variable indicates the number of rows. It has a default constructed value of 16 although it can be customized by user input
-        public int numberOfColumns;                    //This variable indicates the number of Columns. It has a default constructed value of 16 although it can be customized by user input
+        public  int numberOfRows;                       //This variable indicates the number of rows. It has a default constructed value of 16 although it can be customized by user input
+        public  int numberOfColumns;                    //This variable indicates the number of Columns. It has a default constructed value of 16 although it can be customized by user input
         private int mineSizeInPixels;                   //This variable indicates the size of a possible mine space. It has a default constructed value of 20 although it can be customized by user input
-        public int numberOfBombs;
+        public  int numberOfBombs;
         private int gameMapWidthInPixels;
         private int gameMapHeightInPixels;
         private int columnPositionOfMouse;
@@ -24,15 +24,15 @@ namespace Minesweeper
         private int oldRowPositionOfMouse;
         private int numberOfCallsOnStack;
         private int automaticClickNumber;
-        public int totalNumberOfBombsLeft;
-        public int totalNumberOfSafeSpacesLeft;
+        public  int totalNumberOfBombsLeft;
+        public  int totalNumberOfSafeSpacesLeft;
 
         public enum MineSpaceStates
         {
             Initial,
-        MappedAsSafe,
-        FlaggedAsUnsafe,
-        Pressed
+            MappedAsSafe,
+            FlaggedAsUnsafe,
+            Pressed
         }
 
         public MineSpaceStates[,] stateOfMineSpace;
