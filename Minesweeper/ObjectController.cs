@@ -21,9 +21,9 @@ namespace Minesweeper
         {
             gameMap = new GameMap(true,NumberOfColumns,NumberOfRows,ContainsMine,StateOfMineSpace);
         }
-        public static void createSaveGameDialog()
+        public static void createSaveGameDialog(GameMap sender, GameFilesDialog.ActionsAfterDialog actionAfterSave)
         {
-
+            new SaveGame(sender, actionAfterSave);
         }
         public static void createLoadGameDialog(GameMap sender)
         {

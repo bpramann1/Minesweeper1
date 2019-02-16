@@ -28,9 +28,6 @@ namespace Minesweeper
             System.Diagnostics.Process.Start(Application.ExecutablePath);
             Environment.Exit(0);
         }
-        //private void WinScreen_FormClosing(object sender, FormClosingEventArgs e)
-        //{
-        //    Application.Exit();
-        //}
+
     }
 }

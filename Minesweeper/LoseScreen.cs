@@ -31,10 +31,7 @@ namespace Minesweeper
             Environment.Exit(0);
         }
 
-        //private void LoseScreen_FormClosing(object sender, FormClosingEventArgs e)
-        //{
-        //    Application.Exit();
-        //}
+
 
     }
 }

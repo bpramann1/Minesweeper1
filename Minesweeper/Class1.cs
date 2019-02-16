@@ -892,7 +892,7 @@ namespace Minesweeper
                 DialogResult shouldSave = MessageBox.Show("Are you sure you want to exit without saving your current game?", "Exit Game Dialog", MessageBoxButtons.YesNo);
                 if (shouldSave == DialogResult.Yes)
                 {
-                    Application.Exit();
+                    Environment.Exit(0);
                 }
                 else
                 {
@@ -908,12 +908,12 @@ namespace Minesweeper
             DialogResult shouldSave = MessageBox.Show("Do you want to save your current game?", "Save Dialog", MessageBoxButtons.YesNo);
             if (shouldSave == DialogResult.Yes)
             {
-                new SaveGame(this, GameFilesDialog.ActionsAfterDialog.Restart);
+                ObjectController.createSaveGameDialog(this, GameFilesDialog.ActionsAfterDialog.Restart);
             }
             else
             {
                 System.Diagnostics.Process.Start(Application.ExecutablePath);
-                Application.Exit();
+                Environment.Exit(0);
             }
         }
         private void MenuSaveGame(object sender, EventArgs e)
