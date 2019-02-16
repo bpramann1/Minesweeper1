@@ -125,5 +125,11 @@
   <ItemGroup>
     <None Include="Icons\redflag.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="cheering.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="won-game.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

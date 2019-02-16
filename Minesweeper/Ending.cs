@@ -111,7 +111,7 @@ namespace Minesweeper
                 {
                     WinScreen wScreen;
                     wScreen = new WinScreen();
-                    System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.retroExplosion);
+                    System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.won_game);
                     player.Play();
                     wScreen.TopMost = true;
                     wScreen.Show();
