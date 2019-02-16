@@ -18,7 +18,7 @@ namespace Minesweeper
         public int numberOfRows;                       //This variable indicates the number of rows. It has a default constructed value of 16 although it can be customized by user input
         public int numberOfColumns;                    //This variable indicates the number of Columns. It has a default constructed value of 16 although it can be customized by user input
         private int mineSizeInPixels;                   //This variable indicates the size of a possible mine space. It has a default constructed value of 20 although it can be customized by user input
-
+        private Font font;
 
         public DrawMap(GameMap sender)
         {
@@ -35,7 +35,7 @@ namespace Minesweeper
             updateScreenBitmap = new Bitmap(mapWidthInPixels, mapHeightInPixels);
             updateScreenGraphics = Graphics.FromImage(updateScreenBitmap);      //This cause updateScreenGraphics to work with our bitmap
 
-
+            font = new Font(FontFamily.GenericSansSerif, mineSizeInPixels/2, FontStyle.Regular);
         }
 
         private void InitializeSharedVariables()
@@ -72,7 +72,7 @@ namespace Minesweeper
         }
         public void DrawString(string outputString, int column, int row)
         {
-            updateScreenGraphics.DrawString(outputString, SystemFonts.DefaultFont, Brushes.Black, column * mineSizeInPixels, row * mineSizeInPixels);
+            updateScreenGraphics.DrawString(outputString, font, Brushes.Black, (float)(column+0.20) * mineSizeInPixels, (float)(row+0.15) * mineSizeInPixels);
         }
     }
 }
