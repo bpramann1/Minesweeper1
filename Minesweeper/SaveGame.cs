@@ -62,7 +62,7 @@ namespace Minesweeper
                         }
                     }
                     writeNewLineText("");
-                    saveDialog.GameFilesForm.Close();
+                    saveDialog.SaveGameDialogDone();
                 }
             }
             catch (Exception)
