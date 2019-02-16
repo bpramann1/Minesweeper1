@@ -40,14 +40,28 @@ namespace Minesweeper
 
             if (numericInput)
             {
-                if (validNumberOfMines)
+                if (numRows>0 && numRows<=50)
                 {
-                    game = new GameMap(numRows, numCols, 50, numMines);
-                    this.Hide();
+                    if (numCols > 0 && numCols <= 50)
+                    {
+                        if (validNumberOfMines)
+                        {
+                            game = new GameMap(numRows, numCols, 50, numMines);
+                            this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, "Invalid Number of mines");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(this, "Invalid number or columns. Please enter a number between 0 and 50.");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show(this, "Invlid Number of mines");
+                    MessageBox.Show(this, "Invalid number or rows. Please enter a number between 0 and 50.");
                 }
             }
             else
