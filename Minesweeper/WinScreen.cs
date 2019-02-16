@@ -20,12 +20,14 @@ namespace Minesweeper
         private void quitButton_Click(object sender, EventArgs e)
         {
             // Quit form
-            this.Close();
+            Environment.Exit(0);
         }
 
         private void playAgainButton_Click(object sender, EventArgs e)
         {
-
+            System.Diagnostics.Process.Start(Application.ExecutablePath);
+            Environment.Exit(0);
         }
+
     }
 }

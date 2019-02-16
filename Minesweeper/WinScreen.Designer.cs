@@ -100,6 +100,7 @@
             this.Name = "WinScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Minesweeper";
+            //this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WinScreen_FormClosing);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

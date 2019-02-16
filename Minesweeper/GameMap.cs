@@ -10,11 +10,12 @@ using System.ComponentModel;
 
 namespace Minesweeper
 {
-    class GameMap
+    public class GameMap
     {
+        //Declaration of variables
         public int numberOfRows;                       //This variable indicates the number of rows. It has a default constructed value of 16 although it can be customized by user input
         public int numberOfColumns;                    //This variable indicates the number of Columns. It has a default constructed value of 16 although it can be customized by user input
-        private int mineSizeInPixels;                   //This variable indicates the size of a possible mine space. It has a default constructed value of 20 although it can be customized by user input
+        public int mineSizeInPixels;                   //This variable indicates the size of a possible mine space. It has a default constructed value of 20 although it can be customized by user input
         public int numberOfBombs;
         private int gameMapWidthInPixels;
         private int gameMapHeightInPixels;
@@ -22,10 +23,15 @@ namespace Minesweeper
         private int rowPositionOfMouse;
         private int oldColumnPositionOfMouse;
         private int oldRowPositionOfMouse;
-        private int numberOfCallsOnStack;
         private int automaticClickNumber;
         public int totalNumberOfBombsLeft;
         public int totalNumberOfSafeSpacesLeft;
+        public bool fromLoad = false;
+        public bool exitImmediately = false;
+        public DrawMap mapEditor;
+
+        public PictureBox bitmapContainer;                  //This variable is the object we will display the object in.
+
 
         public enum MineSpaceStates
         {
@@ -38,12 +44,16 @@ namespace Minesweeper
         public MineSpaceStates[,] stateOfMineSpace;
         public bool[,] containsMine;
 
-        public Bitmap updateScreenBitmap;           //This variable is the bitmap we will update and then display to the screen when it is fully updated
-        public Graphics updateScreenGraphics;       //This variable enables us to draw to the bitmap
-        public PictureBox bitmapContainer;                  //This variable is the object we will display the object in.
-        public Form Game;                                   //This is the object that will contain the game and game map
+       public Form Game;                                   //This is the object that will contain the game and game map
         public Label NumberOfBombsLeftLabel;
         public Label NumberOfSafeSpacesLeftLabel;
+        public MenuStrip myMenuStrip;
+        public ToolStripMenuItem File;
+        public ToolStripMenuItem NewGame;
+        public ToolStripMenuItem SaveGame;
+        public ToolStripMenuItem LoadGame;
+        public ToolStripMenuItem DeleteGame;
+
 
         public GameMap()                //Default Constuctor
         {
@@ -83,60 +93,143 @@ namespace Minesweeper
             createMap();            //All the variables are set up, so draw the map.
         }
 
+        public GameMap(bool isLoadGame, int NumberOfColumns, int NumberOfRows, bool[,] ContainsMine,MineSpaceStates[,] StateOfMineSpace)                //Default Constuctor
+        {
+            fromLoad = isLoadGame;
+            numberOfColumns = NumberOfColumns;
+            numberOfRows = NumberOfRows;
+            containsMine = ContainsMine;
+            stateOfMineSpace = StateOfMineSpace;
+            mineSizeInPixels = 50;
+            totalNumberOfBombsLeft = 0;
+            totalNumberOfSafeSpacesLeft = numberOfColumns*numberOfRows;
+            createMap();
+            for (int y = 0; y < numberOfRows; y++)
+            {
+                for (int x = 0; x < numberOfColumns; x++)
+                {
+                    if (containsMine[x, y])
+                    {
+                        totalNumberOfBombsLeft++;
+                        totalNumberOfSafeSpacesLeft--;
+                    }
+                    if (stateOfMineSpace[x,y] == MineSpaceStates.FlaggedAsUnsafe)
+                    {
+                        totalNumberOfBombsLeft--;
+                        mapEditor.FillRectangle(x, y, Brushes.Red);
+                    }
+                    if (stateOfMineSpace[x, y] == MineSpaceStates.MappedAsSafe)
+                    {
+                        totalNumberOfSafeSpacesLeft--;
+                        mapEditor.FillRectangle(x, y, Brushes.Green);
+                    }
+                    if (stateOfMineSpace[x, y] == MineSpaceStates.Pressed)
+                    {
+                        totalNumberOfSafeSpacesLeft--;
+                        mapEditor.FillRectangle(x, y, Brushes.White);
+                        int num = numberOfTouchingBombs(x, y);
+                        if (num != 0)
+                        {
+                            mapEditor.DrawString(numberOfTouchingBombs(x, y).ToString(), x, y);
+                        }                           
+                    }
+                }
+            }
+            initializeMapVarsAfterBombsCreated();
+        }
+
+
+
+
+
         private void createMap()
         {
-            numberOfCallsOnStack = new StackTrace().FrameCount;
-            stateOfMineSpace = new MineSpaceStates[numberOfColumns, numberOfRows];      //Set the array size. All the elements are automatically intiated to zero, which is the value of initial state in our enum.
-            containsMine = new bool[numberOfColumns,numberOfRows];
-            CreateBombMap();
-            gameMapWidthInPixels = (numberOfColumns * mineSizeInPixels) + 1;            //Width is calculated by the combined width of the mine spaces plus one for the ending line to create the ending mine
-            gameMapHeightInPixels = (numberOfRows * mineSizeInPixels)+ 1;               //Height is calculated by the combined height of the mine spaces plus one for the ending line to create the ending mine
-            Game = new Form();  
+            initializeMapVarsBeforeBombsCreated();
+            if (!fromLoad)
+            {
+                CreateBombMap();
+            }
+            initializeMapVarsAfterBombsCreated();
+            drawMap();
+            Game.TopMost = true;                                //Make the game form be the topmost form.
+        }
+       
+        
+
+        private void initializeMapVarsBeforeBombsCreated()
+        {
+            if (!fromLoad)
+            {
+                stateOfMineSpace = new MineSpaceStates[numberOfColumns, numberOfRows];      //Set the array size. All the elements are automatically intiated to zero, which is the value of initial state in our enum.
+                containsMine = new bool[numberOfColumns, numberOfRows];
+            }
+            mapEditor = new DrawMap(this);
+            gameMapHeightInPixels = mapEditor.mapHeightInPixels;
+            gameMapWidthInPixels = mapEditor.mapWidthInPixels;
+            Game = new Form();
             Game.Show();
             Game.Location = new Point(0, 0);
-            Game.Width = Math.Min(gameMapWidthInPixels + 16,Screen.PrimaryScreen.WorkingArea.Width);                     //16 is the added width of the edges of the form, so width is the width of the game map plus the width of the edges of the form               
-            Game.Height = Math.Min(gameMapHeightInPixels + 60,Screen.PrimaryScreen.WorkingArea.Height);                   //38 is the added height of the edges of the form, so height is the height of the game map plus the height of the edges of the form
+            Game.Width = Math.Min(gameMapWidthInPixels + 16, Screen.PrimaryScreen.WorkingArea.Width);                     //16 is the added width of the edges of the form, so width is the width of the game map plus the width of the edges of the form               
+            Game.Height = Math.Min(gameMapHeightInPixels + 82, Screen.PrimaryScreen.WorkingArea.Height);                   //38 is the added height of the edges of the form, so height is the height of the game map plus the height of the edges of the form
             Game.Text = "Minesweeper";                                  //Names the title of the form to "Minesweeper"
             Game.FormBorderStyle = FormBorderStyle.Fixed3D;
+            if ((gameMapHeightInPixels > Game.Height) || (gameMapWidthInPixels > Game.Width))
+            {
+                Game.AutoScroll = true;
+            }
+            Game.FormClosing += new FormClosingEventHandler(this.ExitApplication);
+            myMenuStrip = new MenuStrip();
+            myMenuStrip.BackColor = SystemColors.Menu;
+            Game.MainMenuStrip = myMenuStrip;
+            Game.Controls.Add(myMenuStrip);
+            File = new ToolStripMenuItem("File");
+            myMenuStrip.Items.Add(File);
+            NewGame = new ToolStripMenuItem("New Game");
+            SaveGame = new ToolStripMenuItem("Save Game");
+            LoadGame = new ToolStripMenuItem("Load Game");
+            DeleteGame = new ToolStripMenuItem("Delete Game");
+            ToolStripItem[] myMenuItem = { NewGame, SaveGame, LoadGame,DeleteGame };
+            File.DropDownItems.AddRange(myMenuItem);
+            NewGame.Click += new EventHandler(MenuNewGame);
+            SaveGame.Click += new EventHandler(MenuSaveGame);
+            LoadGame.Click += new EventHandler(MenuLoadGame);
+            DeleteGame.Click += new EventHandler(MenuDeleteGame);
             NumberOfBombsLeftLabel = new Label();
-            NumberOfBombsLeftLabel.Text = totalNumberOfBombsLeft.ToString() + " bombs left";
             NumberOfBombsLeftLabel.Width = gameMapWidthInPixels / 2;
+
             Game.Controls.Add(NumberOfBombsLeftLabel);
-            NumberOfBombsLeftLabel.Location = new Point(0, 0);
+            NumberOfBombsLeftLabel.Location = new Point(0, myMenuStrip.Height);
             NumberOfSafeSpacesLeftLabel = new Label();
-            NumberOfSafeSpacesLeftLabel.Text = totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
             Game.Controls.Add(NumberOfSafeSpacesLeftLabel);
-            NumberOfSafeSpacesLeftLabel.Location = new Point(gameMapWidthInPixels / 2, 0);
+            NumberOfSafeSpacesLeftLabel.Location = new Point(gameMapWidthInPixels / 2, myMenuStrip.Height);
             NumberOfSafeSpacesLeftLabel.Width = gameMapWidthInPixels / 2;
             NumberOfSafeSpacesLeftLabel.Height = NumberOfBombsLeftLabel.Height;
             bitmapContainer = new PictureBox();
             bitmapContainer.Width = gameMapWidthInPixels;               //bitmap is just big enough to hold the game map
             bitmapContainer.Height = gameMapHeightInPixels;             //bitmap is just big enough to hold the game map
             Game.Controls.Add(bitmapContainer);                         //Add the PictureBox object called bitmapContainer to the form called Game. This makes the bitmapContainer be displayed in game.
-            bitmapContainer.Location= new Point(0, NumberOfBombsLeftLabel.Height);
+            bitmapContainer.Location = new Point(0, NumberOfBombsLeftLabel.Height + myMenuStrip.Height);
             bitmapContainer.MouseMove += new MouseEventHandler(MouseMoveInGame);        //Adds the event handler so that the method MouseMoveInGame is called when the mouse moves in the bitmapContainer
             bitmapContainer.MouseDown += new MouseEventHandler(MineSpaceClicked);
-            updateScreenBitmap = new Bitmap(gameMapWidthInPixels, gameMapHeightInPixels);
-            updateScreenGraphics = Graphics.FromImage(updateScreenBitmap);      //This cause updateScreenGraphics to work with our bitmap
-
-            updateScreenGraphics.FillRectangle(Brushes.Gray, 0, 0, gameMapWidthInPixels, gameMapHeightInPixels);        //Color the whole bitmap the color of the mine spaces
-            
-            
-
-            
-            for (int rowIndex = 0; rowIndex <= numberOfRows; rowIndex++)        // Iterate from 0 to the number of rows plus one. We will do plus one because we need to draw one more line than we have mine spaces.
-            {
-                updateScreenGraphics.DrawLine(Pens.Black, 0, rowIndex * mineSizeInPixels, gameMapWidthInPixels, rowIndex * mineSizeInPixels);       //Draw horizontal lines that are rowIndex mines down. This will cause all the horizontal lines of the mine spaces to be drawn.
-
-            }
-            for (int columnIndex = 0; columnIndex <= numberOfColumns; columnIndex++)
-            {
-                updateScreenGraphics.DrawLine(Pens.Black, columnIndex * mineSizeInPixels, 0, columnIndex * mineSizeInPixels, gameMapHeightInPixels);        //Draw vertical lines that are columnIndex mines right of the left of the screen. This will cause all the vertical lines of the mine spaces to be drawn.
-            }
-            bitmapContainer.Image = updateScreenBitmap;         //physically drawn our bitmap to the PictureBox which is in the form called game. Since we only physically draw once, this is very fast.
-            Game.TopMost = true;                                //Make the game form be the topmost form.
         }
-       
+
+        private void initializeMapVarsAfterBombsCreated()
+        {
+            NumberOfBombsLeftLabel.Text = totalNumberOfBombsLeft.ToString() + " bombs left";
+            NumberOfSafeSpacesLeftLabel.Text = totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
+        }
+
+
+
+        private void drawMap()
+        {
+            mapEditor.InitialDraw();
+        }
+
+
+
+
+
 
         private void MouseMoveInGame(object sender, System.EventArgs e)
         {
@@ -160,7 +253,7 @@ namespace Minesweeper
                     if (stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse] == MineSpaceStates.Initial) //Check to see if the mine should be highlighted
                     {
                         //Higlight the current rectangle
-                        updateScreenGraphics.FillRectangle(Brushes.LightGray, columnPositionOfMouse * mineSizeInPixels+1, rowPositionOfMouse * mineSizeInPixels+1, mineSizeInPixels-1, mineSizeInPixels-1); //fill the rectangle with the highlight color
+                        mapEditor.FillRectangle(columnPositionOfMouse, rowPositionOfMouse, Brushes.LightGray);
                     }
                 }
                 if (ColumnRowInGameArray(oldColumnPositionOfMouse, oldRowPositionOfMouse))
@@ -168,10 +261,10 @@ namespace Minesweeper
                     if (stateOfMineSpace[oldColumnPositionOfMouse, oldRowPositionOfMouse] == MineSpaceStates.Initial) //Check to see if the mine should draw to initial color
                     {
                         //Redraw over the last hightlighted rectangle
-                        updateScreenGraphics.FillRectangle(Brushes.Gray, oldColumnPositionOfMouse * mineSizeInPixels +1, oldRowPositionOfMouse * mineSizeInPixels+1, mineSizeInPixels-1, mineSizeInPixels-1);//fill the rectangle with the normal mine color
+                        mapEditor.FillRectangle(oldColumnPositionOfMouse, oldRowPositionOfMouse, Brushes.Gray);
                     }
                 }
-                bitmapContainer.Image = updateScreenBitmap; // physically update the screen with the bitmap
+                mapEditor.RefreshScreen();
             }
             //Done Drawing the Rectangle
             oldColumnPositionOfMouse = columnPositionOfMouse;// Set the value to hold the mouse position so that we can check to see if it had changed
@@ -223,7 +316,7 @@ namespace Minesweeper
             {
 
                 //Higlight the current rectangle
-                updateScreenGraphics.FillRectangle(Brushes.Black, column * mineSizeInPixels + 1, row * mineSizeInPixels + 1, mineSizeInPixels - 1, mineSizeInPixels - 1); //fill the rectangle with the black color
+                mapEditor.FillRectangle(column, row, Brushes.Black);
                 Ending end = new Ending(this,true);
                 //this.EndReveal();
                 
@@ -234,7 +327,7 @@ namespace Minesweeper
             {
                 int numberOfAdjacentBombs = numberOfTouchingBombs(column, row);
                 //Higlight the current rectangle
-                updateScreenGraphics.FillRectangle(Brushes.White, column * mineSizeInPixels + 1, row * mineSizeInPixels + 1, mineSizeInPixels - 1, mineSizeInPixels - 1); //fill the rectangle with the white color
+                mapEditor.FillRectangle(column, row, Brushes.White);
                 if (numberOfAdjacentBombs == 0)
                 {
                     automaticClickNumber++;
@@ -259,14 +352,11 @@ namespace Minesweeper
                 }
                 else
                 {
-                    updateScreenGraphics.DrawString(numberOfAdjacentBombs.ToString(), SystemFonts.DefaultFont, Brushes.Black, column * mineSizeInPixels, row * mineSizeInPixels);
+                    mapEditor.DrawString(numberOfAdjacentBombs.ToString(), column, row);
                 }
             }
-            //             if(numberOfCallsOnStack < 20)
-            //             {
-            bitmapContainer.Image = updateScreenBitmap;
+            mapEditor.RefreshScreen();
 
-            //               }
 
         }
 
@@ -279,7 +369,7 @@ namespace Minesweeper
                 {
                     case MineSpaceStates.Initial:
                         //Higlight the current rectangle
-                        updateScreenGraphics.FillRectangle(Brushes.Red, columnPositionOfMouse * mineSizeInPixels+1, rowPositionOfMouse * mineSizeInPixels+1, mineSizeInPixels-1, mineSizeInPixels-1); //fill the rectangle with the black color
+                        mapEditor.FillRectangle(columnPositionOfMouse, rowPositionOfMouse, Brushes.Red);
                         stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse] = MineSpaceStates.FlaggedAsUnsafe;
                         totalNumberOfBombsLeft--;
                         if(totalNumberOfBombsLeft == 0)
@@ -289,7 +379,7 @@ namespace Minesweeper
                         break;
                     case MineSpaceStates.FlaggedAsUnsafe:
                         //Higlight the current rectangle
-                        updateScreenGraphics.FillRectangle(Brushes.Green, columnPositionOfMouse * mineSizeInPixels + 1, rowPositionOfMouse * mineSizeInPixels + 1, mineSizeInPixels - 1, mineSizeInPixels - 1); //fill the rectangle with the black color
+                        mapEditor.FillRectangle(columnPositionOfMouse, rowPositionOfMouse, Brushes.Green);
                         stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse] = MineSpaceStates.MappedAsSafe;
                         totalNumberOfBombsLeft++;
                         totalNumberOfSafeSpacesLeft--;
@@ -301,7 +391,7 @@ namespace Minesweeper
                         break;
                     case MineSpaceStates.MappedAsSafe:
                         //Higlight the current rectangle
-                        updateScreenGraphics.FillRectangle(Brushes.Gray, columnPositionOfMouse * mineSizeInPixels + 1, rowPositionOfMouse * mineSizeInPixels + 1, mineSizeInPixels - 1, mineSizeInPixels - 1); //fill the rectangle with the black color
+                        mapEditor.FillRectangle(columnPositionOfMouse, rowPositionOfMouse, Brushes.Gray);
                         stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse] = MineSpaceStates.Initial;
                         totalNumberOfSafeSpacesLeft++;
                         break;
@@ -310,7 +400,7 @@ namespace Minesweeper
                 }
                 NumberOfSafeSpacesLeftLabel.Text = totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
                 NumberOfBombsLeftLabel.Text = totalNumberOfBombsLeft.ToString() + " bombs left";
-                bitmapContainer.Image = updateScreenBitmap;
+                mapEditor.RefreshScreen();
             }
         }
 
@@ -394,25 +484,33 @@ namespace Minesweeper
 
         private void CreateBombMap()
         {
-            Random rnd = new Random();
-            for (int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++)
+
+            if (!fromLoad)
             {
-                for (int rowIndex = 0; rowIndex < numberOfRows; rowIndex++)
+                totalNumberOfBombsLeft = numberOfBombs;
+                int totalNumberOfSpaces = numberOfColumns * numberOfRows;
+                totalNumberOfSafeSpacesLeft = totalNumberOfSpaces - numberOfBombs;
+                for (int i = 0; i < numberOfColumns; i++)
                 {
-                    if (rnd.Next(8) > 0)
+                    for (int j = 0; j < numberOfRows; j++)
                     {
-                        totalNumberOfSafeSpacesLeft++;
-                        containsMine[columnIndex, rowIndex] = false;
+                        containsMine[i, j] = false;
                     }
-                    else
+                }
+                int bombStock = numberOfBombs;
+                Random blg = new Random();
+                while (bombStock > 0)
+                {
+                    int chosenCol = blg.Next(numberOfColumns);
+                    int chosenRow = blg.Next(numberOfRows);
+                    if (containsMine[chosenCol, chosenRow] == false)
                     {
-                        totalNumberOfBombsLeft++;
-                        containsMine[columnIndex, rowIndex] = true;
+                        containsMine[chosenCol, chosenRow] = true;
+                        bombStock--;
                     }
                 }
             }
         }
-
 
         public void EndReveal()
         {
@@ -429,15 +527,15 @@ namespace Minesweeper
                             if (containsMine[columnIndex, rowIndex])
                             {
                                 //Higlight the current rectangle
-                                updateScreenGraphics.FillRectangle(Brushes.Black, columnIndex * mineSizeInPixels+1, rowIndex * mineSizeInPixels+1, mineSizeInPixels-1, mineSizeInPixels-1); //fill the rectangle with the black color
+                                mapEditor.FillRectangle(columnIndex, rowIndex, Brushes.Black);
                             }
                             else
                             {
                                 //Higlight the current rectangle
-                                updateScreenGraphics.FillRectangle(Brushes.White, columnIndex * mineSizeInPixels+1, rowIndex * mineSizeInPixels+1, mineSizeInPixels-1, mineSizeInPixels-1); //fill the rectangle with the black color
+                                mapEditor.FillRectangle(columnIndex, rowIndex, Brushes.White);
                                 if (numberOfAdjacentBombs != 0)
                                 {
-                                    updateScreenGraphics.DrawString(numberOfAdjacentBombs.ToString(), SystemFonts.DefaultFont, Brushes.Black, columnIndex * mineSizeInPixels, rowIndex * mineSizeInPixels);
+                                    mapEditor.DrawString(numberOfAdjacentBombs.ToString(), columnIndex, rowIndex);
                                 }
                             }
 
@@ -447,7 +545,7 @@ namespace Minesweeper
                 }
 
             }
-            bitmapContainer.Image = updateScreenBitmap;
+            mapEditor.RefreshScreen();
         }
 
 
@@ -790,6 +888,50 @@ namespace Minesweeper
             }
         }
 
+
+        private void ExitApplication(object sender, FormClosingEventArgs e)
+        {
+            if (!exitImmediately)
+            {
+                DialogResult shouldSave = MessageBox.Show("Are you sure you want to exit without saving your current game?", "Exit Game Dialog", MessageBoxButtons.YesNo);
+                if (shouldSave == DialogResult.Yes)
+                {
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+
+        }
+
+        private void MenuNewGame(object sender, EventArgs e)
+        {
+            exitImmediately = true;
+            DialogResult shouldSave = MessageBox.Show("Do you want to save your current game?", "Save Dialog", MessageBoxButtons.YesNo);
+            if (shouldSave == DialogResult.Yes)
+            {
+                ObjectController.createSaveGameDialog(this, GameFilesDialog.ActionsAfterDialog.Restart);
+            }
+            else
+            {
+                System.Diagnostics.Process.Start(Application.ExecutablePath);
+                Environment.Exit(0);
+            }
+        }
+        private void MenuSaveGame(object sender, EventArgs e)
+        {
+            new SaveGame(this, GameFilesDialog.ActionsAfterDialog.Nothing);
+        }
+        private void MenuLoadGame(object sender, EventArgs e)
+        {
+            ObjectController.createLoadGameDialog(this);
+        }
+        private void MenuDeleteGame(object sender, EventArgs e)
+        {
+            ObjectController.deleteSaveGameDialog(this, GameFilesDialog.ActionsAfterDialog.Nothing);
+        }
     }
 
     }
