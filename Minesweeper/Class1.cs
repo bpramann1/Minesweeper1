@@ -111,6 +111,7 @@ namespace Minesweeper
                     if (containsMine[x, y])
                     {
                         totalNumberOfBombsLeft++;
+                        totalNumberOfSafeSpacesLeft--;
                     }
                     if (stateOfMineSpace[x,y] == MineSpaceStates.FlaggedAsUnsafe)
                     {
