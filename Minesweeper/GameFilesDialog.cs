@@ -85,6 +85,10 @@ namespace Minesweeper
                     Environment.Exit(0);
                     break;
                 default:
+                    if (dialogDone)
+                    {
+                        GameFilesForm.Close();
+                    }
                     break;
             }
         }
