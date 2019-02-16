@@ -27,7 +27,17 @@ namespace Minesweeper
 
         }
 
-        private void continueButton_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void continueButton_Click_1(object sender, EventArgs e)
         {
             var numRows = 0;
             var numCols = 0;
@@ -40,9 +50,9 @@ namespace Minesweeper
 
             if (numericInput)
             {
-                if (numRows>0 && numRows<=50)
+                if (numRows > 1 && numRows <= 50)
                 {
-                    if (numCols > 0 && numCols <= 50)
+                    if (numCols > 1 && numCols <= 50)
                     {
                         if (validNumberOfMines)
                         {
@@ -56,12 +66,12 @@ namespace Minesweeper
                     }
                     else
                     {
-                        MessageBox.Show(this, "Invalid number or columns. Please enter a number between 0 and 50.");
+                        MessageBox.Show(this, "Invalid number or columns. Please enter a number between 2 and 50.");
                     }
                 }
                 else
                 {
-                    MessageBox.Show(this, "Invalid number or rows. Please enter a number between 0 and 50.");
+                    MessageBox.Show(this, "Invalid number or rows. Please enter a number between 2 and 50.");
                 }
             }
             else
@@ -69,6 +79,5 @@ namespace Minesweeper
                 MessageBox.Show(this, "Non-Numeric Input");
             }
         }
-
     }
 }
