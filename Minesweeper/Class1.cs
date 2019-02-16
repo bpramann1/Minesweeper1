@@ -498,7 +498,7 @@ namespace Minesweeper
                 while (bombStock > 0)
                 {
                     int chosenCol = blg.Next(numberOfColumns);
-                    int chosenRow = blg.Next(numberOfColumns);
+                    int chosenRow = blg.Next(numberOfRows);
                     if (containsMine[chosenCol, chosenRow] == false)
                     {
                         containsMine[chosenCol, chosenRow] = true;
