@@ -110,5 +110,20 @@
   <ItemGroup>
     <None Include="retroExplosion.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bomb.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\greenflag.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\mine1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\mine2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\redflag.bmp" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

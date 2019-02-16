@@ -62,6 +62,10 @@ namespace Minesweeper
         {
             updateScreenGraphics.FillRectangle(brush, columnIndex * mineSizeInPixels + 1, rowIndex * mineSizeInPixels + 1, mineSizeInPixels - 1, mineSizeInPixels - 1);
         }
+        public void DrawBitmap(int columnIndex, int rowIndex, Bitmap bitmap)
+        {
+            updateScreenGraphics.DrawImage(bitmap, columnIndex * mineSizeInPixels + 1, rowIndex * mineSizeInPixels + 1, mineSizeInPixels - 1, mineSizeInPixels - 1);
+        }
         public void RefreshScreen()
         {
             caller.bitmapContainer.Image = updateScreenBitmap; // physically update the screen with the bitmap

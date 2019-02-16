@@ -12,7 +12,7 @@ namespace Minesweeper
 {
     public class GameMap
     {
-        //Declaration of variables
+        #region Declaration of variables
         public int numberOfRows;                       //This variable indicates the number of rows. It has a default constructed value of 16 although it can be customized by user input
         public int numberOfColumns;                    //This variable indicates the number of Columns. It has a default constructed value of 16 although it can be customized by user input
         public int mineSizeInPixels;                   //This variable indicates the size of a possible mine space. It has a default constructed value of 20 although it can be customized by user input
@@ -53,8 +53,9 @@ namespace Minesweeper
         public ToolStripMenuItem SaveGame;
         public ToolStripMenuItem LoadGame;
         public ToolStripMenuItem DeleteGame;
+        #endregion
 
-
+        #region Constructors
         public GameMap()                //Default Constuctor
         {
             numberOfRows = 16;          //Default Value
@@ -116,12 +117,12 @@ namespace Minesweeper
                     if (stateOfMineSpace[x,y] == MineSpaceStates.FlaggedAsUnsafe)
                     {
                         totalNumberOfBombsLeft--;
-                        mapEditor.FillRectangle(x, y, Brushes.Red);
+                        mapEditor.DrawBitmap(x, y, Properties.Resources.redflag);
                     }
                     if (stateOfMineSpace[x, y] == MineSpaceStates.MappedAsSafe)
                     {
                         totalNumberOfSafeSpacesLeft--;
-                        mapEditor.FillRectangle(x, y, Brushes.Green);
+                        mapEditor.DrawBitmap(x, y, Properties.Resources.greenflag);
                     }
                     if (stateOfMineSpace[x, y] == MineSpaceStates.Pressed)
                     {
@@ -138,6 +139,7 @@ namespace Minesweeper
             initializeMapVarsAfterBombsCreated();
         }
 
+        #endregion
 
 
 
@@ -152,9 +154,7 @@ namespace Minesweeper
             initializeMapVarsAfterBombsCreated();
             drawMap();
             Game.TopMost = true;                                //Make the game form be the topmost form.
-        }
-       
-        
+        }     
 
         private void initializeMapVarsBeforeBombsCreated()
         {
@@ -219,17 +219,10 @@ namespace Minesweeper
             NumberOfSafeSpacesLeftLabel.Text = totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
         }
 
-
-
         private void drawMap()
         {
             mapEditor.InitialDraw();
         }
-
-
-
-
-
 
         private void MouseMoveInGame(object sender, System.EventArgs e)
         {
@@ -270,7 +263,6 @@ namespace Minesweeper
             oldColumnPositionOfMouse = columnPositionOfMouse;// Set the value to hold the mouse position so that we can check to see if it had changed
             oldRowPositionOfMouse = rowPositionOfMouse;// Set the value to hold the mouse position so that we can check to see if it had changed
         }
-
 
         private void MineSpaceClicked(object sender, MouseEventArgs mouse)
         {
@@ -316,7 +308,7 @@ namespace Minesweeper
             {
 
                 //Higlight the current rectangle
-                mapEditor.FillRectangle(column, row, Brushes.Black);
+                mapEditor.DrawBitmap(column, row, Properties.Resources.mine1);
                 Ending end = new Ending(this,true);
                 //this.EndReveal();
                 
@@ -360,7 +352,6 @@ namespace Minesweeper
 
         }
 
-
         private void RightMouseButtonClicked()
         {
             if (ColumnRowInGameArray(columnPositionOfMouse, rowPositionOfMouse))
@@ -369,7 +360,7 @@ namespace Minesweeper
                 {
                     case MineSpaceStates.Initial:
                         //Higlight the current rectangle
-                        mapEditor.FillRectangle(columnPositionOfMouse, rowPositionOfMouse, Brushes.Red);
+                        mapEditor.DrawBitmap(columnPositionOfMouse, rowPositionOfMouse, Properties.Resources.redflag);
                         stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse] = MineSpaceStates.FlaggedAsUnsafe;
                         totalNumberOfBombsLeft--;
                         if(totalNumberOfBombsLeft == 0)
@@ -379,7 +370,7 @@ namespace Minesweeper
                         break;
                     case MineSpaceStates.FlaggedAsUnsafe:
                         //Higlight the current rectangle
-                        mapEditor.FillRectangle(columnPositionOfMouse, rowPositionOfMouse, Brushes.Green);
+                        mapEditor.DrawBitmap(columnPositionOfMouse, rowPositionOfMouse, Properties.Resources.greenflag);
                         stateOfMineSpace[columnPositionOfMouse, rowPositionOfMouse] = MineSpaceStates.MappedAsSafe;
                         totalNumberOfBombsLeft++;
                         totalNumberOfSafeSpacesLeft--;
@@ -403,7 +394,6 @@ namespace Minesweeper
                 mapEditor.RefreshScreen();
             }
         }
-
 
         private bool ColumnRowInGameArray(int column, int row)//Bounds Checking
         {
@@ -527,7 +517,7 @@ namespace Minesweeper
                             if (containsMine[columnIndex, rowIndex])
                             {
                                 //Higlight the current rectangle
-                                mapEditor.FillRectangle(columnIndex, rowIndex, Brushes.Black);
+                                mapEditor.DrawBitmap(columnIndex, rowIndex, Properties.Resources.mine1);
                             }
                             else
                             {
@@ -548,7 +538,7 @@ namespace Minesweeper
             mapEditor.RefreshScreen();
         }
 
-
+        #region ClickAdjacentSquaresFunctions
         private void ClickAdjacentSpacesUpFirst(int column, int row)
         {
             //Up
@@ -617,7 +607,6 @@ namespace Minesweeper
                 }
             }
         }
-
         private void ClickAdjacentSpacesLeftFirst(int column, int row)
         {
             //Left
@@ -887,7 +876,7 @@ namespace Minesweeper
                 }
             }
         }
-
+        #endregion
 
         private void ExitApplication(object sender, FormClosingEventArgs e)
         {
@@ -906,6 +895,7 @@ namespace Minesweeper
 
         }
 
+        #region Menu Operations
         private void MenuNewGame(object sender, EventArgs e)
         {
             exitImmediately = true;
@@ -932,9 +922,10 @@ namespace Minesweeper
         {
             ObjectController.deleteSaveGameDialog(this, GameFilesDialog.ActionsAfterDialog.Nothing);
         }
+        #endregion
     }
 
-    }
+}
 
 
 
