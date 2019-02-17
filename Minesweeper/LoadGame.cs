@@ -17,6 +17,13 @@ namespace Minesweeper
         private GameMap GameMapSender;
         private string saveString;
         private bool gameExists;
+
+        /// <summary>
+        /// Presents the user with a window that allows them to load a game. 
+        /// </summary>
+        /// <param name="sender">
+        /// The game map that called the function
+        /// </param>
         public LoadGame(GameMap sender)
         {
             GameMapSender = sender;
