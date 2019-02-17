@@ -13,10 +13,10 @@ namespace Minesweeper
     public class GameMap
     {
         #region Declaration of variables
-        public int numberOfRows;                       //This variable indicates the number of rows. It has a default constructed value of 16 although it can be customized by user input
-        public int numberOfColumns;                    //This variable indicates the number of Columns. It has a default constructed value of 16 although it can be customized by user input
-        public int mineSizeInPixels;                   //This variable indicates the size of a possible mine space. It has a default constructed value of 20 although it can be customized by user input
-        public int numberOfBombs;
+        private int numberOfRows;                       //This variable indicates the number of rows. It has a default constructed value of 16 although it can be customized by user input
+        private int numberOfColumns;                    //This variable indicates the number of Columns. It has a default constructed value of 16 although it can be customized by user input
+        private int mineSizeInPixels;                   //This variable indicates the size of a possible mine space. It has a default constructed value of 20 although it can be customized by user input
+        private int numberOfBombs;
         private int gameMapWidthInPixels;
         private int gameMapHeightInPixels;
         private int columnPositionOfMouse;
@@ -24,35 +24,34 @@ namespace Minesweeper
         private int oldColumnPositionOfMouse;
         private int oldRowPositionOfMouse;
         private int automaticClickNumber;
-        public int totalNumberOfBombsLeft;
-        public int totalNumberOfSafeSpacesLeft;
-        public bool fromLoad = false;
-        public bool exitImmediately = false;
-        public DrawMap mapEditor;
+        private int totalNumberOfBombsLeft;
+        private int totalNumberOfSafeSpacesLeft;
+        private bool fromLoad = false;
+        private bool exitImmediately = false;
+        private DrawMap mapEditor;
 
         public PictureBox bitmapContainer;                  //This variable is the object we will display the object in.
-
 
         public enum MineSpaceStates
         {
             Initial,
-        MappedAsSafe,
-        FlaggedAsUnsafe,
-        Pressed
+            MappedAsSafe,
+            FlaggedAsUnsafe,
+            Pressed
         }
 
-        public MineSpaceStates[,] stateOfMineSpace;
-        public bool[,] containsMine;
+        private MineSpaceStates[,] stateOfMineSpace;
+        private bool[,] containsMine;
 
-       public Form Game;                                   //This is the object that will contain the game and game map
+        public Form Game;                                   //This is the object that will contain the game and game map
         public Label NumberOfBombsLeftLabel;
         public Label NumberOfSafeSpacesLeftLabel;
-        public MenuStrip myMenuStrip;
-        public ToolStripMenuItem File;
-        public ToolStripMenuItem NewGame;
-        public ToolStripMenuItem SaveGame;
-        public ToolStripMenuItem LoadGame;
-        public ToolStripMenuItem DeleteGame;
+        private MenuStrip myMenuStrip;
+        private ToolStripMenuItem File;
+        private ToolStripMenuItem NewGame;
+        private ToolStripMenuItem SaveGame;
+        private ToolStripMenuItem LoadGame;
+        private ToolStripMenuItem DeleteGame;
         #endregion
 
         #region Constructors
@@ -142,7 +141,10 @@ namespace Minesweeper
         #endregion
 
 
-
+        public void setExitImmediately(bool value)
+        {
+            exitImmediately = value;
+        }
 
         private void createMap()
         {
@@ -163,9 +165,9 @@ namespace Minesweeper
                 stateOfMineSpace = new MineSpaceStates[numberOfColumns, numberOfRows];      //Set the array size. All the elements are automatically intiated to zero, which is the value of initial state in our enum.
                 containsMine = new bool[numberOfColumns, numberOfRows];
             }
-            mapEditor = new DrawMap(this);
-            gameMapHeightInPixels = mapEditor.mapHeightInPixels;
-            gameMapWidthInPixels = mapEditor.mapWidthInPixels;
+            mapEditor = new DrawMap(this, numberOfColumns, numberOfRows, mineSizeInPixels);
+            gameMapHeightInPixels = mapEditor.getMapHeight();
+            gameMapWidthInPixels = mapEditor.getMapWidth();
             Game = new Form();
             Game.Show();
             Game.Location = new Point(0, 0);
@@ -299,7 +301,7 @@ namespace Minesweeper
                 totalNumberOfSafeSpacesLeft--;
                 if(totalNumberOfSafeSpacesLeft == 0)
                 {
-                    Ending end = new Ending(this);
+                    Ending end = new Ending(this, totalNumberOfBombsLeft, totalNumberOfSafeSpacesLeft, numberOfColumns,numberOfRows,stateOfMineSpace,containsMine);
                 }
                 NumberOfSafeSpacesLeftLabel.Text = totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
             }
@@ -309,7 +311,7 @@ namespace Minesweeper
 
                 //Higlight the current rectangle
                 mapEditor.DrawBitmap(column, row, Properties.Resources.mine1);
-                Ending end = new Ending(this,true);
+                Ending end = new Ending(this,true, totalNumberOfBombsLeft, totalNumberOfSafeSpacesLeft, numberOfColumns, numberOfRows, stateOfMineSpace, containsMine);
                 //this.EndReveal();
                 
             }
@@ -365,7 +367,7 @@ namespace Minesweeper
                         totalNumberOfBombsLeft--;
                         if(totalNumberOfBombsLeft == 0)
                         {
-                            Ending end = new Ending(this);
+                            Ending end = new Ending(this, totalNumberOfBombsLeft, totalNumberOfSafeSpacesLeft, numberOfColumns, numberOfRows, stateOfMineSpace, containsMine);
                         }
                         break;
                     case MineSpaceStates.FlaggedAsUnsafe:
@@ -376,7 +378,7 @@ namespace Minesweeper
                         totalNumberOfBombsLeft++;
                         if (totalNumberOfSafeSpacesLeft == 0)
                         {
-                            Ending end = new Ending(this);
+                            Ending end = new Ending(this, totalNumberOfBombsLeft, totalNumberOfSafeSpacesLeft, numberOfColumns, numberOfRows, stateOfMineSpace, containsMine);
                         }
 
                         break;
@@ -902,7 +904,7 @@ namespace Minesweeper
             DialogResult shouldSave = MessageBox.Show("Do you want to save your current game?", "Save Dialog", MessageBoxButtons.YesNo);
             if (shouldSave == DialogResult.Yes)
             {
-                ObjectController.createSaveGameDialog(this, GameFilesDialog.ActionsAfterDialog.Restart);
+                ObjectController.createSaveGameDialog(this, GameFilesDialog.ActionsAfterDialog.Restart, numberOfColumns, numberOfRows, stateOfMineSpace, containsMine);
             }
             else
             {
@@ -912,7 +914,7 @@ namespace Minesweeper
         }
         private void MenuSaveGame(object sender, EventArgs e)
         {
-            new SaveGame(this, GameFilesDialog.ActionsAfterDialog.Nothing);
+            new SaveGame(this, GameFilesDialog.ActionsAfterDialog.Nothing, numberOfColumns, numberOfRows, stateOfMineSpace, containsMine);
         }
         private void MenuLoadGame(object sender, EventArgs e)
         {

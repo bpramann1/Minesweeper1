@@ -1,0 +1,276 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Minesweeper</name>
+    </assembly>
+    <members>
+        <member name="T:Minesweeper.DeleteSave">
+            <summary>
+            This class is here to enable the user to delete save games through our interface.
+            </summary>
+        </member>
+        <member name="M:Minesweeper.DeleteSave.#ctor(Minesweeper.GameMap,Minesweeper.GameFilesDialog.ActionsAfterDialog)">
+            <summary>
+            This constructor creates an instance of the DeleteSave Class.
+            </summary>
+            <param name="sender">This is the object that created this instance</param>
+            <param name="actionAfterSave">This represents the action that we should take after we are done deleting games.</param>
+        </member>
+        <member name="M:Minesweeper.DeleteSave.ButtonClicked">
+            <summary>
+            This method overwrites the virtual method that the parent has. 
+            This method is used delete the currently selected save file.
+            </summary>
+        </member>
+        <member name="M:Minesweeper.DrawMap.#ctor(Minesweeper.GameMap,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            This is class creates the graphics for the game map. It draws its changes onto a bitmap that is the picture that the user sees as the game.
+            </summary>
+            <param name="sender">This parameter is the object that created an instance of this class. It is needed so that we can send it the updated bitmap to display it.</param>
+            <param name="NumberOfColumns">This parameter is the number of columns that the object that the sender has. This will be used to help us calculate the size of the map as well as for iterating through loops.</param>
+            <param name="NumberOfRows">This parameter is the number of rows that the object that the sender has. This will be used to help us calculate the size of the map as well as for iterating through loops.</param>
+            <param name="MineSizeInPixels">This parameter is the mine size that the object that the sender has. This will be used to help us calculate the size of the map as well.</param>
+        </member>
+        <member name="M:Minesweeper.DrawMap.getMapHeight">
+            <summary>
+            This Method is used to get the map height in pixels
+            </summary>
+            <returns>This method returns the height of the game map in pixels</returns>
+        </member>
+        <member name="M:Minesweeper.DrawMap.getMapWidth">
+            <summary>
+            This Method is used to get the map width in pixels
+            </summary>
+            <returns>This method returns the width of the game map in pixels</returns>
+        </member>
+        <member name="M:Minesweeper.DrawMap.InitializeVariables">
+            <summary>
+            This method initializes the variable used in this class. It also calculates the map width and the map height.
+            </summary>
+        </member>
+        <member name="M:Minesweeper.DrawMap.InitialDraw">
+            <summary>
+            This method draws a map of all initial mine spaces. It has the diminsions that are sent in to the constructor.
+            </summary>
+        </member>
+        <member name="M:Minesweeper.DrawMap.FillRectangle(System.Int32,System.Int32,System.Drawing.Brush)">
+            <summary>
+            This method draws a rectangle at the position defined by the position of the columnIndex and rowIndex parameters. It draws the rectangle with the brush that comes in as a parameter.
+            </summary>
+            <param name="columnIndex">This parameter defines the column location of the rectangle.</param>
+            <param name="rowIndex">This parameter defines the row location of the rectangle.</param>
+            <param name="brush">This parameter defines the brush to be used to draw the rectangle.</param>
+        </member>
+        <member name="M:Minesweeper.DrawMap.DrawBitmap(System.Int32,System.Int32,System.Drawing.Bitmap)">
+            <summary>
+            This method draws a bitmap at the position defined by the position of the columnIndex and rowIndex parameters.
+            </summary>
+            <param name="columnIndex">This parameter defines the column location to draw the bitmap.</param>
+            <param name="rowIndex">This parameter defines the row location to draw the bitmap.</param>
+            <param name="bitmap">This parameter defines which bitmap to draw.</param>
+        </member>
+        <member name="M:Minesweeper.DrawMap.RefreshScreen">
+            <summary>
+            This method outputs to the screen the updated bitmap inside the bitmap container which is a picture box.
+            </summary>
+        </member>
+        <member name="M:Minesweeper.DrawMap.DrawString(System.String,System.Int32,System.Int32)">
+            <summary>
+            This method draws a string at the position defined by the position of the columnIndex and rowIndex parameters. It draws it in a predefined font with a black color.
+            </summary>
+            <param name="outputString"> This parameter defines the string to be displayed to the screen</param>
+            <param name="column">This parameter defines the column location to draw the string.</param>
+            <param name="row">This parameter defines the row location to draw the string.</param>
+        </member>
+        <member name="T:Minesweeper.Form1">
+            <summary>
+            This class manages the window that accepts the game specifications from the user
+            </summary>
+        </member>
+        <member name="F:Minesweeper.Form1.game">
+            <summary>
+            The window that contains the main game area. This class opens the game if it is provided with valid input. 
+            </summary>
+        </member>
+        <member name="M:Minesweeper.Form1.#ctor">
+            <summary>
+            Initializes the data contained by the class.
+            </summary>
+        </member>
+        <member name="M:Minesweeper.Form1.continueButton_Click_1(System.Object,System.EventArgs)">
+            <summary>
+            Varifies that the input given to the main window is valid and if it is opens the game window. 
+            </summary>
+            <param name="sender">
+            Contains information about the object that send the event.
+            Unused by the current implementation of the function but because the 
+            function was generated by visual studio it was left in place. 
+            </param>
+            <param name="e">
+            Contians information about the event that caused the function to be called.
+            Unused by the current implementation of the function but because the 
+            function was generated by visual studio it was left in place. 
+            </param>
+        </member>
+        <member name="F:Minesweeper.Form1.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Minesweeper.Form1.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Minesweeper.Form1.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:Minesweeper.LoseScreen.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Minesweeper.LoseScreen.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Minesweeper.LoseScreen.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Minesweeper.ObjectController">
+            <summary>
+            This class is used to create objects.
+            </summary>
+        </member>
+        <member name="M:Minesweeper.ObjectController.createGameMap">
+            <summary>
+            This method creates an instance of the GameMap class.
+            </summary>
+        </member>
+        <member name="M:Minesweeper.ObjectController.createGameMapFromLoad(System.Int32,System.Int32,System.Boolean[0:,0:],Minesweeper.GameMap.MineSpaceStates[0:,0:])">
+            <summary>
+            This method creates an instance of the GameMap class from a load.
+            </summary>
+            <param name="NumberOfColumns">This is the number of columns that the new map will have.</param>
+            <param name="NumberOfRows">This is the number of rows that the new map will have.</param>
+            <param name="ContainsMine">This is a two diminsional array of bool that describes if there is a mine at the current position of the array. A value of 1 means that the array contains a mine.</param>
+            <param name="StateOfMineSpace">This is a two diminsional array of an enum. The enum represents the current state of a mine space that is denoted by the column and row index.</param>
+        </member>
+        <member name="M:Minesweeper.ObjectController.createSaveGameDialog(Minesweeper.GameMap,Minesweeper.GameFilesDialog.ActionsAfterDialog,System.Int32,System.Int32,Minesweeper.GameMap.MineSpaceStates[0:,0:],System.Boolean[0:,0:])">
+            <summary>
+            This method creates an instance of the SaveGame class.
+            </summary>
+            <param name="sender">This is the object that called this method</param>
+            <param name="actionAfterSave">This is an enum value that tells the SaveGame instance what it should do when it is done.</param>
+            <param name="NumberOfColumns">This value represents how many columns the object that called this method has.</param>
+            <param name="NumberOfRows">This value represents how many rows the object that called this method has.</param>
+            <param name="StateOfMineSpace">This is a two diminsional array of an enum. The enum represents the current state of a mine space that is denoted by the column and row index.</param>
+            <param name="ContainsMine">This is a two diminsional array of bool that describes if there is a mine at the current position of the array. A value of 1 means that the array contains a mine.</param>
+        </member>
+        <member name="M:Minesweeper.ObjectController.createLoadGameDialog(Minesweeper.GameMap)">
+            <summary>
+            This method creates an instance of the load game class.
+            </summary>
+            <param name="sender">This is the object that called this method.</param>
+        </member>
+        <member name="M:Minesweeper.ObjectController.deleteSaveGameDialog(Minesweeper.GameMap,Minesweeper.GameFilesDialog.ActionsAfterDialog)">
+            <summary>
+            This method creates an instance of the DeleteSave class.
+            </summary>
+            <param name="sender">This is the object that called this method.</param>
+            <param name="actionAfterSave">This is what the DeleteSave instance should do after it is done.</param>
+        </member>
+        <member name="M:Minesweeper.Program.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:Minesweeper.SaveTypeDialog">
+            <summary>
+            This class is here to be inherited by the SaveGame, LoadGame, and Delete game class. This class is basically virtual.
+            </summary>
+        </member>
+        <member name="M:Minesweeper.SaveTypeDialog.#ctor">
+            <summary>
+            This creates an instance of the Save Type Class. This should not be used.
+            </summary>
+        </member>
+        <member name="M:Minesweeper.SaveTypeDialog.ButtonClicked">
+            <summary>
+            This method is a virtual method that should be overwritten by all the children of this class.
+            </summary>
+        </member>
+        <member name="F:Minesweeper.WinScreen.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Minesweeper.WinScreen.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Minesweeper.WinScreen.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Minesweeper.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Minesweeper.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Minesweeper.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Minesweeper.Properties.Resources.greenflag">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Minesweeper.Properties.Resources.mine1">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Minesweeper.Properties.Resources.mine2">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Minesweeper.Properties.Resources.redflag">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Minesweeper.Properties.Resources.retroExplosion">
+            <summary>
+              Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+            </summary>
+        </member>
+        <member name="P:Minesweeper.Properties.Resources.won_game">
+            <summary>
+              Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+            </summary>
+        </member>
+    </members>
+</doc>

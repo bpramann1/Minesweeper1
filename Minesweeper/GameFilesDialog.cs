@@ -15,10 +15,10 @@ namespace Minesweeper
         private TextBox selectedGameTextbox;
         private Label saveGamesLabel;
         private Label saveGameLabel;
-        public Button saveGameButton;
-        public string saveString;
-        public bool dialogDone = false;
-        public GameMap GameMapSender;
+        private Button saveGameButton;
+        private string saveString;
+        private bool dialogDone = false;
+        private GameMap GameMapSender;
         private SaveTypeDialog senderObject;
         private string callType;
 
@@ -30,16 +30,27 @@ namespace Minesweeper
         }
         private ActionsAfterDialog actionAfterDialog;
 
-        public GameFilesDialog(ActionsAfterDialog ActionAfterDialog, GameMap gameMapSender, SaveTypeDialog sender, string finishString)
+        public GameFilesDialog(ActionsAfterDialog ActionAfterDialog, GameMap gameMapSender, SaveTypeDialog sender, string finishString, string buttonText)
         {
             callType = finishString;
             GameMapSender = gameMapSender;
             senderObject = sender;
             actionAfterDialog = ActionAfterDialog;
             CreateDialog();
+            saveGameButton.Text = buttonText;
         }
 
-        public void CreateDialog()
+        public string getSaveString()
+        {
+            return saveString;
+        }
+
+        public void setDialogDone(bool value)
+        {
+            dialogDone = value;
+        }
+
+        private void CreateDialog()
         {
             GameFilesForm = new Form();
             GameFilesForm.TopMost = true;
@@ -182,7 +193,7 @@ namespace Minesweeper
                 senderObject.ButtonClicked();
             }
         }
-        public bool alreadyExists()
+        public bool saveStringAlreadyExists()
         {
             foreach (object item in savedGamesList.Items)
             {
