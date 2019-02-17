@@ -8,7 +8,7 @@ using System.Windows.Forms;
 namespace Minesweeper
 {
     /// <summary>
-    /// Handles the loading of an old file 
+    /// Handles the loading of a previously saved game 
     /// </summary>
     class LoadGame : SaveTypeDialog
     {

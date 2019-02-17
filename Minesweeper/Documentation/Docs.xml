@@ -637,7 +637,7 @@
         </member>
         <member name="T:Minesweeper.LoadGame">
             <summary>
-            Handles the loading of an old file 
+            Handles the loading of a previously saved game 
             </summary>
         </member>
         <member name="M:Minesweeper.LoadGame.#ctor(Minesweeper.GameMap)">
@@ -726,6 +726,38 @@
             An array of bools that represents whether or not each cell contains a mine 
             </returns>
         </member>
+        <member name="T:Minesweeper.LoseScreen">
+            <summary>
+            Displays a screen that tells the player they've lost and allows them to play again 
+            </summary>
+        </member>
+        <member name="M:Minesweeper.LoseScreen.#ctor">
+            <summary>
+            Constructs a new lose screen 
+            </summary>
+        </member>
+        <member name="M:Minesweeper.LoseScreen.retryButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            Presents the user with a new game menu 
+            </summary>
+            <param name="sender">
+            Contains info about the object that called this function
+            </param>
+            <param name="e">
+            Contains info about the event that caused the function to be called 
+            </param>
+        </member>
+        <member name="M:Minesweeper.LoseScreen.quitButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            Quits the game 
+            </summary>
+            <param name="sender">
+            Contains info about the object that called this function
+            </param>
+            <param name="e">
+            Contains info about the even that caused this function to be called 
+            </param>
+        </member>
         <member name="F:Minesweeper.LoseScreen.components">
             <summary>
             Required designer variable.
@@ -790,6 +822,40 @@
             <summary>
             The main entry point for the application.
             </summary>
+        </member>
+        <member name="T:Minesweeper.SaveGame">
+            <summary>
+            This class enables the user to save a game through our user interface.
+            </summary>
+        </member>
+        <member name="M:Minesweeper.SaveGame.#ctor(Minesweeper.GameMap,Minesweeper.GameFilesDialog.ActionsAfterDialog,System.Int32,System.Int32,Minesweeper.GameMap.MineSpaceStates[0:,0:],System.Boolean[0:,0:])">
+            <summary>
+            Creates an instance of the SaveGame Class.
+            </summary>
+            <param name="sender">This is the object that called this constructor.</param>
+            <param name="actionAfterSave">This is the action that this class should do when it is done.</param>
+            <param name="NumberOfColumns">This is number of columns that the GameMap that called it has.</param>
+            <param name="NumberOfRows">This is number of rows that the GameMap that called it has.</param>
+            <param name="StateOfMineSpace">This is a two diminsional array that represents the state of each mine space that the GameMap that called it has.</param>
+            <param name="ContainsMine">This is a two diminsional array that represents whether each mine space has a mine for the GameMap object that called it has.</param>
+        </member>
+        <member name="M:Minesweeper.SaveGame.ButtonClicked">
+            <summary>
+            Overwrites the virtual method that the parent has. 
+            Saves the currently selected save file.
+            </summary>
+        </member>
+        <member name="M:Minesweeper.SaveGame.writeNewLineText(System.String)">
+            <summary>
+            Writes a string of text followed by a new line.
+            </summary>
+            <param name="text">This is the string that is written</param>
+        </member>
+        <member name="M:Minesweeper.SaveGame.writeSpaceText(System.String)">
+            <summary>
+            Writes a string of text followed by a space.
+            </summary>
+            <param name="text">This is the string that is written</param>
         </member>
         <member name="T:Minesweeper.SaveTypeDialog">
             <summary>
