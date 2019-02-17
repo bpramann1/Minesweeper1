@@ -1,73 +1,222 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <HelpKI>
+  <HelpKINode Title="actionAfterDialog field" Url="html/a89ad007-a4d7-d55c-a009-5d1990363645.htm" />
+  <HelpKINode Title="automaticClickNumber field" Url="html/90e3cb70-3b5d-6f61-b10c-1ca3d4360245.htm" />
   <HelpKINode Title="bitmapContainer field" Url="html/8d377fb0-effd-3512-f9f3-55024841ad95.htm" />
+  <HelpKINode Title="ButtonClicked method">
+    <HelpKINode Title="DeleteSave.ButtonClicked Method " Url="html/d32276e8-b444-be05-fcb9-d4212c95c26d.htm" />
+    <HelpKINode Title="GameFilesDialog.ButtonClicked Method " Url="html/d8e085ba-51da-c554-6f10-ddbda8cc510f.htm" />
+    <HelpKINode Title="LoadGame.ButtonClicked Method " Url="html/3225c3fa-c551-d909-b313-507c71753ca2.htm" />
+    <HelpKINode Title="SaveGame.ButtonClicked Method " Url="html/ac22187d-430e-2bf8-5d54-31e144fa2eec.htm" />
+    <HelpKINode Title="SaveTypeDialog.ButtonClicked Method " Url="html/8fa3bdf7-31c0-d433-b418-49348fa85437.htm" />
+  </HelpKINode>
   <HelpKINode Title="caller field" Url="html/e04c57c8-df24-d051-656b-1207503b11db.htm" />
-  <HelpKINode Title="containsMine field" Url="html/82d03782-d0b6-f7ac-fcf0-a5c3524c26ce.htm" />
-  <HelpKINode Title="DeleteGame field" Url="html/4e37fd68-3aa7-8df6-bc24-9e15cbf31d3c.htm" />
+  <HelpKINode Title="callType field" Url="html/71cd882b-5db3-2469-5c40-ed7b26369983.htm" />
+  <HelpKINode Title="ClickAdjacentSpacesDownFirst method" Url="html/d52b1ccf-6679-b96e-6a4f-fe30ae69ed0e.htm" />
+  <HelpKINode Title="ClickAdjacentSpacesGeneric method" Url="html/06d4b774-1ab1-e1a5-a5e8-aa7c1948a87a.htm" />
+  <HelpKINode Title="ClickAdjacentSpacesLeftFirst method" Url="html/096f4c75-ec8b-bca3-c26f-5a11cb72f88b.htm" />
+  <HelpKINode Title="ClickAdjacentSpacesRightFirst method" Url="html/b8fe0fb5-db1f-2305-d90e-e3752029fd6f.htm" />
+  <HelpKINode Title="ClickAdjacentSpacesUpFirst method" Url="html/6806d4fa-4891-461f-e5df-976da3c49091.htm" />
+  <HelpKINode Title="columnPositionOfMouse field" Url="html/f4000ea2-4e55-e6d9-676b-080d0eb890b7.htm" />
+  <HelpKINode Title="ColumnRowInGameArray method" Url="html/0c000cf4-462d-b07a-c50a-8cc4a7052304.htm" />
+  <HelpKINode Title="columnTextBox field" Url="html/dad0d306-a840-49f3-6e5f-b04c1b177364.htm" />
+  <HelpKINode Title="components field">
+    <HelpKINode Title="Form1.components Field" Url="html/ca0918cd-64ac-46f7-cbef-7ebf29de1e49.htm" />
+    <HelpKINode Title="LoseScreen.components Field" Url="html/2b3b9d66-76b6-7134-4ad9-8bde81e2f362.htm" />
+    <HelpKINode Title="WinScreen.components Field" Url="html/ba1e0137-ae95-6bc9-49c7-8de12268f732.htm" />
+  </HelpKINode>
+  <HelpKINode Title="containsMine field">
+    <HelpKINode Title="Ending.containsMine Field" Url="html/43cf45dc-6054-f96f-437f-2579134cb59d.htm" />
+    <HelpKINode Title="GameMap.containsMine Field" Url="html/82d03782-d0b6-f7ac-fcf0-a5c3524c26ce.htm" />
+    <HelpKINode Title="LoadGame.containsMine Field" Url="html/ee931d2f-c6cc-2ec6-1c60-36a9af11ec17.htm" />
+    <HelpKINode Title="SaveGame.containsMine Field" Url="html/306e8187-ef75-fd1c-71ae-45def79008d1.htm" />
+  </HelpKINode>
+  <HelpKINode Title="continueButton field" Url="html/0a284170-55fc-3350-1b5d-cd0f1fa2a149.htm" />
+  <HelpKINode Title="continueButton_Click_1 method" Url="html/6dfcc8a1-8999-5b72-84df-263ef14bb32c.htm" />
+  <HelpKINode Title="CreateBombMap method" Url="html/3257dd07-24af-2277-2e62-d2a52f373919.htm" />
+  <HelpKINode Title="CreateDialog method" Url="html/8c660aa8-5aee-713a-221f-919dbf1d92ee.htm" />
+  <HelpKINode Title="createGameMap method" Url="html/4a98bfac-7c76-0fa5-54d4-6f7397536f06.htm" />
+  <HelpKINode Title="createGameMapFromLoad method" Url="html/e324be2a-b944-5d56-13dc-faec5902b7f7.htm" />
+  <HelpKINode Title="createLoadGameDialog method" Url="html/51679f1e-2bc8-d8f0-44e8-c78e01a04d31.htm" />
+  <HelpKINode Title="createMap method" Url="html/564b55a1-918c-8974-2b0f-d8d3159b1bf3.htm" />
+  <HelpKINode Title="createSaveGameDialog method" Url="html/c694732e-e665-43ed-da8f-2524f20e5960.htm" />
+  <HelpKINode Title="DeleteGame field">
+    <HelpKINode Title="GameMap.DeleteGame Field" Url="html/4e37fd68-3aa7-8df6-bc24-9e15cbf31d3c.htm" />
+    <HelpKINode Title="ObjectController.DeleteGame Field" Url="html/62da390c-201a-9b3c-9598-4e04653bc057.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DeleteSave class">
+    <HelpKINode Title="DeleteSave Class" Url="html/b8cc50e7-72ef-7caf-b402-d660027d00b1.htm" />
+    <HelpKINode Title="constructor" Url="html/18435d3a-b2ac-2d86-24c8-6f48f6a2e5df.htm" />
+    <HelpKINode Title="fields" Url="html/773609fe-c224-acfc-24cc-0dd39de9906e.htm" />
+    <HelpKINode Title="methods" Url="html/8a4a5607-f1df-fff8-6198-773cfe464816.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DeleteSave.ButtonClicked method" Url="html/d32276e8-b444-be05-fcb9-d4212c95c26d.htm" />
+  <HelpKINode Title="DeleteSave.DeleteSave constructor" Url="html/18435d3a-b2ac-2d86-24c8-6f48f6a2e5df.htm" />
+  <HelpKINode Title="DeleteSave.GameMapSender field" Url="html/8affe475-862d-dab6-902f-85c39dd03aed.htm" />
+  <HelpKINode Title="DeleteSave.saveDialog field" Url="html/04c0466c-dd62-7394-668a-825aa915b72e.htm" />
+  <HelpKINode Title="DeleteSave.saveString field" Url="html/e4b8f9a4-9797-0c79-8b25-18c983634ef1.htm" />
+  <HelpKINode Title="deleteSaveGameDialog method" Url="html/901dd6e2-d5a3-67c5-1caa-6e4555d03524.htm" />
+  <HelpKINode Title="dialogDone field" Url="html/1c001009-295f-99cc-7792-4a4c969ba82a.htm" />
   <HelpKINode Title="Dispose method">
-    <HelpKINode Title="Form1.Dispose Method " Url="html/b688c31e-6b9c-a7a1-a0df-8db858617048.htm" />
-    <HelpKINode Title="LoseScreen.Dispose Method " Url="html/31cc6cdf-75fa-aa05-b25f-fb5fb149b060.htm" />
-    <HelpKINode Title="WinScreen.Dispose Method " Url="html/9ae2c7fe-29cc-6f42-86c6-44111e8d4073.htm" />
+    <HelpKINode Title="Form1.Dispose Method " Url="html/5da54656-c6bb-49c5-5da1-425c0c06b586.htm" />
+    <HelpKINode Title="LoseScreen.Dispose Method " Url="html/509f07c4-96fe-c677-1a52-113c8680efed.htm" />
+    <HelpKINode Title="WinScreen.Dispose Method " Url="html/3f7182e9-275b-3b51-95f6-ecbed77f68d7.htm" />
   </HelpKINode>
   <HelpKINode Title="DrawBitmap method" Url="html/98b3ca9b-23af-1ec3-2f24-c49c0cd8ba4a.htm" />
   <HelpKINode Title="DrawMap class">
     <HelpKINode Title="DrawMap Class" Url="html/c79cb599-5cbf-ba1c-180f-e74fc2c8b512.htm" />
-    <HelpKINode Title="constructor" Url="html/b33ad9c7-543e-01b7-6c56-72ec1519fa4b.htm" />
+    <HelpKINode Title="constructor" Url="html/5a730118-bd7c-f636-9478-6b7ea4b5251f.htm" />
     <HelpKINode Title="fields" Url="html/f020a999-8b19-1458-6aec-fd0f54e97b9e.htm" />
     <HelpKINode Title="methods" Url="html/c2c8d66a-4f9f-df2e-1b6f-79fa4ed1ed1f.htm" />
   </HelpKINode>
+  <HelpKINode Title="drawMap method" Url="html/48d25d56-c619-94ce-3200-411f1e92898b.htm" />
   <HelpKINode Title="DrawMap.caller field" Url="html/e04c57c8-df24-d051-656b-1207503b11db.htm" />
   <HelpKINode Title="DrawMap.DrawBitmap method" Url="html/98b3ca9b-23af-1ec3-2f24-c49c0cd8ba4a.htm" />
-  <HelpKINode Title="DrawMap.DrawMap constructor" Url="html/b33ad9c7-543e-01b7-6c56-72ec1519fa4b.htm" />
+  <HelpKINode Title="DrawMap.DrawMap constructor" Url="html/5a730118-bd7c-f636-9478-6b7ea4b5251f.htm" />
   <HelpKINode Title="DrawMap.DrawString method" Url="html/d4c106e4-8e1d-f57d-ff3e-cdec7e888382.htm" />
   <HelpKINode Title="DrawMap.FillRectangle method" Url="html/03be8388-07b6-5391-6715-98587ad692ea.htm" />
+  <HelpKINode Title="DrawMap.font field" Url="html/0ec886b2-61c4-483a-2158-5ff3eac90693.htm" />
+  <HelpKINode Title="DrawMap.getMapHeight method" Url="html/3ac4910a-5f4a-1ab7-c80f-b2a598246d3c.htm" />
+  <HelpKINode Title="DrawMap.getMapWidth method" Url="html/89eace5e-aeb4-ccd7-d1b0-7a3f9953bd3f.htm" />
   <HelpKINode Title="DrawMap.InitialDraw method" Url="html/c51dcfda-46d7-a744-b189-c8701e4e762e.htm" />
+  <HelpKINode Title="DrawMap.InitializeVariables method" Url="html/a2658585-e006-3ffb-1755-4b39a416cdd0.htm" />
   <HelpKINode Title="DrawMap.mapHeightInPixels field" Url="html/42704e0e-c1ca-77a3-6677-7869585b0eef.htm" />
   <HelpKINode Title="DrawMap.mapWidthInPixels field" Url="html/893e783d-1461-7f73-3279-dc1caab77781.htm" />
+  <HelpKINode Title="DrawMap.mineSizeInPixels field" Url="html/67212973-9eda-d18f-94fc-3ca2dcfb9776.htm" />
   <HelpKINode Title="DrawMap.numberOfColumns field" Url="html/5924a803-7d33-af27-4bdc-e923246a349e.htm" />
   <HelpKINode Title="DrawMap.numberOfRows field" Url="html/19f48d1a-e761-2c17-c0d4-1a52b42b4f79.htm" />
   <HelpKINode Title="DrawMap.RefreshScreen method" Url="html/98e452be-6a22-26a4-6fba-33cb70dac92f.htm" />
   <HelpKINode Title="DrawMap.updateScreenBitmap field" Url="html/dbd6dbc8-d077-061f-e2aa-9b2cff225033.htm" />
   <HelpKINode Title="DrawMap.updateScreenGraphics field" Url="html/6fcb1d26-93ef-84d5-5f8b-96fa68953fff.htm" />
   <HelpKINode Title="DrawString method" Url="html/d4c106e4-8e1d-f57d-ff3e-cdec7e888382.htm" />
+  <HelpKINode Title="Ending class">
+    <HelpKINode Title="Ending Class" Url="html/e4cff22b-22fb-b114-97da-825eb16d40ee.htm" />
+    <HelpKINode Title="constructor" Url="html/52224445-fa3b-73a4-4e34-a3b6774eb437.htm" />
+    <HelpKINode Title="fields" Url="html/fbc1586a-c703-085e-72bf-9052cb03f4ce.htm" />
+    <HelpKINode Title="methods" Url="html/c39e66c2-da32-f5cc-5271-9f17434a5efe.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Ending.containsMine field" Url="html/43cf45dc-6054-f96f-437f-2579134cb59d.htm" />
+  <HelpKINode Title="Ending.Ending constructor" Url="html/52224445-fa3b-73a4-4e34-a3b6774eb437.htm" />
+  <HelpKINode Title="Ending.endResult method" Url="html/a331fae8-214e-420a-a911-805e078e26db.htm" />
+  <HelpKINode Title="Ending.gameWon field" Url="html/796018a6-3f65-893d-4a73-3df73df86cb5.htm" />
+  <HelpKINode Title="Ending.hitBomb field" Url="html/adf18c6a-c13f-1982-8ac8-2f3963aa3c8f.htm" />
+  <HelpKINode Title="Ending.hitMine method" Url="html/4b0d4647-07ca-9222-224d-1d1a6806f787.htm" />
+  <HelpKINode Title="Ending.numberOfColumns field" Url="html/b9720292-bdad-bc2c-4724-862553acc219.htm" />
+  <HelpKINode Title="Ending.numberOfRows field" Url="html/059de065-29f4-80e5-c038-b0840376d5b7.htm" />
+  <HelpKINode Title="Ending.stateOfMineSpace field" Url="html/cf342c33-644f-fcde-6e33-3f2a484523f3.htm" />
+  <HelpKINode Title="Ending.totalNumberOfBombsLeft field" Url="html/254d757b-0d0d-3eeb-47ff-42066b8f274b.htm" />
+  <HelpKINode Title="Ending.totalNumberOfSafeSpacesLeft field" Url="html/13a10014-3f97-3698-b816-56eb072d8aae.htm" />
+  <HelpKINode Title="endResult method" Url="html/a331fae8-214e-420a-a911-805e078e26db.htm" />
   <HelpKINode Title="EndReveal method" Url="html/14ab00a7-b64d-6628-67ac-89f43b4bc094.htm" />
+  <HelpKINode Title="Exit enumeration member" Url="html/8382103f-28ad-bb39-16f4-afe696bff4eb.htm" />
+  <HelpKINode Title="ExitApplication method" Url="html/657b83fe-7290-f5cc-877e-1ad5b586a411.htm" />
+  <HelpKINode Title="ExitButtonClicked method" Url="html/4ff4a6a7-02cc-bf9a-5e8d-ae4f8855b98d.htm" />
   <HelpKINode Title="exitImmediately field" Url="html/7dadabe4-5c61-4c17-bf11-f1f815caf42d.htm" />
   <HelpKINode Title="File field" Url="html/96c2f0da-114b-c851-2c17-c8fc22c4ff96.htm" />
   <HelpKINode Title="FillRectangle method" Url="html/03be8388-07b6-5391-6715-98587ad692ea.htm" />
   <HelpKINode Title="FlaggedAsUnsafe enumeration member" Url="html/37d519be-0fdf-1795-3ccf-29fade5f2efe.htm" />
+  <HelpKINode Title="font field" Url="html/0ec886b2-61c4-483a-2158-5ff3eac90693.htm" />
   <HelpKINode Title="Form1 class">
     <HelpKINode Title="Form1 Class" Url="html/7b369a74-60fb-42c3-465a-e67422ab3065.htm" />
     <HelpKINode Title="constructor" Url="html/42a351ef-e3c6-cb57-4814-40c326a4b946.htm" />
-    <HelpKINode Title="events" Url="html/326fb6c4-49de-0d0f-2e64-f0c9aee2388c.htm" />
     <HelpKINode Title="fields" Url="html/d98737e9-ac5a-37f8-8fef-6863f4e5085b.htm" />
     <HelpKINode Title="methods" Url="html/511f2322-4f57-e5d2-5197-6bd44fcffb15.htm" />
-    <HelpKINode Title="properties" Url="html/c612b2cf-849f-5d0f-3586-6c0da98a5eb1.htm" />
   </HelpKINode>
-  <HelpKINode Title="Form1.Dispose method" Url="html/b688c31e-6b9c-a7a1-a0df-8db858617048.htm" />
+  <HelpKINode Title="Form1.columnTextBox field" Url="html/dad0d306-a840-49f3-6e5f-b04c1b177364.htm" />
+  <HelpKINode Title="Form1.components field" Url="html/ca0918cd-64ac-46f7-cbef-7ebf29de1e49.htm" />
+  <HelpKINode Title="Form1.continueButton field" Url="html/0a284170-55fc-3350-1b5d-cd0f1fa2a149.htm" />
+  <HelpKINode Title="Form1.continueButton_Click_1 method" Url="html/6dfcc8a1-8999-5b72-84df-263ef14bb32c.htm" />
+  <HelpKINode Title="Form1.Dispose method" Url="html/5da54656-c6bb-49c5-5da1-425c0c06b586.htm" />
   <HelpKINode Title="Form1.Form1 constructor" Url="html/42a351ef-e3c6-cb57-4814-40c326a4b946.htm" />
   <HelpKINode Title="Form1.game field" Url="html/dcb1f464-b28c-a9e4-fa23-f618c4279d5f.htm" />
+  <HelpKINode Title="Form1.InitializeComponent method" Url="html/684ec12c-29a8-ef82-1757-cb607e3c69d7.htm" />
+  <HelpKINode Title="Form1.label1 field" Url="html/1d1dbc09-743c-bd50-0437-2a74478911b7.htm" />
+  <HelpKINode Title="Form1.label2 field" Url="html/354e1bd0-a0de-6f62-c83f-d405334a8ce4.htm" />
+  <HelpKINode Title="Form1.label3 field" Url="html/bd5af900-90bb-df42-3750-e6a867f4f5c6.htm" />
+  <HelpKINode Title="Form1.label4 field" Url="html/7be2e7d0-82b3-e872-1e39-d3b7fb5c6d3e.htm" />
+  <HelpKINode Title="Form1.mineTextBox field" Url="html/9eabb07f-1d55-da03-5df0-1cae7faa3562.htm" />
+  <HelpKINode Title="Form1.rowTextBox field" Url="html/d8c3b384-f7ac-acfb-3926-038fe14e96aa.htm" />
+  <HelpKINode Title="Form1.tableLayoutPanel1 field" Url="html/200e7d43-8576-7f66-027b-0ced736af93a.htm" />
+  <HelpKINode Title="Form1.tableLayoutPanel2 field" Url="html/b6c29b6a-e1ec-3307-f59e-6631e89f2feb.htm" />
   <HelpKINode Title="fromLoad field" Url="html/ed4be997-12d6-597b-ddb2-ab8ac65a07e6.htm" />
-  <HelpKINode Title="Game field" Url="html/442bc1f7-848e-8ad3-8a4d-c93d233bd896.htm" />
   <HelpKINode Title="game field" Url="html/dcb1f464-b28c-a9e4-fa23-f618c4279d5f.htm" />
+  <HelpKINode Title="Game field" Url="html/442bc1f7-848e-8ad3-8a4d-c93d233bd896.htm" />
+  <HelpKINode Title="gameExists field" Url="html/d232df86-e87b-842d-25e0-6c2fab13f1e4.htm" />
+  <HelpKINode Title="GameFilesDialog class">
+    <HelpKINode Title="GameFilesDialog Class" Url="html/da002743-27c4-1d26-6a4a-e2dbf100f51f.htm" />
+    <HelpKINode Title="constructor" Url="html/4db18ab0-ffdd-2bd3-0be8-a8fa48f6057b.htm" />
+    <HelpKINode Title="fields" Url="html/5056e45a-7ec1-825e-4a2a-76c91d40c328.htm" />
+    <HelpKINode Title="methods" Url="html/944a9b50-d5dd-9544-b006-7b2cebd902ee.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GameFilesDialog.actionAfterDialog field" Url="html/a89ad007-a4d7-d55c-a009-5d1990363645.htm" />
+  <HelpKINode Title="GameFilesDialog.ActionsAfterDialog enumeration" Url="html/8382103f-28ad-bb39-16f4-afe696bff4eb.htm" />
+  <HelpKINode Title="GameFilesDialog.ButtonClicked method" Url="html/d8e085ba-51da-c554-6f10-ddbda8cc510f.htm" />
+  <HelpKINode Title="GameFilesDialog.callType field" Url="html/71cd882b-5db3-2469-5c40-ed7b26369983.htm" />
+  <HelpKINode Title="GameFilesDialog.CreateDialog method" Url="html/8c660aa8-5aee-713a-221f-919dbf1d92ee.htm" />
+  <HelpKINode Title="GameFilesDialog.dialogDone field" Url="html/1c001009-295f-99cc-7792-4a4c969ba82a.htm" />
+  <HelpKINode Title="GameFilesDialog.ExitButtonClicked method" Url="html/4ff4a6a7-02cc-bf9a-5e8d-ae4f8855b98d.htm" />
+  <HelpKINode Title="GameFilesDialog.GameFilesDialog constructor" Url="html/4db18ab0-ffdd-2bd3-0be8-a8fa48f6057b.htm" />
+  <HelpKINode Title="GameFilesDialog.GameFilesForm field" Url="html/a76e3573-7a72-3804-4360-2298ff865758.htm" />
+  <HelpKINode Title="GameFilesDialog.GameMapSender field" Url="html/ec32627d-2504-0fab-0899-4e179cab8402.htm" />
+  <HelpKINode Title="GameFilesDialog.getSaveString method" Url="html/ad5d4a8d-601e-1a9d-49dd-8ac602605e13.htm" />
+  <HelpKINode Title="GameFilesDialog.IsLetter method" Url="html/f3667eb1-fff5-d488-35e5-eb27249b24e5.htm" />
+  <HelpKINode Title="GameFilesDialog.PopulateSaveList method" Url="html/1c227f98-94c5-3afc-8969-6707bde0a8ce.htm" />
+  <HelpKINode Title="GameFilesDialog.savedGamesList field" Url="html/1d2cef7c-0b09-7d0d-07cd-170b587c7d91.htm" />
+  <HelpKINode Title="GameFilesDialog.saveGameButton field" Url="html/81eaebc5-0298-b6a5-aa5a-9b86a1143170.htm" />
+  <HelpKINode Title="GameFilesDialog.SaveGameDialogDone method" Url="html/3249adfc-effe-b0cc-c640-9d9c72b9be9a.htm" />
+  <HelpKINode Title="GameFilesDialog.saveGameLabel field" Url="html/06f3c5b8-fe88-e669-e5c4-94235d1e7dc1.htm" />
+  <HelpKINode Title="GameFilesDialog.saveGamesLabel field" Url="html/7be81b13-8414-65e8-c00c-9d2839cb83e2.htm" />
+  <HelpKINode Title="GameFilesDialog.SaveListItemDoubleClicked method" Url="html/fba2e10b-bbf0-3875-b26e-df6abec85761.htm" />
+  <HelpKINode Title="GameFilesDialog.SaveListItemSingleClicked method" Url="html/bd08a27c-b789-0ba9-0e09-d9bd93b5ec11.htm" />
+  <HelpKINode Title="GameFilesDialog.saveString field" Url="html/c25d1919-d18e-980b-f653-5ec45fa5c735.htm" />
+  <HelpKINode Title="GameFilesDialog.saveStringAlreadyExists method" Url="html/673c3fb9-43ad-177e-c05f-507890e3004f.htm" />
+  <HelpKINode Title="GameFilesDialog.selectedGameTextbox field" Url="html/4cd653ce-1f70-f3cc-9ec0-d0ac8825ba1e.htm" />
+  <HelpKINode Title="GameFilesDialog.senderObject field" Url="html/8c857080-de89-8c07-3790-6475a438a917.htm" />
+  <HelpKINode Title="GameFilesDialog.setDialogDone method" Url="html/f00d2bc1-c263-f6cf-99be-37dbd8dfdc70.htm" />
+  <HelpKINode Title="GameFilesForm field" Url="html/a76e3573-7a72-3804-4360-2298ff865758.htm" />
   <HelpKINode Title="GameMap class">
     <HelpKINode Title="GameMap Class" Url="html/db2413e3-6868-d713-ceb2-14038c6738ba.htm" />
     <HelpKINode Title="constructor" Url="html/8d368d00-9685-b682-2ef1-c6035f7a00e0.htm" />
     <HelpKINode Title="fields" Url="html/3d48fa83-61a8-d88a-594c-e265f986e85a.htm" />
     <HelpKINode Title="methods" Url="html/92b5db80-e95a-afee-cc9c-c5684beb6487.htm" />
   </HelpKINode>
+  <HelpKINode Title="gameMap field" Url="html/e1e5c4e2-1e6b-10b4-7af0-02514f483143.htm" />
+  <HelpKINode Title="GameMap.automaticClickNumber field" Url="html/90e3cb70-3b5d-6f61-b10c-1ca3d4360245.htm" />
   <HelpKINode Title="GameMap.bitmapContainer field" Url="html/8d377fb0-effd-3512-f9f3-55024841ad95.htm" />
+  <HelpKINode Title="GameMap.ClickAdjacentSpacesDownFirst method" Url="html/d52b1ccf-6679-b96e-6a4f-fe30ae69ed0e.htm" />
+  <HelpKINode Title="GameMap.ClickAdjacentSpacesGeneric method" Url="html/06d4b774-1ab1-e1a5-a5e8-aa7c1948a87a.htm" />
+  <HelpKINode Title="GameMap.ClickAdjacentSpacesLeftFirst method" Url="html/096f4c75-ec8b-bca3-c26f-5a11cb72f88b.htm" />
+  <HelpKINode Title="GameMap.ClickAdjacentSpacesRightFirst method" Url="html/b8fe0fb5-db1f-2305-d90e-e3752029fd6f.htm" />
+  <HelpKINode Title="GameMap.ClickAdjacentSpacesUpFirst method" Url="html/6806d4fa-4891-461f-e5df-976da3c49091.htm" />
+  <HelpKINode Title="GameMap.columnPositionOfMouse field" Url="html/f4000ea2-4e55-e6d9-676b-080d0eb890b7.htm" />
+  <HelpKINode Title="GameMap.ColumnRowInGameArray method" Url="html/0c000cf4-462d-b07a-c50a-8cc4a7052304.htm" />
   <HelpKINode Title="GameMap.containsMine field" Url="html/82d03782-d0b6-f7ac-fcf0-a5c3524c26ce.htm" />
+  <HelpKINode Title="GameMap.CreateBombMap method" Url="html/3257dd07-24af-2277-2e62-d2a52f373919.htm" />
+  <HelpKINode Title="GameMap.createMap method" Url="html/564b55a1-918c-8974-2b0f-d8d3159b1bf3.htm" />
   <HelpKINode Title="GameMap.DeleteGame field" Url="html/4e37fd68-3aa7-8df6-bc24-9e15cbf31d3c.htm" />
+  <HelpKINode Title="GameMap.drawMap method" Url="html/48d25d56-c619-94ce-3200-411f1e92898b.htm" />
   <HelpKINode Title="GameMap.EndReveal method" Url="html/14ab00a7-b64d-6628-67ac-89f43b4bc094.htm" />
+  <HelpKINode Title="GameMap.ExitApplication method" Url="html/657b83fe-7290-f5cc-877e-1ad5b586a411.htm" />
   <HelpKINode Title="GameMap.exitImmediately field" Url="html/7dadabe4-5c61-4c17-bf11-f1f815caf42d.htm" />
   <HelpKINode Title="GameMap.File field" Url="html/96c2f0da-114b-c851-2c17-c8fc22c4ff96.htm" />
   <HelpKINode Title="GameMap.fromLoad field" Url="html/ed4be997-12d6-597b-ddb2-ab8ac65a07e6.htm" />
   <HelpKINode Title="GameMap.Game field" Url="html/442bc1f7-848e-8ad3-8a4d-c93d233bd896.htm" />
   <HelpKINode Title="GameMap.GameMap constructor" Url="html/8d368d00-9685-b682-2ef1-c6035f7a00e0.htm" />
+  <HelpKINode Title="GameMap.gameMapHeightInPixels field" Url="html/8c69f993-1c84-cc17-8bff-b1850cb503c9.htm" />
+  <HelpKINode Title="GameMap.gameMapWidthInPixels field" Url="html/eb302fbf-0c0c-c65a-b1a9-b9e12855e25b.htm" />
+  <HelpKINode Title="GameMap.initializeMapVarsAfterBombsCreated method" Url="html/3225b4cd-b3c4-4a90-3c06-de59f6ff3050.htm" />
+  <HelpKINode Title="GameMap.initializeMapVarsBeforeBombsCreated method" Url="html/94805387-2352-11df-283a-2e5f144a3bf8.htm" />
+  <HelpKINode Title="GameMap.LeftMouseButtonClicked method" Url="html/d3ea443e-9ddd-3379-95cc-ab4424252556.htm" />
   <HelpKINode Title="GameMap.LoadGame field" Url="html/f2cf1030-c4e3-f9f7-15e8-8a22c37b51ef.htm" />
   <HelpKINode Title="GameMap.mapEditor field" Url="html/584d7b59-a2fe-41b8-0efd-1940cc23423c.htm" />
+  <HelpKINode Title="GameMap.MenuDeleteGame method" Url="html/568f4b87-ee5f-e243-7d15-47d10157b780.htm" />
+  <HelpKINode Title="GameMap.MenuLoadGame method" Url="html/4dd779b8-98bf-adc9-f89f-d1018dce95cd.htm" />
+  <HelpKINode Title="GameMap.MenuNewGame method" Url="html/109e1bd5-602b-26f6-628a-6cf0b7db78a1.htm" />
+  <HelpKINode Title="GameMap.MenuSaveGame method" Url="html/4aa12148-99a1-7c77-2d75-dfec1008ea16.htm" />
   <HelpKINode Title="GameMap.mineSizeInPixels field" Url="html/292ae589-62be-38cd-ebd7-1542e9f4f32b.htm" />
+  <HelpKINode Title="GameMap.MineSpaceClicked method" Url="html/7d368e83-867f-2e75-12ec-37496f0e89da.htm" />
   <HelpKINode Title="GameMap.MineSpaceStates enumeration" Url="html/37d519be-0fdf-1795-3ccf-29fade5f2efe.htm" />
+  <HelpKINode Title="GameMap.MouseMoveInGame method" Url="html/c3a86d55-e6ef-b138-eabc-d5ad24a370ef.htm" />
   <HelpKINode Title="GameMap.myMenuStrip field" Url="html/6b2f7087-7559-549c-39c6-a8fc671db26a.htm" />
   <HelpKINode Title="GameMap.NewGame field" Url="html/8f99ed40-ad82-c6df-d705-d2d08c9fbae3.htm" />
   <HelpKINode Title="GameMap.numberOfBombs field" Url="html/e90a8c52-0371-fd07-af40-dd8790e67b15.htm" />
@@ -75,62 +224,282 @@
   <HelpKINode Title="GameMap.numberOfColumns field" Url="html/c6fcf79b-3b2a-f4c5-3101-f28fe186a84d.htm" />
   <HelpKINode Title="GameMap.numberOfRows field" Url="html/a4a7eb14-20e2-03ef-a384-81f40451e0f1.htm" />
   <HelpKINode Title="GameMap.NumberOfSafeSpacesLeftLabel field" Url="html/58125a41-1872-a22c-b94e-662520811fd5.htm" />
+  <HelpKINode Title="GameMap.numberOfTouchingBombs method" Url="html/cb27f1ef-92f0-c169-f898-13c1d04cb040.htm" />
+  <HelpKINode Title="GameMap.oldColumnPositionOfMouse field" Url="html/12755e01-7078-8c52-0740-7f2bfce2df33.htm" />
+  <HelpKINode Title="GameMap.oldRowPositionOfMouse field" Url="html/61c1d495-0075-569a-5780-c3f94f17d673.htm" />
+  <HelpKINode Title="GameMap.RevealMineSpace method" Url="html/acc8dd43-a763-991d-4a33-1035cfb93f08.htm" />
+  <HelpKINode Title="GameMap.RightMouseButtonClicked method" Url="html/73592623-7e5e-a828-b289-3b12cd2eca18.htm" />
+  <HelpKINode Title="GameMap.rowPositionOfMouse field" Url="html/5d67e5e7-8ffc-1f84-221b-e217522eab77.htm" />
   <HelpKINode Title="GameMap.SaveGame field" Url="html/b635945e-19c9-e8bc-fba7-525bfd1ee4bc.htm" />
+  <HelpKINode Title="GameMap.setExitImmediately method" Url="html/67506964-e797-836d-37c9-acebfee53f2a.htm" />
   <HelpKINode Title="GameMap.stateOfMineSpace field" Url="html/ec6b90d2-9f28-9ea0-9173-0f219e7e6080.htm" />
   <HelpKINode Title="GameMap.totalNumberOfBombsLeft field" Url="html/6b9935aa-5118-bb83-7bf9-6e03d970b4fd.htm" />
   <HelpKINode Title="GameMap.totalNumberOfSafeSpacesLeft field" Url="html/05c7a932-c29a-0372-59bb-6c6a24a45de7.htm" />
+  <HelpKINode Title="gameMapHeightInPixels field" Url="html/8c69f993-1c84-cc17-8bff-b1850cb503c9.htm" />
+  <HelpKINode Title="GameMapSender field">
+    <HelpKINode Title="DeleteSave.GameMapSender Field" Url="html/8affe475-862d-dab6-902f-85c39dd03aed.htm" />
+    <HelpKINode Title="GameFilesDialog.GameMapSender Field" Url="html/ec32627d-2504-0fab-0899-4e179cab8402.htm" />
+    <HelpKINode Title="LoadGame.GameMapSender Field" Url="html/194cb15f-9038-fc0e-f00e-e587a0a4df51.htm" />
+    <HelpKINode Title="SaveGame.GameMapSender Field" Url="html/3a06cd3b-ac54-8e22-3777-1d83b45372bb.htm" />
+  </HelpKINode>
+  <HelpKINode Title="gameMapWidthInPixels field" Url="html/eb302fbf-0c0c-c65a-b1a9-b9e12855e25b.htm" />
+  <HelpKINode Title="gameWon field" Url="html/796018a6-3f65-893d-4a73-3df73df86cb5.htm" />
+  <HelpKINode Title="getMapHeight method" Url="html/3ac4910a-5f4a-1ab7-c80f-b2a598246d3c.htm" />
+  <HelpKINode Title="getMapWidth method" Url="html/89eace5e-aeb4-ccd7-d1b0-7a3f9953bd3f.htm" />
+  <HelpKINode Title="getSaveString method" Url="html/ad5d4a8d-601e-1a9d-49dd-8ac602605e13.htm" />
+  <HelpKINode Title="hitBomb field" Url="html/adf18c6a-c13f-1982-8ac8-2f3963aa3c8f.htm" />
+  <HelpKINode Title="hitMine method" Url="html/4b0d4647-07ca-9222-224d-1d1a6806f787.htm" />
   <HelpKINode Title="Initial enumeration member" Url="html/37d519be-0fdf-1795-3ccf-29fade5f2efe.htm" />
   <HelpKINode Title="InitialDraw method" Url="html/c51dcfda-46d7-a744-b189-c8701e4e762e.htm" />
-  <HelpKINode Title="LoadGame field" Url="html/f2cf1030-c4e3-f9f7-15e8-8a22c37b51ef.htm" />
+  <HelpKINode Title="InitializeComponent method">
+    <HelpKINode Title="Form1.InitializeComponent Method " Url="html/684ec12c-29a8-ef82-1757-cb607e3c69d7.htm" />
+    <HelpKINode Title="LoseScreen.InitializeComponent Method " Url="html/3abbe151-2902-3f1f-055e-ad769d55f15d.htm" />
+    <HelpKINode Title="WinScreen.InitializeComponent Method " Url="html/5f4e86ef-0b1a-1008-6826-9bca9b7459d2.htm" />
+  </HelpKINode>
+  <HelpKINode Title="initializeMapVarsAfterBombsCreated method" Url="html/3225b4cd-b3c4-4a90-3c06-de59f6ff3050.htm" />
+  <HelpKINode Title="initializeMapVarsBeforeBombsCreated method" Url="html/94805387-2352-11df-283a-2e5f144a3bf8.htm" />
+  <HelpKINode Title="InitializeVariables method" Url="html/a2658585-e006-3ffb-1755-4b39a416cdd0.htm" />
+  <HelpKINode Title="IsLetter method" Url="html/f3667eb1-fff5-d488-35e5-eb27249b24e5.htm" />
+  <HelpKINode Title="label1 field">
+    <HelpKINode Title="Form1.label1 Field" Url="html/1d1dbc09-743c-bd50-0437-2a74478911b7.htm" />
+    <HelpKINode Title="LoseScreen.label1 Field" Url="html/e758c07e-42b4-dac0-6c9f-a4fefdad9648.htm" />
+    <HelpKINode Title="WinScreen.label1 Field" Url="html/831c52de-d262-e300-f5e4-7b36c114cb38.htm" />
+  </HelpKINode>
+  <HelpKINode Title="label1_Click method" Url="html/626d7586-4377-7ff9-0160-8e3fdf2142c9.htm" />
+  <HelpKINode Title="label2 field" Url="html/354e1bd0-a0de-6f62-c83f-d405334a8ce4.htm" />
+  <HelpKINode Title="label3 field" Url="html/bd5af900-90bb-df42-3750-e6a867f4f5c6.htm" />
+  <HelpKINode Title="label4 field" Url="html/7be2e7d0-82b3-e872-1e39-d3b7fb5c6d3e.htm" />
+  <HelpKINode Title="LeftMouseButtonClicked method" Url="html/d3ea443e-9ddd-3379-95cc-ab4424252556.htm" />
+  <HelpKINode Title="LoadBoolArrayFromSpaceTextFixedLength method" Url="html/c47b8195-3a4a-1f71-c5be-2ebac70b1eff.htm" />
+  <HelpKINode Title="loadDialog field" Url="html/24786258-064b-364d-316c-2f0d91cc9af5.htm" />
+  <HelpKINode Title="LoadEnumArrayFromSpaceTextFixedLength method" Url="html/23a83e77-7a60-bdfa-3cf9-713120dd5f19.htm" />
+  <HelpKINode Title="LoadGame class">
+    <HelpKINode Title="LoadGame Class" Url="html/b49860e2-fbc6-baed-2826-4cbb995afe10.htm" />
+    <HelpKINode Title="constructor" Url="html/7f82b8e0-6005-6ee7-9b8e-c26c34c359b0.htm" />
+    <HelpKINode Title="fields" Url="html/edde6cf3-d129-764d-a558-4fea9415566d.htm" />
+    <HelpKINode Title="methods" Url="html/5e5bc2ac-d788-c231-93d5-b27e246bd5ac.htm" />
+  </HelpKINode>
+  <HelpKINode Title="LoadGame field">
+    <HelpKINode Title="GameMap.LoadGame Field" Url="html/f2cf1030-c4e3-f9f7-15e8-8a22c37b51ef.htm" />
+    <HelpKINode Title="ObjectController.LoadGame Field" Url="html/e21c28c7-f531-97d1-0c3e-b7bdcbe637a8.htm" />
+  </HelpKINode>
+  <HelpKINode Title="LoadGame.ButtonClicked method" Url="html/3225c3fa-c551-d909-b313-507c71753ca2.htm" />
+  <HelpKINode Title="LoadGame.containsMine field" Url="html/ee931d2f-c6cc-2ec6-1c60-36a9af11ec17.htm" />
+  <HelpKINode Title="LoadGame.gameExists field" Url="html/d232df86-e87b-842d-25e0-6c2fab13f1e4.htm" />
+  <HelpKINode Title="LoadGame.GameMapSender field" Url="html/194cb15f-9038-fc0e-f00e-e587a0a4df51.htm" />
+  <HelpKINode Title="LoadGame.LoadBoolArrayFromSpaceTextFixedLength method" Url="html/c47b8195-3a4a-1f71-c5be-2ebac70b1eff.htm" />
+  <HelpKINode Title="LoadGame.loadDialog field" Url="html/24786258-064b-364d-316c-2f0d91cc9af5.htm" />
+  <HelpKINode Title="LoadGame.LoadEnumArrayFromSpaceTextFixedLength method" Url="html/23a83e77-7a60-bdfa-3cf9-713120dd5f19.htm" />
+  <HelpKINode Title="LoadGame.LoadGame constructor" Url="html/7f82b8e0-6005-6ee7-9b8e-c26c34c359b0.htm" />
+  <HelpKINode Title="LoadGame.LoadIntArrayFromSpaceTextFixedLength method" Url="html/70e71147-6d02-3bfb-467e-eecf5a1c2508.htm" />
+  <HelpKINode Title="LoadGame.LoadNewLineText method" Url="html/c0c3d5b1-3ea7-0a32-3014-24abf39df7dd.htm" />
+  <HelpKINode Title="LoadGame.numberOfColumns field" Url="html/e025d568-0966-7493-2530-5f9b937fc702.htm" />
+  <HelpKINode Title="LoadGame.numberOfRows field" Url="html/4a394e7f-d197-31c6-738d-6282ea8ceab5.htm" />
+  <HelpKINode Title="LoadGame.ReadTextFile method" Url="html/e290c988-5f50-1049-8b97-759c265f2286.htm" />
+  <HelpKINode Title="LoadGame.saveString field" Url="html/5e37911d-9b70-67fa-bc77-623724899984.htm" />
+  <HelpKINode Title="LoadGame.stateOfMineSpace field" Url="html/f503f439-06f9-2454-7c5a-f8dd59c85832.htm" />
+  <HelpKINode Title="LoadIntArrayFromSpaceTextFixedLength method" Url="html/70e71147-6d02-3bfb-467e-eecf5a1c2508.htm" />
+  <HelpKINode Title="LoadNewLineText method" Url="html/c0c3d5b1-3ea7-0a32-3014-24abf39df7dd.htm" />
   <HelpKINode Title="LoseScreen class">
     <HelpKINode Title="LoseScreen Class" Url="html/7c8ab462-7671-bcbe-2904-e636f339249b.htm" />
     <HelpKINode Title="constructor" Url="html/00a35f65-36bc-cb8d-66b8-e95502f0d92b.htm" />
-    <HelpKINode Title="events" Url="html/2f0f156b-3eff-e627-f663-661d529998d9.htm" />
+    <HelpKINode Title="fields" Url="html/5481cab1-c319-204f-1872-69bd69267aa2.htm" />
     <HelpKINode Title="methods" Url="html/83c210f0-cc0c-d4e7-5984-82ab676cbc87.htm" />
-    <HelpKINode Title="properties" Url="html/0e09d54f-7a94-2d0c-c65d-1f058dd064e6.htm" />
   </HelpKINode>
-  <HelpKINode Title="LoseScreen.Dispose method" Url="html/31cc6cdf-75fa-aa05-b25f-fb5fb149b060.htm" />
+  <HelpKINode Title="LoseScreen.components field" Url="html/2b3b9d66-76b6-7134-4ad9-8bde81e2f362.htm" />
+  <HelpKINode Title="LoseScreen.Dispose method" Url="html/509f07c4-96fe-c677-1a52-113c8680efed.htm" />
+  <HelpKINode Title="LoseScreen.InitializeComponent method" Url="html/3abbe151-2902-3f1f-055e-ad769d55f15d.htm" />
+  <HelpKINode Title="LoseScreen.label1 field" Url="html/e758c07e-42b4-dac0-6c9f-a4fefdad9648.htm" />
+  <HelpKINode Title="LoseScreen.label1_Click method" Url="html/626d7586-4377-7ff9-0160-8e3fdf2142c9.htm" />
   <HelpKINode Title="LoseScreen.LoseScreen constructor" Url="html/00a35f65-36bc-cb8d-66b8-e95502f0d92b.htm" />
+  <HelpKINode Title="LoseScreen.quitButton field" Url="html/e1e51206-c25a-7918-c063-7fc7a939793a.htm" />
+  <HelpKINode Title="LoseScreen.quitButton_Click method" Url="html/8e5014a5-1d34-dea5-4a50-c246d50e0fe5.htm" />
+  <HelpKINode Title="LoseScreen.retryButton field" Url="html/bc0b4267-cef6-2de8-766f-3fc81392118b.htm" />
+  <HelpKINode Title="LoseScreen.retryButton_Click method" Url="html/6054f35f-4968-b997-dc6a-f4e93a4182c5.htm" />
+  <HelpKINode Title="LoseScreen.tableLayoutPanel1 field" Url="html/3e4ab4d1-9d53-45d2-53df-3394d490568a.htm" />
+  <HelpKINode Title="Main method" Url="html/dc844872-5de5-a515-b922-32aad70906bc.htm" />
   <HelpKINode Title="mapEditor field" Url="html/584d7b59-a2fe-41b8-0efd-1940cc23423c.htm" />
   <HelpKINode Title="mapHeightInPixels field" Url="html/42704e0e-c1ca-77a3-6677-7869585b0eef.htm" />
   <HelpKINode Title="MappedAsSafe enumeration member" Url="html/37d519be-0fdf-1795-3ccf-29fade5f2efe.htm" />
   <HelpKINode Title="mapWidthInPixels field" Url="html/893e783d-1461-7f73-3279-dc1caab77781.htm" />
-  <HelpKINode Title="mineSizeInPixels field" Url="html/292ae589-62be-38cd-ebd7-1542e9f4f32b.htm" />
+  <HelpKINode Title="MenuDeleteGame method" Url="html/568f4b87-ee5f-e243-7d15-47d10157b780.htm" />
+  <HelpKINode Title="MenuLoadGame method" Url="html/4dd779b8-98bf-adc9-f89f-d1018dce95cd.htm" />
+  <HelpKINode Title="MenuNewGame method" Url="html/109e1bd5-602b-26f6-628a-6cf0b7db78a1.htm" />
+  <HelpKINode Title="MenuSaveGame method" Url="html/4aa12148-99a1-7c77-2d75-dfec1008ea16.htm" />
+  <HelpKINode Title="mineSizeInPixels field">
+    <HelpKINode Title="DrawMap.mineSizeInPixels Field" Url="html/67212973-9eda-d18f-94fc-3ca2dcfb9776.htm" />
+    <HelpKINode Title="GameMap.mineSizeInPixels Field" Url="html/292ae589-62be-38cd-ebd7-1542e9f4f32b.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MineSpaceClicked method" Url="html/7d368e83-867f-2e75-12ec-37496f0e89da.htm" />
   <HelpKINode Title="Minesweeper namespace" Url="html/c3d96d59-3268-d0d4-afbc-d3fb8fb789d1.htm" />
+  <HelpKINode Title="Minesweeper.DeleteSave class" Url="html/b8cc50e7-72ef-7caf-b402-d660027d00b1.htm" />
   <HelpKINode Title="Minesweeper.DrawMap class" Url="html/c79cb599-5cbf-ba1c-180f-e74fc2c8b512.htm" />
+  <HelpKINode Title="Minesweeper.Ending class" Url="html/e4cff22b-22fb-b114-97da-825eb16d40ee.htm" />
   <HelpKINode Title="Minesweeper.Form1 class" Url="html/7b369a74-60fb-42c3-465a-e67422ab3065.htm" />
+  <HelpKINode Title="Minesweeper.GameFilesDialog class" Url="html/da002743-27c4-1d26-6a4a-e2dbf100f51f.htm" />
+  <HelpKINode Title="Minesweeper.GameFilesDialog.ActionsAfterDialog enumeration" Url="html/8382103f-28ad-bb39-16f4-afe696bff4eb.htm" />
   <HelpKINode Title="Minesweeper.GameMap class" Url="html/db2413e3-6868-d713-ceb2-14038c6738ba.htm" />
   <HelpKINode Title="Minesweeper.GameMap.MineSpaceStates enumeration" Url="html/37d519be-0fdf-1795-3ccf-29fade5f2efe.htm" />
+  <HelpKINode Title="Minesweeper.LoadGame class" Url="html/b49860e2-fbc6-baed-2826-4cbb995afe10.htm" />
   <HelpKINode Title="Minesweeper.LoseScreen class" Url="html/7c8ab462-7671-bcbe-2904-e636f339249b.htm" />
+  <HelpKINode Title="Minesweeper.ObjectController class" Url="html/68ae262b-f03c-c3fd-0512-adb0f28cbfb8.htm" />
+  <HelpKINode Title="Minesweeper.Program class" Url="html/a07270d5-1184-f45c-5ab3-483cd2d0abb3.htm" />
+  <HelpKINode Title="Minesweeper.SaveGame class" Url="html/062d496e-2aa0-b30e-96a1-539e6f46015d.htm" />
+  <HelpKINode Title="Minesweeper.SaveTypeDialog class" Url="html/75cd8899-02dd-50bf-51b8-acdb2ff0a0e9.htm" />
   <HelpKINode Title="Minesweeper.WinScreen class" Url="html/0e84fa4c-afb3-1ac1-1ea5-90427d505f0f.htm" />
+  <HelpKINode Title="mineTextBox field" Url="html/9eabb07f-1d55-da03-5df0-1cae7faa3562.htm" />
+  <HelpKINode Title="MouseMoveInGame method" Url="html/c3a86d55-e6ef-b138-eabc-d5ad24a370ef.htm" />
   <HelpKINode Title="myMenuStrip field" Url="html/6b2f7087-7559-549c-39c6-a8fc671db26a.htm" />
   <HelpKINode Title="NewGame field" Url="html/8f99ed40-ad82-c6df-d705-d2d08c9fbae3.htm" />
+  <HelpKINode Title="Nothing enumeration member" Url="html/8382103f-28ad-bb39-16f4-afe696bff4eb.htm" />
   <HelpKINode Title="numberOfBombs field" Url="html/e90a8c52-0371-fd07-af40-dd8790e67b15.htm" />
   <HelpKINode Title="NumberOfBombsLeftLabel field" Url="html/5fa406e7-cd12-05f8-75a4-6acbcacd6eb8.htm" />
   <HelpKINode Title="numberOfColumns field">
     <HelpKINode Title="DrawMap.numberOfColumns Field" Url="html/5924a803-7d33-af27-4bdc-e923246a349e.htm" />
+    <HelpKINode Title="Ending.numberOfColumns Field" Url="html/b9720292-bdad-bc2c-4724-862553acc219.htm" />
     <HelpKINode Title="GameMap.numberOfColumns Field" Url="html/c6fcf79b-3b2a-f4c5-3101-f28fe186a84d.htm" />
+    <HelpKINode Title="LoadGame.numberOfColumns Field" Url="html/e025d568-0966-7493-2530-5f9b937fc702.htm" />
+    <HelpKINode Title="SaveGame.numberOfColumns Field" Url="html/36fe2b14-d1d8-d858-ab3a-a46d6ac6f8da.htm" />
   </HelpKINode>
   <HelpKINode Title="numberOfRows field">
     <HelpKINode Title="DrawMap.numberOfRows Field" Url="html/19f48d1a-e761-2c17-c0d4-1a52b42b4f79.htm" />
+    <HelpKINode Title="Ending.numberOfRows Field" Url="html/059de065-29f4-80e5-c038-b0840376d5b7.htm" />
     <HelpKINode Title="GameMap.numberOfRows Field" Url="html/a4a7eb14-20e2-03ef-a384-81f40451e0f1.htm" />
+    <HelpKINode Title="LoadGame.numberOfRows Field" Url="html/4a394e7f-d197-31c6-738d-6282ea8ceab5.htm" />
+    <HelpKINode Title="SaveGame.numberOfRows Field" Url="html/c51c8ba2-d48a-ba7d-b16c-ccf4cd3b1733.htm" />
   </HelpKINode>
   <HelpKINode Title="NumberOfSafeSpacesLeftLabel field" Url="html/58125a41-1872-a22c-b94e-662520811fd5.htm" />
+  <HelpKINode Title="numberOfTouchingBombs method" Url="html/cb27f1ef-92f0-c169-f898-13c1d04cb040.htm" />
+  <HelpKINode Title="ObjectController class">
+    <HelpKINode Title="ObjectController Class" Url="html/68ae262b-f03c-c3fd-0512-adb0f28cbfb8.htm" />
+    <HelpKINode Title="fields" Url="html/9a47ba3a-0dd2-022a-0d9e-ceef5441af69.htm" />
+    <HelpKINode Title="methods" Url="html/5e1b1e65-ce12-c5c3-fe43-0b9fe303cb61.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ObjectController.createGameMap method" Url="html/4a98bfac-7c76-0fa5-54d4-6f7397536f06.htm" />
+  <HelpKINode Title="ObjectController.createGameMapFromLoad method" Url="html/e324be2a-b944-5d56-13dc-faec5902b7f7.htm" />
+  <HelpKINode Title="ObjectController.createLoadGameDialog method" Url="html/51679f1e-2bc8-d8f0-44e8-c78e01a04d31.htm" />
+  <HelpKINode Title="ObjectController.createSaveGameDialog method" Url="html/c694732e-e665-43ed-da8f-2524f20e5960.htm" />
+  <HelpKINode Title="ObjectController.DeleteGame field" Url="html/62da390c-201a-9b3c-9598-4e04653bc057.htm" />
+  <HelpKINode Title="ObjectController.deleteSaveGameDialog method" Url="html/901dd6e2-d5a3-67c5-1caa-6e4555d03524.htm" />
+  <HelpKINode Title="ObjectController.gameMap field" Url="html/e1e5c4e2-1e6b-10b4-7af0-02514f483143.htm" />
+  <HelpKINode Title="ObjectController.LoadGame field" Url="html/e21c28c7-f531-97d1-0c3e-b7bdcbe637a8.htm" />
+  <HelpKINode Title="ObjectController.SaveGame field" Url="html/b4c19256-d6e6-28db-9279-b5d88d3bfa1c.htm" />
+  <HelpKINode Title="oldColumnPositionOfMouse field" Url="html/12755e01-7078-8c52-0740-7f2bfce2df33.htm" />
+  <HelpKINode Title="oldRowPositionOfMouse field" Url="html/61c1d495-0075-569a-5780-c3f94f17d673.htm" />
+  <HelpKINode Title="playAgainButton field" Url="html/622ab83d-481d-a199-fd67-02b674a0ad20.htm" />
+  <HelpKINode Title="playAgainButton_Click method" Url="html/1f36c748-251a-7b6e-cb82-43d90e13b029.htm" />
+  <HelpKINode Title="PopulateSaveList method" Url="html/1c227f98-94c5-3afc-8969-6707bde0a8ce.htm" />
   <HelpKINode Title="Pressed enumeration member" Url="html/37d519be-0fdf-1795-3ccf-29fade5f2efe.htm" />
+  <HelpKINode Title="Program class">
+    <HelpKINode Title="Program Class" Url="html/a07270d5-1184-f45c-5ab3-483cd2d0abb3.htm" />
+    <HelpKINode Title="methods" Url="html/def81bb9-e1b7-9bf5-9e94-47da0615fd29.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Program.Main method" Url="html/dc844872-5de5-a515-b922-32aad70906bc.htm" />
+  <HelpKINode Title="quitButton field">
+    <HelpKINode Title="LoseScreen.quitButton Field" Url="html/e1e51206-c25a-7918-c063-7fc7a939793a.htm" />
+    <HelpKINode Title="WinScreen.quitButton Field" Url="html/62fbce0b-998d-fe11-f5e6-d42e66c66ac7.htm" />
+  </HelpKINode>
+  <HelpKINode Title="quitButton_Click method">
+    <HelpKINode Title="LoseScreen.quitButton_Click Method " Url="html/8e5014a5-1d34-dea5-4a50-c246d50e0fe5.htm" />
+    <HelpKINode Title="WinScreen.quitButton_Click Method " Url="html/d48da98f-de81-2f61-4879-998e2c0fedec.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ReadTextFile method" Url="html/e290c988-5f50-1049-8b97-759c265f2286.htm" />
   <HelpKINode Title="RefreshScreen method" Url="html/98e452be-6a22-26a4-6fba-33cb70dac92f.htm" />
-  <HelpKINode Title="SaveGame field" Url="html/b635945e-19c9-e8bc-fba7-525bfd1ee4bc.htm" />
-  <HelpKINode Title="stateOfMineSpace field" Url="html/ec6b90d2-9f28-9ea0-9173-0f219e7e6080.htm" />
-  <HelpKINode Title="totalNumberOfBombsLeft field" Url="html/6b9935aa-5118-bb83-7bf9-6e03d970b4fd.htm" />
-  <HelpKINode Title="totalNumberOfSafeSpacesLeft field" Url="html/05c7a932-c29a-0372-59bb-6c6a24a45de7.htm" />
+  <HelpKINode Title="Restart enumeration member" Url="html/8382103f-28ad-bb39-16f4-afe696bff4eb.htm" />
+  <HelpKINode Title="retryButton field" Url="html/bc0b4267-cef6-2de8-766f-3fc81392118b.htm" />
+  <HelpKINode Title="retryButton_Click method" Url="html/6054f35f-4968-b997-dc6a-f4e93a4182c5.htm" />
+  <HelpKINode Title="RevealMineSpace method" Url="html/acc8dd43-a763-991d-4a33-1035cfb93f08.htm" />
+  <HelpKINode Title="RightMouseButtonClicked method" Url="html/73592623-7e5e-a828-b289-3b12cd2eca18.htm" />
+  <HelpKINode Title="rowPositionOfMouse field" Url="html/5d67e5e7-8ffc-1f84-221b-e217522eab77.htm" />
+  <HelpKINode Title="rowTextBox field" Url="html/d8c3b384-f7ac-acfb-3926-038fe14e96aa.htm" />
+  <HelpKINode Title="savedGamesList field" Url="html/1d2cef7c-0b09-7d0d-07cd-170b587c7d91.htm" />
+  <HelpKINode Title="saveDialog field">
+    <HelpKINode Title="DeleteSave.saveDialog Field" Url="html/04c0466c-dd62-7394-668a-825aa915b72e.htm" />
+    <HelpKINode Title="SaveGame.saveDialog Field" Url="html/9f3cbeaf-0137-b7e3-760e-d0366374edff.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SaveGame class">
+    <HelpKINode Title="SaveGame Class" Url="html/062d496e-2aa0-b30e-96a1-539e6f46015d.htm" />
+    <HelpKINode Title="constructor" Url="html/c5d2606a-b893-1fcf-86c4-778c85cc4a51.htm" />
+    <HelpKINode Title="fields" Url="html/12b73bd4-b25e-1432-3f4d-fad6609cd431.htm" />
+    <HelpKINode Title="methods" Url="html/1ad04ae8-df20-f2c2-dd6e-118fd84b1f01.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SaveGame field">
+    <HelpKINode Title="GameMap.SaveGame Field" Url="html/b635945e-19c9-e8bc-fba7-525bfd1ee4bc.htm" />
+    <HelpKINode Title="ObjectController.SaveGame Field" Url="html/b4c19256-d6e6-28db-9279-b5d88d3bfa1c.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SaveGame.ButtonClicked method" Url="html/ac22187d-430e-2bf8-5d54-31e144fa2eec.htm" />
+  <HelpKINode Title="SaveGame.containsMine field" Url="html/306e8187-ef75-fd1c-71ae-45def79008d1.htm" />
+  <HelpKINode Title="SaveGame.GameMapSender field" Url="html/3a06cd3b-ac54-8e22-3777-1d83b45372bb.htm" />
+  <HelpKINode Title="SaveGame.numberOfColumns field" Url="html/36fe2b14-d1d8-d858-ab3a-a46d6ac6f8da.htm" />
+  <HelpKINode Title="SaveGame.numberOfRows field" Url="html/c51c8ba2-d48a-ba7d-b16c-ccf4cd3b1733.htm" />
+  <HelpKINode Title="SaveGame.saveDialog field" Url="html/9f3cbeaf-0137-b7e3-760e-d0366374edff.htm" />
+  <HelpKINode Title="SaveGame.SaveGame constructor" Url="html/c5d2606a-b893-1fcf-86c4-778c85cc4a51.htm" />
+  <HelpKINode Title="SaveGame.saveString field" Url="html/02f414e0-7026-a4fc-c980-cc6cd951baa7.htm" />
+  <HelpKINode Title="SaveGame.stateOfMineSpace field" Url="html/d7dc4918-2090-22d2-514d-829d8c33ccdd.htm" />
+  <HelpKINode Title="SaveGame.writeNewLineText method" Url="html/beb988ce-6c30-0b6f-d73e-55d3e859928e.htm" />
+  <HelpKINode Title="SaveGame.writeSpaceText method" Url="html/19e6483b-bc7b-7bd2-b64c-a4111b290663.htm" />
+  <HelpKINode Title="saveGameButton field" Url="html/81eaebc5-0298-b6a5-aa5a-9b86a1143170.htm" />
+  <HelpKINode Title="SaveGameDialogDone method" Url="html/3249adfc-effe-b0cc-c640-9d9c72b9be9a.htm" />
+  <HelpKINode Title="saveGameLabel field" Url="html/06f3c5b8-fe88-e669-e5c4-94235d1e7dc1.htm" />
+  <HelpKINode Title="saveGamesLabel field" Url="html/7be81b13-8414-65e8-c00c-9d2839cb83e2.htm" />
+  <HelpKINode Title="SaveListItemDoubleClicked method" Url="html/fba2e10b-bbf0-3875-b26e-df6abec85761.htm" />
+  <HelpKINode Title="SaveListItemSingleClicked method" Url="html/bd08a27c-b789-0ba9-0e09-d9bd93b5ec11.htm" />
+  <HelpKINode Title="saveString field">
+    <HelpKINode Title="DeleteSave.saveString Field" Url="html/e4b8f9a4-9797-0c79-8b25-18c983634ef1.htm" />
+    <HelpKINode Title="GameFilesDialog.saveString Field" Url="html/c25d1919-d18e-980b-f653-5ec45fa5c735.htm" />
+    <HelpKINode Title="LoadGame.saveString Field" Url="html/5e37911d-9b70-67fa-bc77-623724899984.htm" />
+    <HelpKINode Title="SaveGame.saveString Field" Url="html/02f414e0-7026-a4fc-c980-cc6cd951baa7.htm" />
+  </HelpKINode>
+  <HelpKINode Title="saveStringAlreadyExists method" Url="html/673c3fb9-43ad-177e-c05f-507890e3004f.htm" />
+  <HelpKINode Title="SaveTypeDialog class">
+    <HelpKINode Title="SaveTypeDialog Class" Url="html/75cd8899-02dd-50bf-51b8-acdb2ff0a0e9.htm" />
+    <HelpKINode Title="constructor" Url="html/809e5bd9-ebd5-04d8-78c4-4132399f4603.htm" />
+    <HelpKINode Title="methods" Url="html/6e0e9aef-9cb7-5453-0042-32d5bd7a396f.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SaveTypeDialog.ButtonClicked method" Url="html/8fa3bdf7-31c0-d433-b418-49348fa85437.htm" />
+  <HelpKINode Title="SaveTypeDialog.SaveTypeDialog constructor" Url="html/809e5bd9-ebd5-04d8-78c4-4132399f4603.htm" />
+  <HelpKINode Title="selectedGameTextbox field" Url="html/4cd653ce-1f70-f3cc-9ec0-d0ac8825ba1e.htm" />
+  <HelpKINode Title="senderObject field" Url="html/8c857080-de89-8c07-3790-6475a438a917.htm" />
+  <HelpKINode Title="setDialogDone method" Url="html/f00d2bc1-c263-f6cf-99be-37dbd8dfdc70.htm" />
+  <HelpKINode Title="setExitImmediately method" Url="html/67506964-e797-836d-37c9-acebfee53f2a.htm" />
+  <HelpKINode Title="stateOfMineSpace field">
+    <HelpKINode Title="Ending.stateOfMineSpace Field" Url="html/cf342c33-644f-fcde-6e33-3f2a484523f3.htm" />
+    <HelpKINode Title="GameMap.stateOfMineSpace Field" Url="html/ec6b90d2-9f28-9ea0-9173-0f219e7e6080.htm" />
+    <HelpKINode Title="LoadGame.stateOfMineSpace Field" Url="html/f503f439-06f9-2454-7c5a-f8dd59c85832.htm" />
+    <HelpKINode Title="SaveGame.stateOfMineSpace Field" Url="html/d7dc4918-2090-22d2-514d-829d8c33ccdd.htm" />
+  </HelpKINode>
+  <HelpKINode Title="tableLayoutPanel1 field">
+    <HelpKINode Title="Form1.tableLayoutPanel1 Field" Url="html/200e7d43-8576-7f66-027b-0ced736af93a.htm" />
+    <HelpKINode Title="LoseScreen.tableLayoutPanel1 Field" Url="html/3e4ab4d1-9d53-45d2-53df-3394d490568a.htm" />
+    <HelpKINode Title="WinScreen.tableLayoutPanel1 Field" Url="html/681cbe66-a01e-166f-672d-e8b096973e08.htm" />
+  </HelpKINode>
+  <HelpKINode Title="tableLayoutPanel2 field" Url="html/b6c29b6a-e1ec-3307-f59e-6631e89f2feb.htm" />
+  <HelpKINode Title="totalNumberOfBombsLeft field">
+    <HelpKINode Title="Ending.totalNumberOfBombsLeft Field" Url="html/254d757b-0d0d-3eeb-47ff-42066b8f274b.htm" />
+    <HelpKINode Title="GameMap.totalNumberOfBombsLeft Field" Url="html/6b9935aa-5118-bb83-7bf9-6e03d970b4fd.htm" />
+  </HelpKINode>
+  <HelpKINode Title="totalNumberOfSafeSpacesLeft field">
+    <HelpKINode Title="Ending.totalNumberOfSafeSpacesLeft Field" Url="html/13a10014-3f97-3698-b816-56eb072d8aae.htm" />
+    <HelpKINode Title="GameMap.totalNumberOfSafeSpacesLeft Field" Url="html/05c7a932-c29a-0372-59bb-6c6a24a45de7.htm" />
+  </HelpKINode>
   <HelpKINode Title="updateScreenBitmap field" Url="html/dbd6dbc8-d077-061f-e2aa-9b2cff225033.htm" />
   <HelpKINode Title="updateScreenGraphics field" Url="html/6fcb1d26-93ef-84d5-5f8b-96fa68953fff.htm" />
   <HelpKINode Title="WinScreen class">
     <HelpKINode Title="WinScreen Class" Url="html/0e84fa4c-afb3-1ac1-1ea5-90427d505f0f.htm" />
     <HelpKINode Title="constructor" Url="html/098f7fbf-28cc-e23e-f056-777b2639edf1.htm" />
-    <HelpKINode Title="events" Url="html/4175ed38-e2ba-4b55-017d-93ae630b25f2.htm" />
+    <HelpKINode Title="fields" Url="html/d3bf0d59-0fd9-92c2-49cf-ccc03a684bc7.htm" />
     <HelpKINode Title="methods" Url="html/170a774c-3032-86c8-9953-e6408f452d16.htm" />
-    <HelpKINode Title="properties" Url="html/0a32af5f-7d77-7902-f800-4d98aa3fdd09.htm" />
   </HelpKINode>
-  <HelpKINode Title="WinScreen.Dispose method" Url="html/9ae2c7fe-29cc-6f42-86c6-44111e8d4073.htm" />
+  <HelpKINode Title="WinScreen.components field" Url="html/ba1e0137-ae95-6bc9-49c7-8de12268f732.htm" />
+  <HelpKINode Title="WinScreen.Dispose method" Url="html/3f7182e9-275b-3b51-95f6-ecbed77f68d7.htm" />
+  <HelpKINode Title="WinScreen.InitializeComponent method" Url="html/5f4e86ef-0b1a-1008-6826-9bca9b7459d2.htm" />
+  <HelpKINode Title="WinScreen.label1 field" Url="html/831c52de-d262-e300-f5e4-7b36c114cb38.htm" />
+  <HelpKINode Title="WinScreen.playAgainButton field" Url="html/622ab83d-481d-a199-fd67-02b674a0ad20.htm" />
+  <HelpKINode Title="WinScreen.playAgainButton_Click method" Url="html/1f36c748-251a-7b6e-cb82-43d90e13b029.htm" />
+  <HelpKINode Title="WinScreen.quitButton field" Url="html/62fbce0b-998d-fe11-f5e6-d42e66c66ac7.htm" />
+  <HelpKINode Title="WinScreen.quitButton_Click method" Url="html/d48da98f-de81-2f61-4879-998e2c0fedec.htm" />
+  <HelpKINode Title="WinScreen.tableLayoutPanel1 field" Url="html/681cbe66-a01e-166f-672d-e8b096973e08.htm" />
   <HelpKINode Title="WinScreen.WinScreen constructor" Url="html/098f7fbf-28cc-e23e-f056-777b2639edf1.htm" />
+  <HelpKINode Title="writeNewLineText method" Url="html/beb988ce-6c30-0b6f-d73e-55d3e859928e.htm" />
+  <HelpKINode Title="writeSpaceText method" Url="html/19e6483b-bc7b-7bd2-b64c-a4111b290663.htm" />
 </HelpKI>

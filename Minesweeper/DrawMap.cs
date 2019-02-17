@@ -8,6 +8,9 @@ using System.Windows.Forms;
 
 namespace Minesweeper
 {
+    /// <summary>
+    /// This is class creates the graphics for the game map. It draws its changes onto a bitmap that is the picture that the user sees as the game.
+    /// </summary>
     public class DrawMap
     {
         private Bitmap updateScreenBitmap;         //This variable is the bitmap we will update and then display to the screen when it is fully updated
