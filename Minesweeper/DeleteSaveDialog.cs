@@ -15,15 +15,14 @@ namespace Minesweeper
         public DeleteSave(GameMap sender, GameFilesDialog.ActionsAfterDialog actionAfterSave)
         {
             GameMapSender = sender;
-            saveDialog = new GameFilesDialog(actionAfterSave, sender, this, "delete more save games");
-            saveDialog.saveGameButton.Text = "Delete";
+            saveDialog = new GameFilesDialog(actionAfterSave, sender, this, "delete more save games", "Delete");
         }
         public override void ButtonClicked()
         {
-            saveString = saveDialog.saveString;
+            saveString = saveDialog.getSaveString();
             try
             {
-                if (saveDialog.alreadyExists())
+                if (saveDialog.saveStringAlreadyExists())
                 {
                     System.IO.File.Delete(Application.StartupPath + "\\" + saveString + ".txt");
                     saveDialog.PopulateSaveList();

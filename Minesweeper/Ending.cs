@@ -38,13 +38,33 @@ namespace Minesweeper
     {
         private bool gameWon;
         private bool hitBomb;
+        private int totalNumberOfBombsLeft;
+        private int totalNumberOfSafeSpacesLeft;
+        private int numberOfColumns;
+        private int numberOfRows;
 
-        public Ending(GameMap sender)
+
+        private GameMap.MineSpaceStates[,] stateOfMineSpace;
+        private bool[,] containsMine;
+
+        public Ending(GameMap sender, int TotalNumberOfBombsLeft, int TotalNumberOfSafeSpacesLeft, int NumberOfColumns, int NumberOfRows, GameMap.MineSpaceStates[,] StateOfMineSpace, bool[,] ContainsMine)
         {
+            totalNumberOfBombsLeft = TotalNumberOfBombsLeft;
+            totalNumberOfSafeSpacesLeft = TotalNumberOfSafeSpacesLeft;
+            numberOfColumns = NumberOfColumns;
+            numberOfRows = NumberOfRows;
+            stateOfMineSpace = StateOfMineSpace;
+            containsMine = ContainsMine;
             endResult(sender);
         }
-        public Ending(GameMap sender, bool endedByBomb)
+        public Ending(GameMap sender, bool endedByBomb, int TotalNumberOfBombsLeft, int TotalNumberOfSafeSpacesLeft, int NumberOfColumns, int NumberOfRows, GameMap.MineSpaceStates[,] StateOfMineSpace, bool[,] ContainsMine)
         {
+            totalNumberOfBombsLeft = TotalNumberOfBombsLeft;
+            totalNumberOfSafeSpacesLeft = TotalNumberOfSafeSpacesLeft;
+            numberOfColumns = NumberOfColumns;
+            numberOfRows = NumberOfRows;
+            stateOfMineSpace = StateOfMineSpace;
+            containsMine = ContainsMine;
             if (endedByBomb == true)
             {
                 hitBomb = true;
@@ -55,7 +75,7 @@ namespace Minesweeper
             }
             endResult(sender);
         }
-        public void hitMine()
+        private void hitMine()
         {
             hitBomb = true;
         }
@@ -72,21 +92,21 @@ namespace Minesweeper
                 player.Play();
                 lScreen.Show();
                 m_GameMap.EndReveal();
-                m_GameMap.totalNumberOfBombsLeft = 0;
-                m_GameMap.totalNumberOfSafeSpacesLeft = 0;
-                m_GameMap.NumberOfSafeSpacesLeftLabel.Text = m_GameMap.totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
-                m_GameMap.NumberOfBombsLeftLabel.Text = m_GameMap.totalNumberOfBombsLeft.ToString() + " bombs left";
+                totalNumberOfBombsLeft = 0;
+                totalNumberOfSafeSpacesLeft = 0;
+                m_GameMap.NumberOfSafeSpacesLeftLabel.Text = totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
+                m_GameMap.NumberOfBombsLeftLabel.Text = totalNumberOfBombsLeft.ToString() + " bombs left";
             }
             else
             {
-                int rows = m_GameMap.numberOfRows;
-                int cols = m_GameMap.numberOfColumns;
+                int rows = numberOfRows;
+                int cols = numberOfColumns;
                 bool gameLost = false;
                 for (int i = 0; i < cols; i++)
                 {
                     for (int j = 0; j < rows; j++)
                     {
-                        if ((m_GameMap.stateOfMineSpace[i, j] == GameMap.MineSpaceStates.FlaggedAsUnsafe) && (m_GameMap.containsMine[i, j] == false))
+                        if ((stateOfMineSpace[i, j] == GameMap.MineSpaceStates.FlaggedAsUnsafe) && (containsMine[i, j] == false))
                         {
                             gameLost = true;
                             break;
@@ -102,10 +122,10 @@ namespace Minesweeper
                     player.Play();
                     lScreen.Show();
                     m_GameMap.EndReveal();
-                    m_GameMap.totalNumberOfBombsLeft = 0;
-                    m_GameMap.totalNumberOfSafeSpacesLeft = 0;
-                    m_GameMap.NumberOfSafeSpacesLeftLabel.Text = m_GameMap.totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
-                    m_GameMap.NumberOfBombsLeftLabel.Text = m_GameMap.totalNumberOfBombsLeft.ToString() + " bombs left";
+                    totalNumberOfBombsLeft = 0;
+                    totalNumberOfSafeSpacesLeft = 0;
+                    m_GameMap.NumberOfSafeSpacesLeftLabel.Text = totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
+                    m_GameMap.NumberOfBombsLeftLabel.Text = totalNumberOfBombsLeft.ToString() + " bombs left";
                 }
                 else
                 {
@@ -116,10 +136,10 @@ namespace Minesweeper
                     wScreen.TopMost = true;
                     wScreen.Show();
                     m_GameMap.EndReveal();
-                    m_GameMap.totalNumberOfBombsLeft = 0;
-                    m_GameMap.totalNumberOfSafeSpacesLeft = 0;
-                    m_GameMap.NumberOfSafeSpacesLeftLabel.Text = m_GameMap.totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
-                    m_GameMap.NumberOfBombsLeftLabel.Text = m_GameMap.totalNumberOfBombsLeft.ToString() + " bombs left";
+                    totalNumberOfBombsLeft = 0;
+                    totalNumberOfSafeSpacesLeft = 0;
+                    m_GameMap.NumberOfSafeSpacesLeftLabel.Text = totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
+                    m_GameMap.NumberOfBombsLeftLabel.Text = totalNumberOfBombsLeft.ToString() + " bombs left";
                 }
 
             }

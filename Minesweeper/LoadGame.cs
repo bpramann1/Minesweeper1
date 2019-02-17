@@ -9,10 +9,10 @@ namespace Minesweeper
 {
     class LoadGame : SaveTypeDialog
     {
-        public int numberOfRows;                       //This variable indicates the number of rows. It has a default constructed value of 16 although it can be customized by user input
-        public int numberOfColumns;                    //This variable indicates the number of Columns. It has a default constructed value of 16 although it can be customized by user input
-        public GameMap.MineSpaceStates[,] stateOfMineSpace;
-        public bool[,] containsMine;
+        private int numberOfRows;                       //This variable indicates the number of rows. It has a default constructed value of 16 although it can be customized by user input
+        private int numberOfColumns;                    //This variable indicates the number of Columns. It has a default constructed value of 16 although it can be customized by user input
+        private GameMap.MineSpaceStates[,] stateOfMineSpace;
+        private bool[,] containsMine;
         private GameFilesDialog loadDialog;
         private GameMap GameMapSender;
         private string saveString;
@@ -20,15 +20,14 @@ namespace Minesweeper
         public LoadGame(GameMap sender)
         {
             GameMapSender = sender;
-            loadDialog = new GameFilesDialog(GameFilesDialog.ActionsAfterDialog.Nothing, sender, this, "load game");
-            loadDialog.saveGameButton.Text = "Load";
+            loadDialog = new GameFilesDialog(GameFilesDialog.ActionsAfterDialog.Nothing, sender, this, "load game", "Load");
         }
 
 
         public override void ButtonClicked()
         {
-            saveString = loadDialog.saveString;
-            gameExists = loadDialog.alreadyExists();
+            saveString = loadDialog.getSaveString();
+            gameExists = loadDialog.saveStringAlreadyExists();
             try
             {
                 if (!gameExists)
@@ -36,7 +35,7 @@ namespace Minesweeper
                     DialogResult shouldSave = MessageBox.Show("No saved game by that name was found. Try again?", "Save", MessageBoxButtons.YesNo);
                     if (shouldSave == DialogResult.No)
                     {
-                        loadDialog.dialogDone = true;
+                        loadDialog.setDialogDone(true);
                     }
                 }
                 else
@@ -50,8 +49,8 @@ namespace Minesweeper
                     containsMine = LoadBoolArrayFromSpaceTextFixedLength(LoadNewLineText(linesOfText, 2), numberOfColumns, numberOfRows);
                     stateOfMineSpace = LoadEnumArrayFromSpaceTextFixedLength(LoadNewLineText(linesOfText, 3), numberOfColumns, numberOfRows);
                     ObjectController.createGameMapFromLoad(numberOfColumns, numberOfRows, containsMine, stateOfMineSpace);
-                    loadDialog.dialogDone = true;
-                    GameMapSender.exitImmediately = true;
+                    loadDialog.setDialogDone(true);
+                    GameMapSender.setExitImmediately(true);
                     GameMapSender.Game.Close();
                     loadDialog.GameFilesForm.Close();
                 }

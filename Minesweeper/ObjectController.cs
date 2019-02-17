@@ -9,10 +9,10 @@ namespace Minesweeper
 {
     static class ObjectController
     {
-        public static GameMap gameMap;
-        public static SaveGame SaveGame;
-        public static LoadGame LoadGame;
-        public static DeleteSave DeleteGame;
+        private static GameMap gameMap;
+        private static SaveGame SaveGame;
+        private static LoadGame LoadGame;
+        private static DeleteSave DeleteGame;
 
         public static void createGameMap()
         {
@@ -22,9 +22,9 @@ namespace Minesweeper
         {
             gameMap = new GameMap(true,NumberOfColumns,NumberOfRows,ContainsMine,StateOfMineSpace);
         }
-        public static void createSaveGameDialog(GameMap sender, GameFilesDialog.ActionsAfterDialog actionAfterSave)
+        public static void createSaveGameDialog(GameMap sender, GameFilesDialog.ActionsAfterDialog actionAfterSave, int NumberOfColumns, int NumberOfRows, GameMap.MineSpaceStates[,] StateOfMineSpace, bool[,] ContainsMine)
         {
-            SaveGame = new SaveGame(sender, actionAfterSave);
+            SaveGame = new SaveGame(sender, actionAfterSave, NumberOfColumns , NumberOfRows, StateOfMineSpace, ContainsMine);
         }
         public static void createLoadGameDialog(GameMap sender)
         {
