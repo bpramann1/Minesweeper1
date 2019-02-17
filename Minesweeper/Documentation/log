@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shfbBuild product="Sandcastle Help File Builder and Tools" version="2018.12.10.0" projectFile="C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Docs.shfbproj" started="2/17/2019 2:09:02 PM">
+<shfbBuild product="Sandcastle Help File Builder and Tools" version="2018.12.10.0" projectFile="C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Docs.shfbproj" started="2/17/2019 2:56:03 PM">
 <buildStep step="Initializing">
 Finding tools...
 The Sandcastle tools are located in &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\&#39;
@@ -15,7 +15,6 @@ Copyright &#169; 2006-2018, Eric Woodruff, All Rights Reserved
 Portions Copyright &#169; 2014, Sam Harwell, All Rights Reserved
 -------------------------------
 Clearing any prior web/markdown output...
-    Ignoring folder &#39;C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\toc&#39;: The process cannot access the file &#39;roottoc.xml&#39; because it is being used by another process.
 </buildStep>
 <buildStep step="ValidatingDocumentationSources">
 Validating and copying documentation source information
@@ -37,16 +36,16 @@ Copying XML comments files
 <buildStep step="GenerateSharedContent">
 Generating shared content files (en-US, English (United States))...
 <plugIn name="Lightweight Website Style" behavior="After" priority="1000">
-</plugIn>    Last step completed in 00:00:00.0339
+</plugIn>    Last step completed in 00:00:00.0529
 </buildStep>
 <buildStep step="GenerateApiFilter">
 Generating API filter for MRefBuilder...
-    Last step completed in 00:00:00.0110
+    Last step completed in 00:00:00.0090
 </buildStep>
 <buildStep step="GenerateReflectionInfo">
 Generating reflection information...
 [C:\Program Files (x86)\MSBuild\14.0\bin\amd64\MSBuild.exe - GenerateRefInfo.proj]
-Build started 2/17/2019 2:09:06 PM.
+Build started 2/17/2019 2:56:05 PM.
 Project &quot;C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\GenerateRefInfo.proj&quot; on node 1 (default targets).
 PrepareForBuild:
   Creating directory &quot;obj\Debug\&quot;.
@@ -66,13 +65,13 @@ Done Building Project &quot;C:\Users\soelt\Documents\Visual Studio 2017\Projects
 
 Build succeeded.
 
-Time Elapsed 00:00:02.50
-    Last step completed in 00:00:03.4418
+Time Elapsed 00:00:02.21
+    Last step completed in 00:00:02.7141
 </buildStep>
 <buildStep step="TransformReflectionInfo">
 Transforming reflection output...
 [C:\Program Files (x86)\MSBuild\14.0\bin\amd64\MSBuild.exe - TransformManifest.proj]
-Build started 2/17/2019 2:09:08 PM.
+Build started 2/17/2019 2:56:08 PM.
 Project &quot;C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\TransformManifest.proj&quot; on node 1 (default targets).
 TransformManifest:
   XslTransform (v2018.12.10.0)
@@ -92,12 +91,12 @@ Done Building Project &quot;C:\Users\soelt\Documents\Visual Studio 2017\Projects
 
 Build succeeded.
 
-Time Elapsed 00:00:02.07
-    Last step completed in 00:00:02.5168
+Time Elapsed 00:00:02.27
+    Last step completed in 00:00:02.8123
 </buildStep>
 <buildStep step="GenerateNamespaceSummaries">
 Generating namespace summary information...
-    Last step completed in 00:00:00.0289
+    Last step completed in 00:00:00.0250
 </buildStep>
 <buildStep step="CopyAdditionalContent">
 Copying additional content files...
@@ -111,7 +110,7 @@ Merging conceptual and additional tables of contents...
 <buildStep step="GenerateIntermediateTableOfContents">
 Generating intermediate table of contents file...
 [C:\Program Files (x86)\MSBuild\14.0\bin\amd64\MSBuild.exe - GenerateIntermediateTOC.proj]
-Build started 2/17/2019 2:09:11 PM.
+Build started 2/17/2019 2:56:10 PM.
 Project &quot;C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\GenerateIntermediateTOC.proj&quot; on node 1 (default targets).
 GenerateIntermediateTOC:
   XslTransform (v2018.12.10.0)
@@ -122,26 +121,26 @@ Done Building Project &quot;C:\Users\soelt\Documents\Visual Studio 2017\Projects
 
 Build succeeded.
 
-Time Elapsed 00:00:01.28
+Time Elapsed 00:00:01.26
 Generating conceptual content intermediate TOC file...
-    Last step completed in 00:00:01.7255
+    Last step completed in 00:00:01.6501
 </buildStep>
 <buildStep step="CreateBuildAssemblerConfigs">
 Creating Sandcastle configuration files...
     sandcastle.config
-    Last step completed in 00:00:00.3341
+    Last step completed in 00:00:00.3630
 </buildStep>
 <buildStep step="MergeCustomConfigs">
 Merging custom build component configurations
 C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\sandcastle.config
   Updating reference topic configurations.
   No conceptual content.  Removing conceptual content components.
-    Last step completed in 00:00:00.0419
+    Last step completed in 00:00:00.0355
 </buildStep>
 <buildStep step="BuildTopics">
 Building help topics...
 [C:\Program Files (x86)\MSBuild\14.0\bin\amd64\MSBuild.exe - BuildTopics.proj]
-Build started 2/17/2019 2:09:13 PM.
+Build started 2/17/2019 2:56:12 PM.
 Project &quot;C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj&quot; on node 1 (default targets).
 BuildTopics:
   BuildAssembler (v2018.12.10.0)
@@ -180,49 +179,18 @@ BuildAssembler : warning : ShowMissingComponent: [F:Minesweeper.Form1.mineTextBo
 BuildAssembler : warning : ShowMissingComponent: [F:Minesweeper.Form1.rowTextBox] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:Minesweeper.Form1.tableLayoutPanel1] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:Minesweeper.Form1.tableLayoutPanel2] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [T:Minesweeper.GameFilesDialog] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.#ctor(Minesweeper.GameFilesDialog.ActionsAfterDialog,Minesweeper.GameMap,Minesweeper.SaveTypeDialog,System.String,System.String)] Missing &lt;param name=&quot;ActionAfterDialog&quot;/&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.#ctor(Minesweeper.GameFilesDialog.ActionsAfterDialog,Minesweeper.GameMap,Minesweeper.SaveTypeDialog,System.String,System.String)] Missing &lt;param name=&quot;gameMapSender&quot;/&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.#ctor(Minesweeper.GameFilesDialog.ActionsAfterDialog,Minesweeper.GameMap,Minesweeper.SaveTypeDialog,System.String,System.String)] Missing &lt;param name=&quot;sender&quot;/&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.#ctor(Minesweeper.GameFilesDialog.ActionsAfterDialog,Minesweeper.GameMap,Minesweeper.SaveTypeDialog,System.String,System.String)] Missing &lt;param name=&quot;finishString&quot;/&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.#ctor(Minesweeper.GameFilesDialog.ActionsAfterDialog,Minesweeper.GameMap,Minesweeper.SaveTypeDialog,System.String,System.String)] Missing &lt;param name=&quot;buttonText&quot;/&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:Minesweeper.GameFilesDialog.actionAfterDialog] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.ButtonClicked(System.Object,System.EventArgs)] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.ButtonClicked(System.Object,System.EventArgs)] Missing &lt;param name=&quot;sender&quot;/&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.ButtonClicked(System.Object,System.EventArgs)] Missing &lt;param name=&quot;e&quot;/&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:Minesweeper.GameFilesDialog.callType] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.CreateDialog] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:Minesweeper.GameFilesDialog.dialogDone] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.ExitButtonClicked(System.Object,System.Windows.Forms.FormClosingEventArgs)] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.ExitButtonClicked(System.Object,System.Windows.Forms.FormClosingEventArgs)] Missing &lt;param name=&quot;sender&quot;/&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.ExitButtonClicked(System.Object,System.Windows.Forms.FormClosingEventArgs)] Missing &lt;param name=&quot;e&quot;/&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:Minesweeper.GameFilesDialog.GameFilesForm] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:Minesweeper.GameFilesDialog.GameMapSender] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.getSaveString] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.getSaveString] Missing &lt;returns&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.IsLetter(System.Char)] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.IsLetter(System.Char)] Missing &lt;returns&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.IsLetter(System.Char)] Missing &lt;param name=&quot;letter&quot;/&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.PopulateSaveList] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:Minesweeper.GameFilesDialog.savedGamesList] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:Minesweeper.GameFilesDialog.saveGameButton] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.SaveGameDialogDone] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:Minesweeper.GameFilesDialog.saveGameLabel] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:Minesweeper.GameFilesDialog.saveGamesLabel] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.SaveListItemDoubleClicked(System.Object,System.Windows.Forms.MouseEventArgs)] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.SaveListItemDoubleClicked(System.Object,System.Windows.Forms.MouseEventArgs)] Missing &lt;param name=&quot;sender&quot;/&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.SaveListItemDoubleClicked(System.Object,System.Windows.Forms.MouseEventArgs)] Missing &lt;param name=&quot;e&quot;/&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.SaveListItemSingleClicked(System.Object,System.Windows.Forms.MouseEventArgs)] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.SaveListItemSingleClicked(System.Object,System.Windows.Forms.MouseEventArgs)] Missing &lt;param name=&quot;sender&quot;/&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.SaveListItemSingleClicked(System.Object,System.Windows.Forms.MouseEventArgs)] Missing &lt;param name=&quot;e&quot;/&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:Minesweeper.GameFilesDialog.saveString] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.saveStringAlreadyExists] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.saveStringAlreadyExists] Missing &lt;returns&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:Minesweeper.GameFilesDialog.selectedGameTextbox] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:Minesweeper.GameFilesDialog.senderObject] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.setDialogDone(System.Boolean)] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameFilesDialog.setDialogDone(System.Boolean)] Missing &lt;param name=&quot;value&quot;/&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
-BuildAssembler : warning : ShowMissingComponent: [T:Minesweeper.GameFilesDialog.ActionsAfterDialog] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameMap.#ctor(System.Boolean,System.Int32,System.Int32,System.Boolean[0:,0:],Minesweeper.GameMap.MineSpaceStates[0:,0:])] Missing &lt;param name=&quot;isLoadGame&quot;/&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameMap.#ctor(System.Boolean,System.Int32,System.Int32,System.Boolean[0:,0:],Minesweeper.GameMap.MineSpaceStates[0:,0:])] Missing &lt;param name=&quot;NumberOfColumns&quot;/&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.GameMap.#ctor(System.Boolean,System.Int32,System.Int32,System.Boolean[0:,0:],Minesweeper.GameMap.MineSpaceStates[0:,0:])] Missing &lt;param name=&quot;NumberOfRows&quot;/&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
@@ -340,19 +308,19 @@ BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.WinScreen.quitBu
 BuildAssembler : warning : ShowMissingComponent: [M:Minesweeper.WinScreen.quitButton_Click(System.Object,System.EventArgs)] Missing &lt;param name=&quot;e&quot;/&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
 BuildAssembler : warning : ShowMissingComponent: [F:Minesweeper.WinScreen.tableLayoutPanel1] Missing &lt;summary&gt; documentation [C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj]
   Processed 233 topic(s)
-  190 warning(s)
+  159 warning(s)
   CopyFromIndexComponent: &quot;reflection&quot; in-memory cache entries used: 5 of 15.
   CopyFromIndexComponent: &quot;comments&quot; in-memory cache entries used: 1 of 30.
 Done Building Project &quot;C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\BuildTopics.proj&quot; (default targets).
 
 Build succeeded.
 
-Time Elapsed 00:00:09.50
-    Last step completed in 00:00:09.9178
+Time Elapsed 00:00:10.51
+    Last step completed in 00:00:10.9800
 </buildStep>
 <buildStep step="CombiningIntermediateTocFiles">
 Combining conceptual and API intermediate TOC files...
-    Last step completed in 00:00:00.0398
+    Last step completed in 00:00:00.0050
 </buildStep>
 <buildStep step="ExtractingHtmlInfo">
 Extracting HTML info for HTML Help 1 and/or website...
@@ -368,7 +336,7 @@ Processed 233 HTML files
 Sorting keywords and generating See Also indices
 Saving website keyword index to C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\WebKI.xml
 Saving website table of contents to C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\WebTOC.xml
-    Last step completed in 00:00:01.8104
+    Last step completed in 00:00:01.1519
 </buildStep>
 <buildStep step="CopyStandardHelpContent">
 Copying standard help content...
@@ -512,7 +480,7 @@ C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyle
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\Web\scripts\branding-Website.js -&gt; C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\Output\Website\scripts\branding-Website.js
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\Web\scripts\clipboard.min.js -&gt; C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\Output\Website\scripts\clipboard.min.js
 C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\PresentationStyles\VS2013\Web\scripts\jquery-3.3.1.min.js -&gt; C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Working\Output\Website\scripts\jquery-3.3.1.min.js
-    Last step completed in 00:00:01.4300
+    Last step completed in 00:00:00.8178
 </buildStep>
 <buildStep step="GenerateHelpFormatTableOfContents">
 Executing informational Generate Table of Contents build step for plug-ins (not used for MS Help Viewer)
@@ -529,8 +497,8 @@ Generating MS Help Viewer file...
   Compression finished.  300 items added
   Saving C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Documentation.mshc...
   Finished saving C:\Users\soelt\Documents\Visual Studio 2017\Projects\EECS_448\minesweeper\Minesweeper\Documentation\Help\Documentation.mshc
-  Compressed 4 folders, 296 files.  Reduced size by 1,387,975 bytes (74%).
-    Last step completed in 00:00:02.3239
+  Compressed 4 folders, 296 files.  Reduced size by 1,386,429 bytes (74%).
+    Last step completed in 00:00:01.7321
 </buildStep>
 <buildStep step="GenerateHelpFormatTableOfContents">
 Generating website table of contents file...
@@ -541,21 +509,21 @@ Generating full-text index for the website...
 
 <plugIn name="Lightweight Website Style" behavior="After" priority="1000">
 Adding lightweight search and TOC elements to each topic...
-</plugIn>    Last step completed in 00:00:04.8986
+</plugIn>    Last step completed in 00:00:04.9549
 </buildStep>
 <buildStep step="CopyingWebsiteFiles">
 Copying website files to output folder...
 
 Copied 375 files for the website content
-    Last step completed in 00:00:02.4203
+    Last step completed in 00:00:01.7314
 </buildStep>
 <buildStep step="CleanIntermediates">
 Removing intermediate files...
-    Last step completed in 00:00:01.4726
+    Last step completed in 00:00:00.3747
 </buildStep>
 <buildStep step="Completed">
 
-Build completed successfully at 2/17/2019 2:09:37 PM.  Total time: 00:00:35.0599
+Build completed successfully at 2/17/2019 2:56:34 PM.  Total time: 00:00:31.1000
 
 </buildStep>
 </shfbBuild>

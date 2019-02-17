@@ -511,6 +511,130 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:Minesweeper.GameFilesDialog">
+            <summary>
+            Manages a file menu for the player 
+            </summary>
+        </member>
+        <member name="T:Minesweeper.GameFilesDialog.ActionsAfterDialog">
+            <summary>
+            Contains a value that dictates what actions need to be taken after the dialog is closed 
+            </summary>
+        </member>
+        <member name="M:Minesweeper.GameFilesDialog.#ctor(Minesweeper.GameFilesDialog.ActionsAfterDialog,Minesweeper.GameMap,Minesweeper.SaveTypeDialog,System.String,System.String)">
+            <summary>
+            Constructs a new files dialog 
+            </summary>
+            <param name="ActionAfterDialog">
+            An enum that dictates the action to be taken after the dialog is over 
+            </param>
+            <param name="gameMapSender">
+            The game map that called the dialog 
+            </param>
+            <param name="sender">
+            The type of action to be taken (save, load, or delete)
+            </param>
+            <param name="finishString">
+            The string to be displayed at the end of the game 
+            </param>
+            <param name="buttonText">
+            The text to be displayed by the button 
+            </param>
+        </member>
+        <member name="M:Minesweeper.GameFilesDialog.getSaveString">
+            <summary>
+            Gets the string to be displayed when saved 
+            </summary>
+            <returns>
+            The string to be displayed when saved 
+            </returns>
+        </member>
+        <member name="M:Minesweeper.GameFilesDialog.setDialogDone(System.Boolean)">
+            <summary>
+            Sets the dialogue to either be done or not done 
+            </summary>
+            <param name="value">
+            The value to set dialogDone to 
+            </param>
+        </member>
+        <member name="M:Minesweeper.GameFilesDialog.CreateDialog">
+            <summary>
+            Creates a new dialog 
+            </summary>
+        </member>
+        <member name="M:Minesweeper.GameFilesDialog.SaveGameDialogDone">
+            <summary>
+            Performs the neccessary actions to be done after the dialog is closed. 
+            </summary>
+        </member>
+        <member name="M:Minesweeper.GameFilesDialog.ExitButtonClicked(System.Object,System.Windows.Forms.FormClosingEventArgs)">
+            <summary>
+            Makes sure the user actually wants to exit if the game is still going and then closes the game. 
+            </summary>
+            <param name="sender">
+            The object that called this function
+            </param>
+            <param name="e">
+            Contains information about the closing event 
+            </param>
+        </member>
+        <member name="M:Minesweeper.GameFilesDialog.ButtonClicked(System.Object,System.EventArgs)">
+            <summary>
+            Varifies that the user has entered a correct name for the save file and then saves the name of it  
+            </summary>
+            <param name="sender">
+            The object that called the function
+            </param>
+            <param name="e">
+            Contains information about the event 
+            </param>
+        </member>
+        <member name="M:Minesweeper.GameFilesDialog.IsLetter(System.Char)">
+            <summary>
+            Determines if letter is a letter 
+            </summary>
+            <param name="letter">
+            The char to be tested for being a letter 
+            </param>
+            <returns>
+            True if letter is a letter, false otherwise 
+            </returns>
+        </member>
+        <member name="M:Minesweeper.GameFilesDialog.PopulateSaveList">
+            <summary>
+            Populates the save list 
+            </summary>
+        </member>
+        <member name="M:Minesweeper.GameFilesDialog.SaveListItemSingleClicked(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Populates the selectedGameTextbox with the name of the game to open 
+            </summary>
+            <param name="sender">
+            The object that called this function
+            </param>
+            <param name="e">
+            Contains information about the event that caused this function to be called 
+            </param>
+        </member>
+        <member name="M:Minesweeper.GameFilesDialog.SaveListItemDoubleClicked(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Prompts the user to make sure they want to overwrite a previous save and then overwrites the save they double clicked 
+            </summary>
+            <param name="sender">
+            Contains information about the object that called this function
+            </param>
+            <param name="e">
+            Contains information about the event that caused this function to be called 
+            </param>
+        </member>
+        <member name="M:Minesweeper.GameFilesDialog.saveStringAlreadyExists">
+            <summary>
+            Determines whether the inputted name for the save already exists 
+            </summary>
+            <returns>
+            True if the name already exists, false otherwise
+            </returns>
+        </member>
         <member name="M:Minesweeper.LoadGame.#ctor(Minesweeper.GameMap)">
             <summary>
             Presents the user with a window that allows them to load a game. 

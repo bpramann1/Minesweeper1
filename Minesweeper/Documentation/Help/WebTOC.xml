@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <HelpTOC>
 
-  <HelpTOCNode Id="9d9d5b16-5fd6-4b33-b90c-cb5d6ab60347" Title="Minesweeper" Url="html/c3d96d59-3268-d0d4-afbc-d3fb8fb789d1.htm">
-    <HelpTOCNode Id="d8c2a5d7-b140-4caa-8d0a-e6002db6cac3" Title="DeleteSave Class" Url="html/b8cc50e7-72ef-7caf-b402-d660027d00b1.htm">
+  <HelpTOCNode Id="350dbda5-236d-4bef-bfd7-a4c1119574fd" Title="Minesweeper" Url="html/c3d96d59-3268-d0d4-afbc-d3fb8fb789d1.htm">
+    <HelpTOCNode Id="568ab52a-b10a-4d13-a6e4-37d527277b88" Title="DeleteSave Class" Url="html/b8cc50e7-72ef-7caf-b402-d660027d00b1.htm">
       <HelpTOCNode Title="DeleteSave Constructor " Url="html/18435d3a-b2ac-2d86-24c8-6f48f6a2e5df.htm" />
-      <HelpTOCNode Id="89f272c4-43bf-417b-87d7-0b07265969ce" Title="DeleteSave Methods" Url="html/8a4a5607-f1df-fff8-6198-773cfe464816.htm">
+      <HelpTOCNode Id="ebd9542e-7b78-47a3-b262-116e206524bd" Title="DeleteSave Methods" Url="html/8a4a5607-f1df-fff8-6198-773cfe464816.htm">
         <HelpTOCNode Title="ButtonClicked Method " Url="html/d32276e8-b444-be05-fcb9-d4212c95c26d.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="5d66c791-2eec-4b35-abfe-6ab84d4240a9" Title="DeleteSave Fields" Url="html/773609fe-c224-acfc-24cc-0dd39de9906e.htm">
+      <HelpTOCNode Id="84d9343b-a854-4dbb-8ec7-7109e0011b99" Title="DeleteSave Fields" Url="html/773609fe-c224-acfc-24cc-0dd39de9906e.htm">
         <HelpTOCNode Title="GameMapSender Field" Url="html/8affe475-862d-dab6-902f-85c39dd03aed.htm" />
         <HelpTOCNode Title="saveDialog Field" Url="html/04c0466c-dd62-7394-668a-825aa915b72e.htm" />
         <HelpTOCNode Title="saveString Field" Url="html/e4b8f9a4-9797-0c79-8b25-18c983634ef1.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="299c109e-a8fb-4129-909d-3180b03429a9" Title="DrawMap Class" Url="html/c79cb599-5cbf-ba1c-180f-e74fc2c8b512.htm">
+    <HelpTOCNode Id="0ca5f283-0481-40f5-bd56-c862fb979d88" Title="DrawMap Class" Url="html/c79cb599-5cbf-ba1c-180f-e74fc2c8b512.htm">
       <HelpTOCNode Title="DrawMap Constructor " Url="html/5a730118-bd7c-f636-9478-6b7ea4b5251f.htm" />
-      <HelpTOCNode Id="3cd1884c-5d85-4d31-9fa5-70a07bf088c8" Title="DrawMap Methods" Url="html/c2c8d66a-4f9f-df2e-1b6f-79fa4ed1ed1f.htm">
+      <HelpTOCNode Id="9c7b9692-0cd7-4059-baab-e85702cea704" Title="DrawMap Methods" Url="html/c2c8d66a-4f9f-df2e-1b6f-79fa4ed1ed1f.htm">
         <HelpTOCNode Title="DrawBitmap Method " Url="html/98b3ca9b-23af-1ec3-2f24-c49c0cd8ba4a.htm" />
         <HelpTOCNode Title="DrawString Method " Url="html/d4c106e4-8e1d-f57d-ff3e-cdec7e888382.htm" />
         <HelpTOCNode Title="FillRectangle Method " Url="html/03be8388-07b6-5391-6715-98587ad692ea.htm" />
@@ -25,7 +25,7 @@
         <HelpTOCNode Title="InitializeVariables Method " Url="html/a2658585-e006-3ffb-1755-4b39a416cdd0.htm" />
         <HelpTOCNode Title="RefreshScreen Method " Url="html/98e452be-6a22-26a4-6fba-33cb70dac92f.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="727d06d9-998e-4722-9b2f-631667d2ad93" Title="DrawMap Fields" Url="html/f020a999-8b19-1458-6aec-fd0f54e97b9e.htm">
+      <HelpTOCNode Id="8c5f4b28-c169-4db2-bebc-3230e1aed50c" Title="DrawMap Fields" Url="html/f020a999-8b19-1458-6aec-fd0f54e97b9e.htm">
         <HelpTOCNode Title="caller Field" Url="html/e04c57c8-df24-d051-656b-1207503b11db.htm" />
         <HelpTOCNode Title="font Field" Url="html/0ec886b2-61c4-483a-2158-5ff3eac90693.htm" />
         <HelpTOCNode Title="mapHeightInPixels Field" Url="html/42704e0e-c1ca-77a3-6677-7869585b0eef.htm" />
@@ -37,16 +37,16 @@
         <HelpTOCNode Title="updateScreenGraphics Field" Url="html/6fcb1d26-93ef-84d5-5f8b-96fa68953fff.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="f120f529-447a-43e0-9b1b-9dc3ce6ce992" Title="Ending Class" Url="html/e4cff22b-22fb-b114-97da-825eb16d40ee.htm">
-      <HelpTOCNode Id="1afc81b4-5c64-4c1b-9038-cb53ebb0eafd" Title="Ending Constructor " Url="html/52224445-fa3b-73a4-4e34-a3b6774eb437.htm">
+    <HelpTOCNode Id="fd85634b-2498-46d8-b816-d7a13f535249" Title="Ending Class" Url="html/e4cff22b-22fb-b114-97da-825eb16d40ee.htm">
+      <HelpTOCNode Id="8b4151fb-b1ea-48cb-ab1d-3a36be12a2ab" Title="Ending Constructor " Url="html/52224445-fa3b-73a4-4e34-a3b6774eb437.htm">
         <HelpTOCNode Title="Ending Constructor (GameMap, Int32, Int32, Int32, Int32, GameMap.MineSpaceStates[,], Boolean[,])" Url="html/eb39fadc-7a32-9952-0457-2fc46201ba8d.htm" />
         <HelpTOCNode Title="Ending Constructor (GameMap, Boolean, Int32, Int32, Int32, Int32, GameMap.MineSpaceStates[,], Boolean[,])" Url="html/220af0f0-bd47-9bf1-01cd-4098ce2d87bc.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="c9fda42a-1c6e-4bfd-bc91-556a6cf20f6b" Title="Ending Methods" Url="html/c39e66c2-da32-f5cc-5271-9f17434a5efe.htm">
+      <HelpTOCNode Id="09a88adc-911b-457a-9909-91af34ab0955" Title="Ending Methods" Url="html/c39e66c2-da32-f5cc-5271-9f17434a5efe.htm">
         <HelpTOCNode Title="endResult Method " Url="html/a331fae8-214e-420a-a911-805e078e26db.htm" />
         <HelpTOCNode Title="hitMine Method " Url="html/4b0d4647-07ca-9222-224d-1d1a6806f787.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="534684d1-38e0-403d-81dc-7a5c338390ba" Title="Ending Fields" Url="html/fbc1586a-c703-085e-72bf-9052cb03f4ce.htm">
+      <HelpTOCNode Id="d37292de-45e3-4e6a-ad1d-0ae529682e9d" Title="Ending Fields" Url="html/fbc1586a-c703-085e-72bf-9052cb03f4ce.htm">
         <HelpTOCNode Title="containsMine Field" Url="html/43cf45dc-6054-f96f-437f-2579134cb59d.htm" />
         <HelpTOCNode Title="gameWon Field" Url="html/796018a6-3f65-893d-4a73-3df73df86cb5.htm" />
         <HelpTOCNode Title="hitBomb Field" Url="html/adf18c6a-c13f-1982-8ac8-2f3963aa3c8f.htm" />
@@ -57,14 +57,14 @@
         <HelpTOCNode Title="totalNumberOfSafeSpacesLeft Field" Url="html/13a10014-3f97-3698-b816-56eb072d8aae.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="9f6e1ed0-cf75-4771-96cb-476063d47fc7" Title="Form1 Class" Url="html/7b369a74-60fb-42c3-465a-e67422ab3065.htm">
+    <HelpTOCNode Id="fb9dee9c-4c1a-4fce-b557-a2a49802e49d" Title="Form1 Class" Url="html/7b369a74-60fb-42c3-465a-e67422ab3065.htm">
       <HelpTOCNode Title="Form1 Constructor " Url="html/42a351ef-e3c6-cb57-4814-40c326a4b946.htm" />
-      <HelpTOCNode Id="45eeb48a-c4a1-46cf-89ec-120acedf75ef" Title="Form1 Methods" Url="html/511f2322-4f57-e5d2-5197-6bd44fcffb15.htm">
+      <HelpTOCNode Id="4726e487-0e1a-4ca4-a311-7459aae11eab" Title="Form1 Methods" Url="html/511f2322-4f57-e5d2-5197-6bd44fcffb15.htm">
         <HelpTOCNode Title="continueButton_Click_1 Method " Url="html/6dfcc8a1-8999-5b72-84df-263ef14bb32c.htm" />
         <HelpTOCNode Title="Dispose Method " Url="html/5da54656-c6bb-49c5-5da1-425c0c06b586.htm" />
         <HelpTOCNode Title="InitializeComponent Method " Url="html/684ec12c-29a8-ef82-1757-cb607e3c69d7.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="4111aac0-c359-462d-aa4d-e503ec4acb5a" Title="Form1 Fields" Url="html/d98737e9-ac5a-37f8-8fef-6863f4e5085b.htm">
+      <HelpTOCNode Id="5a055021-6f9b-4c44-8560-5111dbf26179" Title="Form1 Fields" Url="html/d98737e9-ac5a-37f8-8fef-6863f4e5085b.htm">
         <HelpTOCNode Title="columnTextBox Field" Url="html/dad0d306-a840-49f3-6e5f-b04c1b177364.htm" />
         <HelpTOCNode Title="components Field" Url="html/ca0918cd-64ac-46f7-cbef-7ebf29de1e49.htm" />
         <HelpTOCNode Title="continueButton Field" Url="html/0a284170-55fc-3350-1b5d-cd0f1fa2a149.htm" />
@@ -79,9 +79,9 @@
         <HelpTOCNode Title="tableLayoutPanel2 Field" Url="html/b6c29b6a-e1ec-3307-f59e-6631e89f2feb.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="6d0c546b-e650-43b0-b918-fa4fd2d5e0db" Title="GameFilesDialog Class" Url="html/da002743-27c4-1d26-6a4a-e2dbf100f51f.htm">
+    <HelpTOCNode Id="1dea2fb3-ccf0-40f7-948e-65e677d0a9d4" Title="GameFilesDialog Class" Url="html/da002743-27c4-1d26-6a4a-e2dbf100f51f.htm">
       <HelpTOCNode Title="GameFilesDialog Constructor " Url="html/4db18ab0-ffdd-2bd3-0be8-a8fa48f6057b.htm" />
-      <HelpTOCNode Id="05f717fa-4936-41ee-82fd-f1efcc0b1ce8" Title="GameFilesDialog Methods" Url="html/944a9b50-d5dd-9544-b006-7b2cebd902ee.htm">
+      <HelpTOCNode Id="451b8da3-1ed7-4bea-ac20-665f4271d36f" Title="GameFilesDialog Methods" Url="html/944a9b50-d5dd-9544-b006-7b2cebd902ee.htm">
         <HelpTOCNode Title="ButtonClicked Method " Url="html/d8e085ba-51da-c554-6f10-ddbda8cc510f.htm" />
         <HelpTOCNode Title="CreateDialog Method " Url="html/8c660aa8-5aee-713a-221f-919dbf1d92ee.htm" />
         <HelpTOCNode Title="ExitButtonClicked Method " Url="html/4ff4a6a7-02cc-bf9a-5e8d-ae4f8855b98d.htm" />
@@ -94,7 +94,7 @@
         <HelpTOCNode Title="saveStringAlreadyExists Method " Url="html/673c3fb9-43ad-177e-c05f-507890e3004f.htm" />
         <HelpTOCNode Title="setDialogDone Method " Url="html/f00d2bc1-c263-f6cf-99be-37dbd8dfdc70.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="53ce0c62-fbc5-4845-8c96-d272ec3bf7cb" Title="GameFilesDialog Fields" Url="html/5056e45a-7ec1-825e-4a2a-76c91d40c328.htm">
+      <HelpTOCNode Id="d4f0e7ad-940c-4d5d-9dde-3993c2333411" Title="GameFilesDialog Fields" Url="html/5056e45a-7ec1-825e-4a2a-76c91d40c328.htm">
         <HelpTOCNode Title="actionAfterDialog Field" Url="html/a89ad007-a4d7-d55c-a009-5d1990363645.htm" />
         <HelpTOCNode Title="callType Field" Url="html/71cd882b-5db3-2469-5c40-ed7b26369983.htm" />
         <HelpTOCNode Title="dialogDone Field" Url="html/1c001009-295f-99cc-7792-4a4c969ba82a.htm" />
@@ -110,15 +110,15 @@
       </HelpTOCNode>
     </HelpTOCNode>
     <HelpTOCNode Title="GameFilesDialog.ActionsAfterDialog Enumeration" Url="html/8382103f-28ad-bb39-16f4-afe696bff4eb.htm" />
-    <HelpTOCNode Id="e2e873a5-7b1d-4fcf-b327-517d0729cd39" Title="GameMap Class" Url="html/db2413e3-6868-d713-ceb2-14038c6738ba.htm">
-      <HelpTOCNode Id="cd266c74-2917-417f-99b6-6041453d19f2" Title="GameMap Constructor " Url="html/8d368d00-9685-b682-2ef1-c6035f7a00e0.htm">
+    <HelpTOCNode Id="30783437-2a01-4a9f-8b61-702152c3d135" Title="GameMap Class" Url="html/db2413e3-6868-d713-ceb2-14038c6738ba.htm">
+      <HelpTOCNode Id="a23a3d1a-b038-4774-98b4-55ce00f09e9a" Title="GameMap Constructor " Url="html/8d368d00-9685-b682-2ef1-c6035f7a00e0.htm">
         <HelpTOCNode Title="GameMap Constructor " Url="html/b82e32a3-eea3-19d8-9c3d-355adce3f9ea.htm" />
         <HelpTOCNode Title="GameMap Constructor (Int32, Int32)" Url="html/6f4874d9-d94f-d7c9-c4fe-0a7bff75c93e.htm" />
         <HelpTOCNode Title="GameMap Constructor (Int32, Int32, Int32)" Url="html/80bcfee8-90a5-9e47-6ee8-d97cdae15010.htm" />
         <HelpTOCNode Title="GameMap Constructor (Int32, Int32, Int32, Int32)" Url="html/fc902642-3fce-6b29-1083-cf71dbb42d83.htm" />
         <HelpTOCNode Title="GameMap Constructor (Boolean, Int32, Int32, Boolean[,], GameMap.MineSpaceStates[,])" Url="html/7c41b572-c49f-0e1e-8390-5858536f915d.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="55bba3e9-d3ac-4f9f-a7b6-94dd7f2efa48" Title="GameMap Methods" Url="html/92b5db80-e95a-afee-cc9c-c5684beb6487.htm">
+      <HelpTOCNode Id="037ee8e2-b672-40f5-a7d8-5b088f0de238" Title="GameMap Methods" Url="html/92b5db80-e95a-afee-cc9c-c5684beb6487.htm">
         <HelpTOCNode Title="ClickAdjacentSpacesDownFirst Method " Url="html/d52b1ccf-6679-b96e-6a4f-fe30ae69ed0e.htm" />
         <HelpTOCNode Title="ClickAdjacentSpacesGeneric Method " Url="html/06d4b774-1ab1-e1a5-a5e8-aa7c1948a87a.htm" />
         <HelpTOCNode Title="ClickAdjacentSpacesLeftFirst Method " Url="html/096f4c75-ec8b-bca3-c26f-5a11cb72f88b.htm" />
@@ -144,7 +144,7 @@
         <HelpTOCNode Title="RightMouseButtonClicked Method " Url="html/73592623-7e5e-a828-b289-3b12cd2eca18.htm" />
         <HelpTOCNode Title="setExitImmediately Method " Url="html/67506964-e797-836d-37c9-acebfee53f2a.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="5192d665-7819-4a40-8986-a4b543006f4d" Title="GameMap Fields" Url="html/3d48fa83-61a8-d88a-594c-e265f986e85a.htm">
+      <HelpTOCNode Id="baf0e419-9270-4e2b-9d08-473adae2eda6" Title="GameMap Fields" Url="html/3d48fa83-61a8-d88a-594c-e265f986e85a.htm">
         <HelpTOCNode Title="automaticClickNumber Field" Url="html/90e3cb70-3b5d-6f61-b10c-1ca3d4360245.htm" />
         <HelpTOCNode Title="bitmapContainer Field" Url="html/8d377fb0-effd-3512-f9f3-55024841ad95.htm" />
         <HelpTOCNode Title="columnPositionOfMouse Field" Url="html/f4000ea2-4e55-e6d9-676b-080d0eb890b7.htm" />
@@ -176,9 +176,9 @@
       </HelpTOCNode>
     </HelpTOCNode>
     <HelpTOCNode Title="GameMap.MineSpaceStates Enumeration" Url="html/37d519be-0fdf-1795-3ccf-29fade5f2efe.htm" />
-    <HelpTOCNode Id="71fb67dd-cec4-41e9-a99c-35914ea8cced" Title="LoadGame Class" Url="html/b49860e2-fbc6-baed-2826-4cbb995afe10.htm">
+    <HelpTOCNode Id="c9399fd5-104d-4874-b32a-b25324b96e0f" Title="LoadGame Class" Url="html/b49860e2-fbc6-baed-2826-4cbb995afe10.htm">
       <HelpTOCNode Title="LoadGame Constructor " Url="html/7f82b8e0-6005-6ee7-9b8e-c26c34c359b0.htm" />
-      <HelpTOCNode Id="a93f81d9-0028-4ba5-8ddf-7bfbef7cbb9b" Title="LoadGame Methods" Url="html/5e5bc2ac-d788-c231-93d5-b27e246bd5ac.htm">
+      <HelpTOCNode Id="7f56b577-94f5-4a1f-beb0-18cd078d07c2" Title="LoadGame Methods" Url="html/5e5bc2ac-d788-c231-93d5-b27e246bd5ac.htm">
         <HelpTOCNode Title="ButtonClicked Method " Url="html/3225c3fa-c551-d909-b313-507c71753ca2.htm" />
         <HelpTOCNode Title="LoadBoolArrayFromSpaceTextFixedLength Method " Url="html/c47b8195-3a4a-1f71-c5be-2ebac70b1eff.htm" />
         <HelpTOCNode Title="LoadEnumArrayFromSpaceTextFixedLength Method " Url="html/23a83e77-7a60-bdfa-3cf9-713120dd5f19.htm" />
@@ -186,7 +186,7 @@
         <HelpTOCNode Title="LoadNewLineText Method " Url="html/c0c3d5b1-3ea7-0a32-3014-24abf39df7dd.htm" />
         <HelpTOCNode Title="ReadTextFile Method " Url="html/e290c988-5f50-1049-8b97-759c265f2286.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="cc22ab74-c504-47dc-a949-4a5defc3e8b0" Title="LoadGame Fields" Url="html/edde6cf3-d129-764d-a558-4fea9415566d.htm">
+      <HelpTOCNode Id="9ab972ef-28f1-4cbb-b326-01ae9c70a54d" Title="LoadGame Fields" Url="html/edde6cf3-d129-764d-a558-4fea9415566d.htm">
         <HelpTOCNode Title="containsMine Field" Url="html/ee931d2f-c6cc-2ec6-1c60-36a9af11ec17.htm" />
         <HelpTOCNode Title="gameExists Field" Url="html/d232df86-e87b-842d-25e0-6c2fab13f1e4.htm" />
         <HelpTOCNode Title="GameMapSender Field" Url="html/194cb15f-9038-fc0e-f00e-e587a0a4df51.htm" />
@@ -197,16 +197,16 @@
         <HelpTOCNode Title="stateOfMineSpace Field" Url="html/f503f439-06f9-2454-7c5a-f8dd59c85832.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="6d315f85-e5ea-41dd-a101-e7fc71906c80" Title="LoseScreen Class" Url="html/7c8ab462-7671-bcbe-2904-e636f339249b.htm">
+    <HelpTOCNode Id="ef9f81e0-b35b-470e-a49f-0818ae312438" Title="LoseScreen Class" Url="html/7c8ab462-7671-bcbe-2904-e636f339249b.htm">
       <HelpTOCNode Title="LoseScreen Constructor " Url="html/00a35f65-36bc-cb8d-66b8-e95502f0d92b.htm" />
-      <HelpTOCNode Id="66ccdb73-c87c-4ef2-b681-db8bdb04313e" Title="LoseScreen Methods" Url="html/83c210f0-cc0c-d4e7-5984-82ab676cbc87.htm">
+      <HelpTOCNode Id="925c9591-d5ac-4b3e-b023-6fa2578401ee" Title="LoseScreen Methods" Url="html/83c210f0-cc0c-d4e7-5984-82ab676cbc87.htm">
         <HelpTOCNode Title="Dispose Method " Url="html/509f07c4-96fe-c677-1a52-113c8680efed.htm" />
         <HelpTOCNode Title="InitializeComponent Method " Url="html/3abbe151-2902-3f1f-055e-ad769d55f15d.htm" />
         <HelpTOCNode Title="label1_Click Method " Url="html/626d7586-4377-7ff9-0160-8e3fdf2142c9.htm" />
         <HelpTOCNode Title="quitButton_Click Method " Url="html/8e5014a5-1d34-dea5-4a50-c246d50e0fe5.htm" />
         <HelpTOCNode Title="retryButton_Click Method " Url="html/6054f35f-4968-b997-dc6a-f4e93a4182c5.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="f3ea8e8a-f139-430a-a85a-2a844023d9a8" Title="LoseScreen Fields" Url="html/5481cab1-c319-204f-1872-69bd69267aa2.htm">
+      <HelpTOCNode Id="f5ed2ec9-e2fb-4dcc-b57c-f54af0395ac8" Title="LoseScreen Fields" Url="html/5481cab1-c319-204f-1872-69bd69267aa2.htm">
         <HelpTOCNode Title="components Field" Url="html/2b3b9d66-76b6-7134-4ad9-8bde81e2f362.htm" />
         <HelpTOCNode Title="label1 Field" Url="html/e758c07e-42b4-dac0-6c9f-a4fefdad9648.htm" />
         <HelpTOCNode Title="quitButton Field" Url="html/e1e51206-c25a-7918-c063-7fc7a939793a.htm" />
@@ -214,34 +214,34 @@
         <HelpTOCNode Title="tableLayoutPanel1 Field" Url="html/3e4ab4d1-9d53-45d2-53df-3394d490568a.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="8cf439f0-fc85-439d-ac09-18afcb12b86e" Title="ObjectController Class" Url="html/68ae262b-f03c-c3fd-0512-adb0f28cbfb8.htm">
-      <HelpTOCNode Id="bedeeec2-690d-4f59-b30b-b2ef573c27f2" Title="ObjectController Methods" Url="html/5e1b1e65-ce12-c5c3-fe43-0b9fe303cb61.htm">
+    <HelpTOCNode Id="078e89ac-3ef9-4ea9-984f-30ee1f7862c6" Title="ObjectController Class" Url="html/68ae262b-f03c-c3fd-0512-adb0f28cbfb8.htm">
+      <HelpTOCNode Id="e1a7b122-f4c3-4077-8de5-bc2d492b6aef" Title="ObjectController Methods" Url="html/5e1b1e65-ce12-c5c3-fe43-0b9fe303cb61.htm">
         <HelpTOCNode Title="createGameMap Method " Url="html/4a98bfac-7c76-0fa5-54d4-6f7397536f06.htm" />
         <HelpTOCNode Title="createGameMapFromLoad Method " Url="html/e324be2a-b944-5d56-13dc-faec5902b7f7.htm" />
         <HelpTOCNode Title="createLoadGameDialog Method " Url="html/51679f1e-2bc8-d8f0-44e8-c78e01a04d31.htm" />
         <HelpTOCNode Title="createSaveGameDialog Method " Url="html/c694732e-e665-43ed-da8f-2524f20e5960.htm" />
         <HelpTOCNode Title="deleteSaveGameDialog Method " Url="html/901dd6e2-d5a3-67c5-1caa-6e4555d03524.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="e2289c61-0ff9-4601-a862-eac40e3bd677" Title="ObjectController Fields" Url="html/9a47ba3a-0dd2-022a-0d9e-ceef5441af69.htm">
+      <HelpTOCNode Id="4198603f-2d71-4da9-8778-3945dea95ca7" Title="ObjectController Fields" Url="html/9a47ba3a-0dd2-022a-0d9e-ceef5441af69.htm">
         <HelpTOCNode Title="DeleteGame Field" Url="html/62da390c-201a-9b3c-9598-4e04653bc057.htm" />
         <HelpTOCNode Title="gameMap Field" Url="html/e1e5c4e2-1e6b-10b4-7af0-02514f483143.htm" />
         <HelpTOCNode Title="LoadGame Field" Url="html/e21c28c7-f531-97d1-0c3e-b7bdcbe637a8.htm" />
         <HelpTOCNode Title="SaveGame Field" Url="html/b4c19256-d6e6-28db-9279-b5d88d3bfa1c.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="b9efb8d3-5923-4ef4-bd7d-fa482988eef2" Title="Program Class" Url="html/a07270d5-1184-f45c-5ab3-483cd2d0abb3.htm">
-      <HelpTOCNode Id="6203323f-4f21-4148-a7e4-867fc1dbe297" Title="Program Methods" Url="html/def81bb9-e1b7-9bf5-9e94-47da0615fd29.htm">
+    <HelpTOCNode Id="b913f675-7fc7-4d7c-b2aa-ffdef48f6602" Title="Program Class" Url="html/a07270d5-1184-f45c-5ab3-483cd2d0abb3.htm">
+      <HelpTOCNode Id="386aa495-e086-4f96-a2e8-b4cb52acdfbb" Title="Program Methods" Url="html/def81bb9-e1b7-9bf5-9e94-47da0615fd29.htm">
         <HelpTOCNode Title="Main Method " Url="html/dc844872-5de5-a515-b922-32aad70906bc.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="af6c9abb-f5a8-4dcf-9dbf-fb820a87a7b0" Title="SaveGame Class" Url="html/062d496e-2aa0-b30e-96a1-539e6f46015d.htm">
+    <HelpTOCNode Id="a187522c-7840-42b0-9a3f-a5e69d4f1010" Title="SaveGame Class" Url="html/062d496e-2aa0-b30e-96a1-539e6f46015d.htm">
       <HelpTOCNode Title="SaveGame Constructor " Url="html/c5d2606a-b893-1fcf-86c4-778c85cc4a51.htm" />
-      <HelpTOCNode Id="71e1f94b-5bb3-4a8b-a863-de05c46c4907" Title="SaveGame Methods" Url="html/1ad04ae8-df20-f2c2-dd6e-118fd84b1f01.htm">
+      <HelpTOCNode Id="29abe36c-47e4-4529-a04a-a2f054a498ad" Title="SaveGame Methods" Url="html/1ad04ae8-df20-f2c2-dd6e-118fd84b1f01.htm">
         <HelpTOCNode Title="ButtonClicked Method " Url="html/ac22187d-430e-2bf8-5d54-31e144fa2eec.htm" />
         <HelpTOCNode Title="writeNewLineText Method " Url="html/beb988ce-6c30-0b6f-d73e-55d3e859928e.htm" />
         <HelpTOCNode Title="writeSpaceText Method " Url="html/19e6483b-bc7b-7bd2-b64c-a4111b290663.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="f73d0436-c19b-4f8d-93f8-9fafd68aee07" Title="SaveGame Fields" Url="html/12b73bd4-b25e-1432-3f4d-fad6609cd431.htm">
+      <HelpTOCNode Id="494ca86f-b534-41b9-8b54-c5cad6c727cb" Title="SaveGame Fields" Url="html/12b73bd4-b25e-1432-3f4d-fad6609cd431.htm">
         <HelpTOCNode Title="containsMine Field" Url="html/306e8187-ef75-fd1c-71ae-45def79008d1.htm" />
         <HelpTOCNode Title="GameMapSender Field" Url="html/3a06cd3b-ac54-8e22-3777-1d83b45372bb.htm" />
         <HelpTOCNode Title="numberOfColumns Field" Url="html/36fe2b14-d1d8-d858-ab3a-a46d6ac6f8da.htm" />
@@ -251,21 +251,21 @@
         <HelpTOCNode Title="stateOfMineSpace Field" Url="html/d7dc4918-2090-22d2-514d-829d8c33ccdd.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="46739737-a6ba-4052-8ec0-81c68b493e96" Title="SaveTypeDialog Class" Url="html/75cd8899-02dd-50bf-51b8-acdb2ff0a0e9.htm">
+    <HelpTOCNode Id="5d292e07-1188-435f-9dd0-3c42b9e75c62" Title="SaveTypeDialog Class" Url="html/75cd8899-02dd-50bf-51b8-acdb2ff0a0e9.htm">
       <HelpTOCNode Title="SaveTypeDialog Constructor " Url="html/809e5bd9-ebd5-04d8-78c4-4132399f4603.htm" />
-      <HelpTOCNode Id="03ed58c9-beef-4ee3-87cf-76f5dbff2e82" Title="SaveTypeDialog Methods" Url="html/6e0e9aef-9cb7-5453-0042-32d5bd7a396f.htm">
+      <HelpTOCNode Id="0395f9da-00eb-4805-9085-fa2289c358ab" Title="SaveTypeDialog Methods" Url="html/6e0e9aef-9cb7-5453-0042-32d5bd7a396f.htm">
         <HelpTOCNode Title="ButtonClicked Method " Url="html/8fa3bdf7-31c0-d433-b418-49348fa85437.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="9356d083-91ec-4b50-9146-7f2a7eed0f40" Title="WinScreen Class" Url="html/0e84fa4c-afb3-1ac1-1ea5-90427d505f0f.htm">
+    <HelpTOCNode Id="bab0c8a4-2464-4cab-a47c-42d048c4037b" Title="WinScreen Class" Url="html/0e84fa4c-afb3-1ac1-1ea5-90427d505f0f.htm">
       <HelpTOCNode Title="WinScreen Constructor " Url="html/098f7fbf-28cc-e23e-f056-777b2639edf1.htm" />
-      <HelpTOCNode Id="4fd4e8cd-4875-4c7e-8743-0fac8a931e31" Title="WinScreen Methods" Url="html/170a774c-3032-86c8-9953-e6408f452d16.htm">
+      <HelpTOCNode Id="9bc1d620-72b8-4ab5-8c15-bdf38c217b1f" Title="WinScreen Methods" Url="html/170a774c-3032-86c8-9953-e6408f452d16.htm">
         <HelpTOCNode Title="Dispose Method " Url="html/3f7182e9-275b-3b51-95f6-ecbed77f68d7.htm" />
         <HelpTOCNode Title="InitializeComponent Method " Url="html/5f4e86ef-0b1a-1008-6826-9bca9b7459d2.htm" />
         <HelpTOCNode Title="playAgainButton_Click Method " Url="html/1f36c748-251a-7b6e-cb82-43d90e13b029.htm" />
         <HelpTOCNode Title="quitButton_Click Method " Url="html/d48da98f-de81-2f61-4879-998e2c0fedec.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="feb0babb-ac57-4c15-a26c-823ddf245fe1" Title="WinScreen Fields" Url="html/d3bf0d59-0fd9-92c2-49cf-ccc03a684bc7.htm">
+      <HelpTOCNode Id="a43c376b-f7a3-4f39-981c-2ebdb541fcfa" Title="WinScreen Fields" Url="html/d3bf0d59-0fd9-92c2-49cf-ccc03a684bc7.htm">
         <HelpTOCNode Title="components Field" Url="html/ba1e0137-ae95-6bc9-49c7-8de12268f732.htm" />
         <HelpTOCNode Title="label1 Field" Url="html/831c52de-d262-e300-f5e4-7b36c114cb38.htm" />
         <HelpTOCNode Title="playAgainButton Field" Url="html/622ab83d-481d-a199-fd67-02b674a0ad20.htm" />
