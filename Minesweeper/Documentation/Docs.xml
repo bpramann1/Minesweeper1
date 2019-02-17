@@ -128,6 +128,49 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:Minesweeper.ObjectController">
+            <summary>
+            This class is used to create objects.
+            </summary>
+        </member>
+        <member name="M:Minesweeper.ObjectController.createGameMap">
+            <summary>
+            This method creates an instance of the GameMap class.
+            </summary>
+        </member>
+        <member name="M:Minesweeper.ObjectController.createGameMapFromLoad(System.Int32,System.Int32,System.Boolean[0:,0:],Minesweeper.GameMap.MineSpaceStates[0:,0:])">
+            <summary>
+            This method creates an instance of the GameMap class from a load.
+            </summary>
+            <param name="NumberOfColumns">This is the number of columns that the new map will have.</param>
+            <param name="NumberOfRows">This is the number of rows that the new map will have.</param>
+            <param name="ContainsMine">This is a two diminsional array of bool that describes if there is a mine at the current position of the array. A value of 1 means that the array contains a mine.</param>
+            <param name="StateOfMineSpace">This is a two diminsional array of an enum. The enum represents the current state of a mine space that is denoted by the column and row index.</param>
+        </member>
+        <member name="M:Minesweeper.ObjectController.createSaveGameDialog(Minesweeper.GameMap,Minesweeper.GameFilesDialog.ActionsAfterDialog,System.Int32,System.Int32,Minesweeper.GameMap.MineSpaceStates[0:,0:],System.Boolean[0:,0:])">
+            <summary>
+            This method creates an instance of the SaveGame class.
+            </summary>
+            <param name="sender">This is the object that called this method</param>
+            <param name="actionAfterSave">This is an enum value that tells the SaveGame instance what it should do when it is done.</param>
+            <param name="NumberOfColumns">This value represents how many columns the object that called this method has.</param>
+            <param name="NumberOfRows">This value represents how many rows the object that called this method has.</param>
+            <param name="StateOfMineSpace">This is a two diminsional array of an enum. The enum represents the current state of a mine space that is denoted by the column and row index.</param>
+            <param name="ContainsMine">This is a two diminsional array of bool that describes if there is a mine at the current position of the array. A value of 1 means that the array contains a mine.</param>
+        </member>
+        <member name="M:Minesweeper.ObjectController.createLoadGameDialog(Minesweeper.GameMap)">
+            <summary>
+            This method creates an instance of the load game class.
+            </summary>
+            <param name="sender">This is the object that called this method.</param>
+        </member>
+        <member name="M:Minesweeper.ObjectController.deleteSaveGameDialog(Minesweeper.GameMap,Minesweeper.GameFilesDialog.ActionsAfterDialog)">
+            <summary>
+            This method creates an instance of the DeleteSave class.
+            </summary>
+            <param name="sender">This is the object that called this method.</param>
+            <param name="actionAfterSave">This is what the DeleteSave instance should do after it is done.</param>
+        </member>
         <member name="M:Minesweeper.Program.Main">
             <summary>
             The main entry point for the application.
