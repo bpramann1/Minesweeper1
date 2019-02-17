@@ -4,6 +4,24 @@
         <name>Minesweeper</name>
     </assembly>
     <members>
+        <member name="T:Minesweeper.DeleteSave">
+            <summary>
+            This class is here to enable the user to delete save games through our interface.
+            </summary>
+        </member>
+        <member name="M:Minesweeper.DeleteSave.#ctor(Minesweeper.GameMap,Minesweeper.GameFilesDialog.ActionsAfterDialog)">
+            <summary>
+            This constructor creates an instance of the DeleteSave Class.
+            </summary>
+            <param name="sender">This is the object that created this instance</param>
+            <param name="actionAfterSave">This represents the action that we should take after we are done deleting games.</param>
+        </member>
+        <member name="M:Minesweeper.DeleteSave.ButtonClicked">
+            <summary>
+            This method overwrites the virtual method that the parent has. 
+            This method is used delete the currently selected save file.
+            </summary>
+        </member>
         <member name="M:Minesweeper.DrawMap.#ctor(Minesweeper.GameMap,System.Int32,System.Int32,System.Int32)">
             <summary>
             This is class creates the graphics for the game map. It draws its changes onto a bitmap that is the picture that the user sees as the game.
@@ -174,6 +192,21 @@
         <member name="M:Minesweeper.Program.Main">
             <summary>
             The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:Minesweeper.SaveTypeDialog">
+            <summary>
+            This class is here to be inherited by the SaveGame, LoadGame, and Delete game class. This class is basically virtual.
+            </summary>
+        </member>
+        <member name="M:Minesweeper.SaveTypeDialog.#ctor">
+            <summary>
+            This creates an instance of the Save Type Class. This should not be used.
+            </summary>
+        </member>
+        <member name="M:Minesweeper.SaveTypeDialog.ButtonClicked">
+            <summary>
+            This method is a virtual method that should be overwritten by all the children of this class.
             </summary>
         </member>
         <member name="F:Minesweeper.WinScreen.components">
