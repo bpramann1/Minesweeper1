@@ -34,6 +34,10 @@ namespace Minesweeper
      *               @call - displays either a win screen or a lose screen based on the value of hitBomb, if it is a lose screen the retroExplosion.wav should play. 
      *               currently also plays retroExplosion.wav when the win screen is shown however final version will have a more appropriate file.
      */
+
+    /// <summary>
+    /// This class is designed to display an ending form that the user can interact with to either play again, retry, or quit the game. 
+    /// </summary>
     class Ending
     {
         private bool gameWon;
@@ -47,6 +51,30 @@ namespace Minesweeper
         private GameMap.MineSpaceStates[,] stateOfMineSpace;
         private bool[,] containsMine;
 
+        /// <summary>
+        /// Creates a new ending screen 
+        /// </summary>
+        /// <param name="sender">
+        /// used to give access to Game class variables and data
+        /// </param>
+        /// <param name="TotalNumberOfBombsLeft">
+        /// The total number of bombs remaining in the game
+        /// </param>
+        /// <param name="TotalNumberOfSafeSpacesLeft">
+        /// The total number of safe spaces left in the game 
+        /// </param>
+        /// <param name="NumberOfColumns">
+        /// The number of columns in the game
+        /// </param>
+        /// <param name="NumberOfRows">
+        /// The number of rows in the game 
+        /// </param>
+        /// <param name="StateOfMineSpace">
+        /// An array that contains the states of each space
+        /// </param>
+        /// <param name="ContainsMine">
+        /// An array that contains information about whether a space contains a mine 
+        /// </param>
         public Ending(GameMap sender, int TotalNumberOfBombsLeft, int TotalNumberOfSafeSpacesLeft, int NumberOfColumns, int NumberOfRows, GameMap.MineSpaceStates[,] StateOfMineSpace, bool[,] ContainsMine)
         {
             totalNumberOfBombsLeft = TotalNumberOfBombsLeft;
@@ -57,6 +85,34 @@ namespace Minesweeper
             containsMine = ContainsMine;
             endResult(sender);
         }
+
+        /// <summary>
+        /// Creates a new ending screen 
+        /// </summary>
+        /// <param name="sender">
+        /// used to give access to Game class variables and data
+        /// </param>
+        /// <param name="endedByBomb">
+        /// A flag that tells the function whether the player won or lost 
+        /// </param>
+        /// <param name="TotalNumberOfBombsLeft">
+        /// The total number of bombs remaining in the game 
+        /// </param>
+        /// <param name="TotalNumberOfSafeSpacesLeft">
+        /// The total number of safe spaces left in the game 
+        /// </param>
+        /// <param name="NumberOfColumns">
+        /// The number of columns in the game 
+        /// </param>
+        /// <param name="NumberOfRows">
+        /// The number of rows in the game 
+        /// </param>
+        /// <param name="StateOfMineSpace">
+        /// An array that contains the states of each space
+        /// </param>
+        /// <param name="ContainsMine">
+        /// An array that contains information about whether a space contains a mine
+        /// </param>
         public Ending(GameMap sender, bool endedByBomb, int TotalNumberOfBombsLeft, int TotalNumberOfSafeSpacesLeft, int NumberOfColumns, int NumberOfRows, GameMap.MineSpaceStates[,] StateOfMineSpace, bool[,] ContainsMine)
         {
             totalNumberOfBombsLeft = TotalNumberOfBombsLeft;
@@ -75,10 +131,21 @@ namespace Minesweeper
             }
             endResult(sender);
         }
+
+        /// <summary>
+        /// Used to determine if the game ended by hitting a bomb 
+        /// </summary>
         private void hitMine()
         {
             hitBomb = true;
         }
+
+        /// <summary>
+        /// Determines if the player won or lost and displays the correct form. 
+        /// </summary>
+        /// <param name="m_GameMap">
+        /// The game the player was playing 
+        /// </param>
         private void endResult(GameMap m_GameMap)
         {
             if (hitBomb == true)
