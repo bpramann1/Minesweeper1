@@ -7,6 +7,9 @@ using System.Windows.Forms;
 
 namespace Minesweeper
 {
+    /// <summary>
+    /// This class enables the user to save a game through our user interface.
+    /// </summary>
     class SaveGame:SaveTypeDialog
     {
         private int numberOfRows;                       //This variable indicates the number of rows. It has a default constructed value of 16 although it can be customized by user input
@@ -16,6 +19,15 @@ namespace Minesweeper
         private GameFilesDialog saveDialog;
         private GameMap GameMapSender;
         private string saveString;
+        /// <summary>
+        /// Creates an instance of the SaveGame Class.
+        /// </summary>
+        /// <param name="sender">This is the object that called this constructor.</param>
+        /// <param name="actionAfterSave">This is the action that this class should do when it is done.</param>
+        /// <param name="NumberOfColumns">This is number of columns that the GameMap that called it has.</param>
+        /// <param name="NumberOfRows">This is number of rows that the GameMap that called it has.</param>
+        /// <param name="StateOfMineSpace">This is a two diminsional array that represents the state of each mine space that the GameMap that called it has.</param>
+        /// <param name="ContainsMine">This is a two diminsional array that represents whether each mine space has a mine for the GameMap object that called it has.</param>
         public SaveGame( GameMap sender, GameFilesDialog.ActionsAfterDialog actionAfterSave, int NumberOfColumns, int NumberOfRows, GameMap.MineSpaceStates[,] StateOfMineSpace, bool[,] ContainsMine)
         {
             numberOfColumns = NumberOfColumns;
@@ -25,6 +37,10 @@ namespace Minesweeper
             GameMapSender = sender;
             saveDialog = new GameFilesDialog(actionAfterSave, sender, this, "save game", "Save");
         }
+        /// <summary>
+        /// Overwrites the virtual method that the parent has. 
+        /// Saves the currently selected save file.
+        /// </summary>
         public override void ButtonClicked()
         {
             saveString = saveDialog.getSaveString();
@@ -78,11 +94,19 @@ namespace Minesweeper
             }
 
         }
+        /// <summary>
+        /// Writes a string of text followed by a new line.
+        /// </summary>
+        /// <param name="text">This is the string that is written</param>
         private void writeNewLineText(string text)
         {
             System.IO.File.AppendAllText(Application.StartupPath + "\\" + saveString + ".txt", text + Environment.NewLine);
 
         }
+        /// <summary>
+        /// Writes a string of text followed by a space.
+        /// </summary>
+        /// <param name="text">This is the string that is written</param>
         private void writeSpaceText(string text)
         {
             System.IO.File.AppendAllText(Application.StartupPath + "\\" + saveString + ".txt", text + " ");
