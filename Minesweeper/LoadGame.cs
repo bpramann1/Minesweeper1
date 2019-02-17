@@ -7,6 +7,9 @@ using System.Windows.Forms;
 
 namespace Minesweeper
 {
+    /// <summary>
+    /// Handles the loading of an old file 
+    /// </summary>
     class LoadGame : SaveTypeDialog
     {
         private int numberOfRows;                       //This variable indicates the number of rows. It has a default constructed value of 16 although it can be customized by user input
@@ -30,7 +33,9 @@ namespace Minesweeper
             loadDialog = new GameFilesDialog(GameFilesDialog.ActionsAfterDialog.Nothing, sender, this, "load game", "Load");
         }
 
-
+        /// <summary>
+        /// Loads the previously saved game selected by the user 
+        /// </summary>
         public override void ButtonClicked()
         {
             saveString = loadDialog.getSaveString();
@@ -68,14 +73,50 @@ namespace Minesweeper
             }
 
         }
+
+        /// <summary>
+        /// Reads a text file into an array of strings
+        /// </summary>
+        /// <returns>
+        /// An array of strings that contains the text from the file 
+        /// </returns>
         private string[] ReadTextFile()
         {
            return System.IO.File.ReadAllLines(Application.StartupPath + "\\" + saveString + ".txt");
         }
+
+        /// <summary>
+        /// returns a string from an index of an array of strings 
+        /// </summary>
+        /// <param name="text">
+        /// The array of strings to take the text from 
+        /// </param>
+        /// <param name="index">
+        /// The index of the array to return 
+        /// </param>
+        /// <returns>
+        /// The string at text[index]
+        /// </returns>
         private string LoadNewLineText(string[] text, int index)
         {
             return text[index];
         }
+
+        /// <summary>
+        /// Parses an array of intes from a string
+        /// </summary>
+        /// <param name="text">
+        /// The string to be parsed 
+        /// </param>
+        /// <param name="numberOfColumns">
+        /// The number of columns in the game 
+        /// </param>
+        /// <param name="numberOfRows">
+        /// The number of rows in the game 
+        /// </param>
+        /// <returns>
+        /// The array of ints parsed from the string 
+        /// </returns>
         private int[,] LoadIntArrayFromSpaceTextFixedLength(string text, int numberOfColumns, int numberOfRows)
         {
             string remainingText = text;
@@ -92,6 +133,22 @@ namespace Minesweeper
             }
             return array;
         }
+
+        /// <summary>
+        /// Loads the state of each cell from a string 
+        /// </summary>
+        /// <param name="text">
+        /// The string to be parsed 
+        /// </param>
+        /// <param name="numberOfColumns">
+        /// The number of columns in the game 
+        /// </param>
+        /// <param name="numberOfRows">
+        /// The number of rows in the game 
+        /// </param>
+        /// <returns>
+        /// An array of enums that represents the state of each cell 
+        /// </returns>
         private GameMap.MineSpaceStates[,] LoadEnumArrayFromSpaceTextFixedLength(string text, int numberOfColumns, int numberOfRows)
         {
             string remainingText = text;
@@ -110,6 +167,22 @@ namespace Minesweeper
             }
             return array;
         }
+
+        /// <summary>
+        /// Loads an array of bools from a string that represents whether or not each cell contains a mine 
+        /// </summary>
+        /// <param name="text">
+        /// The string to be parsed 
+        /// </param>
+        /// <param name="numberOfColumns">
+        /// The number of columns in the game 
+        /// </param>
+        /// <param name="numberOfRows">
+        /// The number of rows in the game 
+        /// </param>
+        /// <returns>
+        /// An array of bools that represents whether or not each cell contains a mine 
+        /// </returns>
         private bool[,] LoadBoolArrayFromSpaceTextFixedLength(string text, int numberOfColumns, int numberOfRows)
         {
             string remainingText = text;

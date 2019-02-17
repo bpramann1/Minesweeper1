@@ -635,6 +635,11 @@
             True if the name already exists, false otherwise
             </returns>
         </member>
+        <member name="T:Minesweeper.LoadGame">
+            <summary>
+            Handles the loading of an old file 
+            </summary>
+        </member>
         <member name="M:Minesweeper.LoadGame.#ctor(Minesweeper.GameMap)">
             <summary>
             Presents the user with a window that allows them to load a game. 
@@ -642,6 +647,84 @@
             <param name="sender">
             The game map that called the function
             </param>
+        </member>
+        <member name="M:Minesweeper.LoadGame.ButtonClicked">
+            <summary>
+            Loads the previously saved game selected by the user 
+            </summary>
+        </member>
+        <member name="M:Minesweeper.LoadGame.ReadTextFile">
+            <summary>
+            Reads a text file into an array of strings
+            </summary>
+            <returns>
+            An array of strings that contains the text from the file 
+            </returns>
+        </member>
+        <member name="M:Minesweeper.LoadGame.LoadNewLineText(System.String[],System.Int32)">
+            <summary>
+            returns a string from an index of an array of strings 
+            </summary>
+            <param name="text">
+            The array of strings to take the text from 
+            </param>
+            <param name="index">
+            The index of the array to return 
+            </param>
+            <returns>
+            The string at text[index]
+            </returns>
+        </member>
+        <member name="M:Minesweeper.LoadGame.LoadIntArrayFromSpaceTextFixedLength(System.String,System.Int32,System.Int32)">
+            <summary>
+            Parses an array of intes from a string
+            </summary>
+            <param name="text">
+            The string to be parsed 
+            </param>
+            <param name="numberOfColumns">
+            The number of columns in the game 
+            </param>
+            <param name="numberOfRows">
+            The number of rows in the game 
+            </param>
+            <returns>
+            The array of ints parsed from the string 
+            </returns>
+        </member>
+        <member name="M:Minesweeper.LoadGame.LoadEnumArrayFromSpaceTextFixedLength(System.String,System.Int32,System.Int32)">
+            <summary>
+            Loads the state of each cell from a string 
+            </summary>
+            <param name="text">
+            The string to be parsed 
+            </param>
+            <param name="numberOfColumns">
+            The number of columns in the game 
+            </param>
+            <param name="numberOfRows">
+            The number of rows in the game 
+            </param>
+            <returns>
+            An array of enums that represents the state of each cell 
+            </returns>
+        </member>
+        <member name="M:Minesweeper.LoadGame.LoadBoolArrayFromSpaceTextFixedLength(System.String,System.Int32,System.Int32)">
+            <summary>
+            Loads an array of bools from a string that represents whether or not each cell contains a mine 
+            </summary>
+            <param name="text">
+            The string to be parsed 
+            </param>
+            <param name="numberOfColumns">
+            The number of columns in the game 
+            </param>
+            <param name="numberOfRows">
+            The number of rows in the game 
+            </param>
+            <returns>
+            An array of bools that represents whether or not each cell contains a mine 
+            </returns>
         </member>
         <member name="F:Minesweeper.LoseScreen.components">
             <summary>
