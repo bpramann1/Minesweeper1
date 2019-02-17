@@ -818,6 +818,11 @@
             <param name="sender">This is the object that called this method.</param>
             <param name="actionAfterSave">This is what the DeleteSave instance should do after it is done.</param>
         </member>
+        <member name="T:Minesweeper.Program">
+            <summary>
+            The main entry point for the application 
+            </summary>
+        </member>
         <member name="M:Minesweeper.Program.Main">
             <summary>
             The main entry point for the application.
@@ -871,6 +876,38 @@
             <summary>
             This method is a virtual method that should be overwritten by all the children of this class.
             </summary>
+        </member>
+        <member name="T:Minesweeper.WinScreen">
+            <summary>
+            Displays a window that lets the user know they've won and presents them with the option to play again 
+            </summary>
+        </member>
+        <member name="M:Minesweeper.WinScreen.#ctor">
+            <summary>
+            Constructs a new win screen 
+            </summary>
+        </member>
+        <member name="M:Minesweeper.WinScreen.quitButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            Closes the application 
+            </summary>
+            <param name="sender">
+            Contains info about the object that called this function 
+            </param>
+            <param name="e">
+            Contains info about the event that caused this function to be called 
+            </param>
+        </member>
+        <member name="M:Minesweeper.WinScreen.playAgainButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            Presents the user with a new game menu 
+            </summary>
+            <param name="sender">
+            Contains info about the object that called this function 
+            </param>
+            <param name="e">
+            Contains info about the event that caused this function to be called 
+            </param>
         </member>
         <member name="F:Minesweeper.WinScreen.components">
             <summary>

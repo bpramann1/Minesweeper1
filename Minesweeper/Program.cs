@@ -6,6 +6,9 @@ using System.Windows.Forms;
 
 namespace Minesweeper
 {
+    /// <summary>
+    /// The main entry point for the application 
+    /// </summary>
     static class Program
     {
         /// <summary>
