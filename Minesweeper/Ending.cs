@@ -61,8 +61,6 @@ namespace Minesweeper
         }
         private void endResult(GameMap m_GameMap)
         {
-            //#TODO: Create method that figures out if you won or lost.
-            //1st scenario.. Bomb is hit
             if (hitBomb == true)
             {
                 LoseScreen lScreen;
