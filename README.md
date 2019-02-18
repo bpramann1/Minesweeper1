@@ -7,6 +7,14 @@ To open documentation for our code:
 2. Open the help folder that you can find in the documentation folder.
 3. Click the HTML file named Index.
 
+# Retrospective Write Up
+1. Open the documentation folder on github.
+2. Open the "Minesweeper Write-up.docx"
+
+# Works Cited
+1. Open the documentation folder on github.
+2. Open the "Minesweeper Works Cited.docx"
+
 # How to build our code
 1. Use a computer that is running Windows.
 2. Make sure that Visual Studio is installed.
@@ -19,3 +27,4 @@ To open documentation for our code:
 3. Once you have cloned our files to your computer, open the Minesweeper.sln
 4. Start the code without debugging by clicking "Debug->Start Without Debugging"
 5. Debug the code by clicking "Debug->Start Debugging"
+
