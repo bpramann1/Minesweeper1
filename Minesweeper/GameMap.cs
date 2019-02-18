@@ -63,6 +63,7 @@ namespace Minesweeper
         private bool fromLoad = false;
         private bool exitImmediately = false;
         private DrawMap mapEditor;
+        private bool gameOver = false;
 
         /// <summary>
         /// Contains the object that the game map displays in 
@@ -399,7 +400,11 @@ namespace Minesweeper
                 totalNumberOfSafeSpacesLeft--;
                 if(totalNumberOfSafeSpacesLeft == 0)
                 {
-                    Ending end = new Ending(this, totalNumberOfBombsLeft, totalNumberOfSafeSpacesLeft, numberOfColumns,numberOfRows,stateOfMineSpace,containsMine);
+                    if (!gameOver)
+                    {
+                        Ending end = new Ending(this, totalNumberOfBombsLeft, totalNumberOfSafeSpacesLeft, numberOfColumns, numberOfRows, stateOfMineSpace, containsMine);
+                        gameOver = true;
+                    }
                 }
                 NumberOfSafeSpacesLeftLabel.Text = totalNumberOfSafeSpacesLeft.ToString() + " safe spaces left";
             }
@@ -409,9 +414,13 @@ namespace Minesweeper
 
                 //Higlight the current rectangle
                 mapEditor.DrawBitmap(column, row, Properties.Resources.mine1);
-                Ending end = new Ending(this,true, totalNumberOfBombsLeft, totalNumberOfSafeSpacesLeft, numberOfColumns, numberOfRows, stateOfMineSpace, containsMine);
+                if (!gameOver)
+                {
+                    Ending end = new Ending(this, true, totalNumberOfBombsLeft, totalNumberOfSafeSpacesLeft, numberOfColumns, numberOfRows, stateOfMineSpace, containsMine);
+                    gameOver = true;
+                }
                 //this.EndReveal();
-                
+
             }
 
 
@@ -469,7 +478,11 @@ namespace Minesweeper
                         totalNumberOfBombsLeft--;
                         if(totalNumberOfBombsLeft == 0)
                         {
-                            Ending end = new Ending(this, totalNumberOfBombsLeft, totalNumberOfSafeSpacesLeft, numberOfColumns, numberOfRows, stateOfMineSpace, containsMine);
+                            if (!gameOver)
+                            {
+                                Ending end = new Ending(this, totalNumberOfBombsLeft, totalNumberOfSafeSpacesLeft, numberOfColumns, numberOfRows, stateOfMineSpace, containsMine);
+                                gameOver = true;
+                            }
                         }
                         break;
                     case MineSpaceStates.FlaggedAsUnsafe:
@@ -480,7 +493,11 @@ namespace Minesweeper
                         totalNumberOfBombsLeft++;
                         if (totalNumberOfSafeSpacesLeft == 0)
                         {
-                            Ending end = new Ending(this, totalNumberOfBombsLeft, totalNumberOfSafeSpacesLeft, numberOfColumns, numberOfRows, stateOfMineSpace, containsMine);
+                            if (!gameOver)
+                            {
+                                Ending end = new Ending(this, totalNumberOfBombsLeft, totalNumberOfSafeSpacesLeft, numberOfColumns, numberOfRows, stateOfMineSpace, containsMine);
+                                gameOver = true;
+                            }
                         }
 
                         break;
