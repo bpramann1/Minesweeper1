@@ -112,9 +112,6 @@
     <None Include="retroExplosion.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bomb.bmp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Icons\greenflag.bmp" />
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +128,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="won-game.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
