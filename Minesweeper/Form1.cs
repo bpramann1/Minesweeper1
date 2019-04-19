@@ -68,17 +68,25 @@ namespace Minesweeper
             var colsParsed = Int32.TryParse(this.columnTextBox.Text, out numCols);
             var minesParsed = Int32.TryParse(this.mineTextBox.Text, out numMines);
             var numericInput = rowsParsed && colsParsed && minesParsed;
-            var validNumberOfMines = numMines > 0 && numMines < (numRows * numCols);
-
+            var validNumberOfMines = numMines >= 0 && numMines < (numRows * numCols);// changed from > to >= for the purposes of showing how Brandon's Algorithm works
+            bool useBrandonsAlgorithm;
+            if (UseBrandonsAlgorithmCheckBox.Checked)
+            {
+                useBrandonsAlgorithm = true;
+            }
+            else
+            {
+                useBrandonsAlgorithm = false;
+            }
             if (numericInput)
             {
-                if (numRows > 1 && numRows <= 50)
+                if (numRows > 1 && numRows <= 100) // changed from 50 to 100 for the purposes of showing how Brandon's Algorithm works
                 {
-                    if (numCols > 1 && numCols <= 50)
+                    if (numCols > 1 && numCols <= 100)// changed from 50 to 100 for the purposes of showing how Brandon's Algorithm works
                     {
                         if (validNumberOfMines)
                         {
-                            game = new GameMap(numRows, numCols, 50, numMines);
+                            game = new GameMap(numRows, numCols, 50, numMines, useBrandonsAlgorithm);
                             this.Hide();
                         }
                         else
@@ -101,5 +109,7 @@ namespace Minesweeper
                 MessageBox.Show(this, "Non-Numeric Input");
             }
         }
+
+
     }
 }

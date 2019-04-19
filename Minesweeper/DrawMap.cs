@@ -64,7 +64,7 @@ namespace Minesweeper
             updateScreenBitmap = new Bitmap(mapWidthInPixels, mapHeightInPixels);
             updateScreenGraphics = Graphics.FromImage(updateScreenBitmap);      //This cause updateScreenGraphics to work with our bitmap
 
-            font = new Font(FontFamily.GenericSansSerif, mineSizeInPixels/2, FontStyle.Regular);
+            font = new Font(FontFamily.GenericSansSerif, mineSizeInPixels/5, FontStyle.Regular);// changed from mineSizeInPixels/2 to mineSizeInPixels/5 to show Brandon's Algorithm
         }
         /// <summary>
         /// This method draws a map of all initial mine spaces. It has the diminsions that are sent in to the constructor.

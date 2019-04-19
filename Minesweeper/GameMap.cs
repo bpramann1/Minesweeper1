@@ -64,6 +64,8 @@ namespace Minesweeper
         private bool exitImmediately = false;
         private DrawMap mapEditor;
         private bool gameOver = false;
+        private StackTrace numberOfCallsOnStackTracer;
+        private bool useBrandonsAlgorithm;
 
         /// <summary>
         /// Contains the object that the game map displays in 
@@ -115,8 +117,9 @@ namespace Minesweeper
             createMap();            //All the variables are set up, so draw the map.
         }
 
-        public GameMap(int rows, int columns, int mineSize, int bombs)                //Constructor for custom number of rows and columns and custom mine size
+        public GameMap(int rows, int columns, int mineSize, int bombs, bool useBrandons)                //Constructor for custom number of rows and columns and custom mine size
         {
+            useBrandonsAlgorithm = useBrandons;
             numberOfRows = rows;          //custom number of rows
             numberOfColumns = columns;       //custom number of columns
             mineSizeInPixels = mineSize;      //custom mine size
@@ -207,6 +210,7 @@ namespace Minesweeper
         /// </summary>
         private void initializeMapVarsBeforeBombsCreated()
         {
+            numberOfCallsOnStackTracer = new StackTrace();
             if (!fromLoad)
             {
                 stateOfMineSpace = new MineSpaceStates[numberOfColumns, numberOfRows];      //Set the array size. All the elements are automatically intiated to zero, which is the value of initial state in our enum.
@@ -432,29 +436,38 @@ namespace Minesweeper
                 if (numberOfAdjacentBombs == 0)
                 {
                     automaticClickNumber++;
-                    switch ((automaticClickNumber%40)/10)
+                    if (useBrandonsAlgorithm)
                     {
-                        case 0:
-                            ClickAdjacentSpacesUpFirst(column, row);
-                            break;
-                        case 1:
-                            ClickAdjacentSpacesLeftFirst(column, row);
-                            break;
-                        case 2:
-                            ClickAdjacentSpacesDownFirst(column, row);
-                            break;
-                        case 3:
-                            ClickAdjacentSpacesRightFirst(column, row);
-                            break;
-                        default:
-                            break;
+                        switch ((automaticClickNumber % 40) / 10)
+                        {
+                            case 0:
+                                ClickAdjacentSpacesUpFirst(column, row);
+                                break;
+                            case 1:
+                                ClickAdjacentSpacesLeftFirst(column, row);
+                                break;
+                            case 2:
+                                ClickAdjacentSpacesDownFirst(column, row);
+                                break;
+                            case 3:
+                                ClickAdjacentSpacesRightFirst(column, row);
+                                break;
+                            default:
+                                break;
+                        }
                     }
+                    else
+                    {
+                        ClickAdjacentSpacesGeneric(column, row);
+                    }
+
                     //updateScreenGraphics.DrawString(automaticClickNumber.ToString(), SystemFonts.DefaultFont, Brushes.Black, column * mineSizeInPixels, row * mineSizeInPixels);
                 }
                 else
                 {
-                    mapEditor.DrawString(numberOfAdjacentBombs.ToString(), column, row);
+                    //mapEditor.DrawString(numberOfAdjacentBombs.ToString(), column, row); //Removed to show Brandon's Algorithm
                 }
+                mapEditor.DrawString(new StackTrace().FrameCount.ToString(), column, row);//Added to show Brandon's Algorithm
             }
             mapEditor.RefreshScreen();
 
